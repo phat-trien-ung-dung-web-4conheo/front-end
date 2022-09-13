@@ -6,11 +6,7 @@ function App() {
     <div className="App">
       <p>
         <strong>hello world</strong>{" "}
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-         Fugiat, ea placeat. Ex quas qui cupiditate archite
-        cto iste neque quam aspernatur cumque et odit
-        , nobis dolore assumenda aut quibusdam modi
-         accusamus?</p>
+        <p>haha</p>
       </p>
     </div>
   );
