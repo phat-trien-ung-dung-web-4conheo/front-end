@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useRef } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
 import dataNav from "../data/data";
 const Container = styled.header`
-  padding: 0 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -14,6 +15,22 @@ const Container = styled.header`
 
 const Left = styled.div`
   flex: 1;
+`;
+
+const LightMode = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const AdjustMode = styled.div`
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 `;
 
 const Center = styled.div`
@@ -41,28 +58,96 @@ const Nav = styled.ul`
   padding-top: 10px;
 `;
 
-const Search = styled.div``;
+const NavItem = styled.li`
+  padding: 2px 40px;
+  position: relative;
+  cursor: pointer;
+  transform: all 0.7s linear;
+  &::before {
+    transform: scaleX(0);
+    transform-origin: bottom right;
+  }
+  &:hover {
+    color: #fff;
+  }
+  &:hover::before {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+
+  &::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    inset: 0 0 0 0;
+    background: hsl(200 100% 80%);
+    z-index: -1;
+    transition: transform 0.3s ease;
+  }
+`;
+
+const Search = styled.div`
+  cursor: pointer;
+`;
 
 const RightHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 10px;
 `;
 
 const Logo = styled.div``;
-const Cart = styled.div``;
+const Cart = styled.div`
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+`;
 
-const User = styled.div``;
+const User = styled.div`
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+`;
 
 const Right = styled.div`
   flex: 1;
 `;
 
+const CartRight = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+`;
+
+const CartRightBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+`;
+
 const Header = (props) => {
+  const active = useRef();
+
   return (
     <Container>
       <Left>
-        <Search></Search>
+        <LightMode>
+          <AdjustMode>
+            <Brightness7Icon
+              style={{ width: "20px", height: "20px" }}
+            ></Brightness7Icon>
+          </AdjustMode>
+        </LightMode>
       </Left>
       <Center>
         <HeaderMain>
@@ -79,11 +164,21 @@ const Header = (props) => {
         </HeaderMain>
         <Nav>
           {dataNav.map((item) => (
-            <li key={item.id}>{item.name}</li>
+            <NavItem key={item.id} ref={active}>
+              {item.name}
+            </NavItem>
           ))}
         </Nav>
       </Center>
-      <Right></Right>
+      <Right>
+        <CartRight>
+          <CartRightBox>
+            <ShoppingCartOutlinedIcon
+              style={{ width: "20px", height: "20px" }}
+            ></ShoppingCartOutlinedIcon>
+          </CartRightBox>
+        </CartRight>
+      </Right>
     </Container>
   );
 };
