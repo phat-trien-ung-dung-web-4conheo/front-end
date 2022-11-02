@@ -6,11 +6,12 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
-import dataNav from "../data/data";
+import { dataNav } from "../data/data";
 const Container = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 120px;
 `;
 
 const Left = styled.div`
@@ -18,6 +19,7 @@ const Left = styled.div`
 `;
 
 const LightMode = styled.div`
+  z-index: 50;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,6 +27,9 @@ const LightMode = styled.div`
   left: 5%;
   transform: translateX(50%);
   top: 5px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
 `;
 
 const AdjustMode = styled.div`
@@ -40,12 +45,13 @@ const AdjustMode = styled.div`
 const Center = styled.div`
   flex: 4;
   position: relative;
+  z-index: 99;
 `;
 
 const HeaderContainer = styled.div`
   transform: translate(0);
   transition: transform 0.5s ease;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 2px 10px;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   display: flex;
@@ -54,7 +60,9 @@ const HeaderContainer = styled.div`
   position: fixed;
   padding: 10px 40px;
   top: 0;
-  width: ${(props) => props.widthHeader}px;
+  width: 901px;
+  z-index: 99;
+  background-color: rgba(255, 255, 255, 0.9);
 `;
 
 const HeaderMain = styled.header`
@@ -99,14 +107,24 @@ const NavItem = styled.li`
     bottom: 0;
     left: 0;
     inset: 0 0 0 0;
-    background: hsl(200 100% 80%);
+    background: rgba(255, 219, 0, 0.5);
     z-index: -1;
     transition: transform 0.3s ease;
   }
 `;
 
 const Search = styled.div`
+  width: 40px;
+  height: 40px;
   cursor: pointer;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  transition: all 0.5s ease;
+  &:hover {
+    background-color: rgba(255, 219, 0, 0.5);
+    border-radius: 50%;
+  }
 `;
 
 const RightHeader = styled.div`
@@ -118,15 +136,31 @@ const RightHeader = styled.div`
 
 const Logo = styled.div``;
 const Cart = styled.div`
-  width: 20px;
-  height: 20px;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  transition: all 0.5s ease;
+  &:hover {
+    background-color: rgba(255, 219, 0, 0.5);
+    border-radius: 50%;
+  }
 `;
 
 const User = styled.div`
-  width: 20px;
-  height: 20px;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  transition: all 0.5s ease;
+  &:hover {
+    background-color: rgba(255, 219, 0, 0.5);
+    border-radius: 50%;
+  }
 `;
 
 const Right = styled.div`
@@ -142,6 +176,10 @@ const CartRight = styled.div`
   top: 5px;
   right: calc(5% + 15px);
   transition: transform 0.5s ease;
+  z-index: 50;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
 `;
 
 const CartRightBox = styled.div`
@@ -155,23 +193,14 @@ const CartRightBox = styled.div`
 
 const Header = (props) => {
   const headerScroll = useRef();
-  const widthCenter = useRef();
   const cartRight = useRef();
-  //GET WIDTH OF CENTER
-  const [widthHeader, setWidthHeader] = useState(
-    widthCenter.current?.offsetWidth
-  );
-  useEffect(() => {
-    const widthGet = widthCenter.current?.offsetWidth;
-    setWidthHeader(widthGet);
-  }, []);
 
   //GET SCROLL
   const [scrollY, setScrollY] = useState(0);
   const handleScroll = () => {
     const position = window.pageYOffset;
     if (position > 1) {
-      headerScroll.current.style.transform = "translateY(-50px)";
+      headerScroll.current.style.transform = "translateY(-62px)";
       cartRight.current.style.transform = "translateY(2px)";
     } else {
       headerScroll.current.style.transform = "translateY(0)";
@@ -199,10 +228,12 @@ const Header = (props) => {
           </AdjustMode>
         </LightMode>
       </Left>
-      <Center ref={widthCenter}>
-        <HeaderContainer ref={headerScroll} widthHeader={widthHeader}>
+      <Center>
+        <HeaderContainer ref={headerScroll}>
           <HeaderMain>
-            <SearchIcon></SearchIcon>
+            <Search>
+              <SearchIcon></SearchIcon>
+            </Search>
             <Logo>Logo</Logo>
             <RightHeader>
               <Cart>
