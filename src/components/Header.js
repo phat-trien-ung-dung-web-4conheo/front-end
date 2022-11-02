@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import SearchIcon from "@mui/icons-material/Search";
@@ -21,6 +21,10 @@ const LightMode = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: fixed;
+  left: 5%;
+  transform: translateX(50%);
+  top: 5px;
 `;
 
 const AdjustMode = styled.div`
@@ -35,12 +39,22 @@ const AdjustMode = styled.div`
 
 const Center = styled.div`
   flex: 4;
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 10px 40px;
+  position: relative;
+`;
+
+const HeaderContainer = styled.div`
+  transform: translate(0);
+  transition: transform 0.5s ease;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: fixed;
+  padding: 10px 40px;
+  top: 0;
+  width: ${(props) => props.widthHeader}px;
 `;
 
 const HeaderMain = styled.header`
@@ -49,6 +63,7 @@ const HeaderMain = styled.header`
   align-items: center;
   border-bottom: 1px solid #ccc;
   padding-bottom: 10px;
+  width: 100%;
 `;
 
 const Nav = styled.ul`
@@ -122,8 +137,11 @@ const CartRight = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
+  position: fixed;
   cursor: pointer;
+  top: 5px;
+  right: calc(5% + 15px);
+  transition: transform 0.5s ease;
 `;
 
 const CartRightBox = styled.div`
@@ -136,8 +154,40 @@ const CartRightBox = styled.div`
 `;
 
 const Header = (props) => {
-  const active = useRef();
+  const headerScroll = useRef();
+  const widthCenter = useRef();
+  const cartRight = useRef();
+  //GET WIDTH OF CENTER
+  const [widthHeader, setWidthHeader] = useState(
+    widthCenter.current?.offsetWidth
+  );
+  useEffect(() => {
+    const widthGet = widthCenter.current?.offsetWidth;
+    setWidthHeader(widthGet);
+  }, []);
 
+  //GET SCROLL
+  const [scrollY, setScrollY] = useState(0);
+  const handleScroll = () => {
+    const position = window.pageYOffset;
+    if (position > 1) {
+      headerScroll.current.style.transform = "translateY(-50px)";
+      cartRight.current.style.transform = "translateY(2px)";
+    } else {
+      headerScroll.current.style.transform = "translateY(0)";
+      cartRight.current.style.transform = "translateY(-50px)";
+    }
+    setScrollY(position);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [scrollY]);
+  //END GET SCROLL
   return (
     <Container>
       <Left>
@@ -149,29 +199,29 @@ const Header = (props) => {
           </AdjustMode>
         </LightMode>
       </Left>
-      <Center>
-        <HeaderMain>
-          <SearchIcon></SearchIcon>
-          <Logo>Logo</Logo>
-          <RightHeader>
-            <Cart>
-              <ShoppingCartIcon></ShoppingCartIcon>{" "}
-            </Cart>
-            <User>
-              <AccountCircleIcon></AccountCircleIcon>{" "}
-            </User>
-          </RightHeader>
-        </HeaderMain>
-        <Nav>
-          {dataNav.map((item) => (
-            <NavItem key={item.id} ref={active}>
-              {item.name}
-            </NavItem>
-          ))}
-        </Nav>
+      <Center ref={widthCenter}>
+        <HeaderContainer ref={headerScroll} widthHeader={widthHeader}>
+          <HeaderMain>
+            <SearchIcon></SearchIcon>
+            <Logo>Logo</Logo>
+            <RightHeader>
+              <Cart>
+                <ShoppingCartIcon></ShoppingCartIcon>{" "}
+              </Cart>
+              <User>
+                <AccountCircleIcon></AccountCircleIcon>{" "}
+              </User>
+            </RightHeader>
+          </HeaderMain>
+          <Nav>
+            {dataNav.map((item) => (
+              <NavItem key={item.id}>{item.name}</NavItem>
+            ))}
+          </Nav>
+        </HeaderContainer>
       </Center>
       <Right>
-        <CartRight>
+        <CartRight ref={cartRight}>
           <CartRightBox>
             <ShoppingCartOutlinedIcon
               style={{ width: "20px", height: "20px" }}
