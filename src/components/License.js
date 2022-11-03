@@ -6,19 +6,17 @@ const Wrap = styled.div`
     width: 100%;
     padding:20px;
 `
-const Line = styled.div`
-    
+const Line = styled.hr`
+    border-color: black;
     width: 90%;
-    border-bottom: 0.1px solid black;
     margin: auto auto;
-    padding-bottom:10px;
 `
 class License extends Component {
     render() {
         return (
             <Wrap>
-            <Line></Line>
-                sadasdasdsdad
+                <Line></Line>
+                    sadasdasdsdad
             </Wrap>
         );
     }
