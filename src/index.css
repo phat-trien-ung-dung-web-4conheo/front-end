@@ -55,3 +55,7 @@ h6 {
   display: flex;
   flex-grow: 3;
 }
+#license-icon{
+  margin:9px;
+
+}

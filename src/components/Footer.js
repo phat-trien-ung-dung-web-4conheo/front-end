@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import {categoryItems, menuItems} from '../data/footer_data';
-import License from './License';
-
+import InstagramIcon from '@mui/icons-material/Instagram';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
 
 const Wrap = styled.div`
     width: calc(50%/3);
@@ -24,6 +27,7 @@ const Items = styled.li`
     padding: 0 5px;
     row-gap:10px;
     width:100%;
+    cursor: pointer;
 `
 const Heading = styled.h3`
     color:black;
@@ -42,6 +46,9 @@ const Form = styled.input`
     width: 60%;
     border-bottom-left-radius:5px;
     border-top-left-radius:5px;
+    ::placeholder{
+        color: black;
+    }
 `
 const SignUpBtn = styled.button`
     color:#333;
@@ -51,46 +58,93 @@ const SignUpBtn = styled.button`
     border-bottom-right-radius:5px;
     border-top-right-radius:5px;
 `
-
-class Footer extends Component {
-    render() {
+const LicenseWrap = styled.div`
+    background-color: #ffdb00;
+    width: 100%;
+`
+const Line = styled.hr`
+    border-color: black;
+    width: 95%;
+    margin: auto auto;
+`
+const LicenseContent = styled.div`
+    padding: 20px 32px;
+    line-height:40px;
+    display:flex;
+    justify-content:space-between;
+`
+const LicenseText = styled.p`
+    font-weight:600;
+`
+const LicenseIcon = styled.div`
+    display:flex;
+    justify-content:space-around;
+`
+const Footer = (probs) => {
+    const [onHover, setHover] = useState("#fff");
         return (
-            <div style={{display:"flex", padding:"40px",height:"100%",backgroundColor:"#ffdb00",flexGrow:"1"}}>
-                <Wrap>
-                    <Heading>Category</Heading>
-                    <FooterItems>
-                        {categoryItems.map((item)=>(
-                            <Items>{item.content}</Items>
-                        ))}
-                    </FooterItems>
-                </Wrap>
-                <Wrap>
-                    <Heading>Menu</Heading>
-                    <FooterItems>
-                        {menuItems.map((item)=>(
-                            <Items>{item.content}</Items>
-                        ))}
-                    </FooterItems>
-                </Wrap>
-                <Wrap>
-                    <Heading>Our Company</Heading>
-                    <FooterItems>
-                        {categoryItems.map((item)=>(
-                            <Items>{item.content}</Items>
-                        ))}
-                    </FooterItems>
-                </Wrap>   
-                <Wrap id='footer_form'>
-                    <Heading>Join our mailing list</Heading>
-                    <EmailForm>
-                        <Form type="text" placeholder='Your Email here...' style={{color:'black'}}/>
-                        <SignUpBtn>Sign up now</SignUpBtn>
-                    </EmailForm>
-                </Wrap>
-            
+            <div>
+                <div style={{display:"flex", padding:"40px",height:"100%",backgroundColor:"#ffdb00",flexGrow:"1"}} id='footer_container'>
+                    <Wrap>
+                        <Heading>Category</Heading>
+                        <FooterItems>
+                            {categoryItems.map((item)=>(
+                                <Items>
+                                    <a>
+                                        {item.content}
+                                    </a>    
+                                </Items>
+                            ))}
+                        </FooterItems>
+                    </Wrap>
+                    <Wrap>
+                        <Heading>Menu</Heading>
+                        <FooterItems>
+                            {menuItems.map((item)=>(
+                                <Items>
+                                    <a>
+                                        {item.content}
+                                    </a>    
+                                </Items>
+                            ))}
+                        </FooterItems>
+                    </Wrap>
+                    <Wrap>
+                        <Heading>Our Company</Heading>
+                        <FooterItems>
+                            {categoryItems.map((item)=>(
+                                <Items>
+                                    <a>
+                                        {item.content}
+                                    </a>    
+                                </Items>
+                            ))}
+                        </FooterItems>
+                    </Wrap>   
+                    <Wrap id='footer_form'>
+                        <Heading>Join our mailing list</Heading>
+                        <EmailForm>
+                            <Form type="text" placeholder='Your Email here...'/>
+                            <SignUpBtn>Sign up now</SignUpBtn>
+                        </EmailForm>
+                    </Wrap>
+                </div>
+                <LicenseWrap>
+                    <Line></Line>
+                    <LicenseContent>
+                        <LicenseText>
+                            Copyright 2022
+                        </LicenseText>
+                        <LicenseIcon>
+                                <InstagramIcon id='license-icon' fontSize='medium'></InstagramIcon>
+                                <LinkedInIcon id='license-icon' fontSize='medium'></LinkedInIcon>
+                                <FacebookIcon id='license-icon' fontSize='medium'></FacebookIcon>
+                                <TwitterIcon id='license-icon' fontSize='medium'></TwitterIcon>
+                        </LicenseIcon>
+                    </LicenseContent>
+                </LicenseWrap>
             </div>
         );
-    }
 }
 
 export default Footer;
