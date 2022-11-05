@@ -20,7 +20,7 @@ const MainHomePage = () => {
     lazyLoad: true,
   };
   return (
-    <div>
+    <>
       <Slider {...settings} className="slider__adjust">
         {dataSliderImg.map((item, index) => (
           <div key={index} className=" p-5 w-[600px] h-[600px] object-cover">
@@ -33,7 +33,7 @@ const MainHomePage = () => {
         ))}
       </Slider>
       <ProductHomePage></ProductHomePage>
-    </div>
+    </>
   );
 };
 
