@@ -49,6 +49,7 @@ const Center = styled.div`
 `;
 
 const HeaderContainer = styled.div`
+  width: 70%;
   transform: translate(0);
   transition: transform 0.5s ease;
   box-shadow: rgba(0, 0, 0, 0.5) 0px 2px 10px;
@@ -59,8 +60,6 @@ const HeaderContainer = styled.div`
   flex-direction: column;
   position: fixed;
   padding: 10px 40px;
-  top: 0;
-  width: 901px;
   z-index: 99;
   background-color: rgba(255, 255, 255, 0.9);
 `;
