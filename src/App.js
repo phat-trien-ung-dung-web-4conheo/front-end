@@ -11,6 +11,7 @@ function App() {
   return (
     <Routes>
       <Route path="/sign-in" element={<SignInPage></SignInPage>} />
+      <Route path="/sign-up" element={<SignUpPage></SignUpPage>}></Route>
     </Routes>
   );
 }
