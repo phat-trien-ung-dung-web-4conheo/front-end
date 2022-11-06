@@ -1,14 +1,17 @@
+import { Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import MainHomePage from "./components/MainHomePage/MainHomePage";
+import AuthenticationLayout from "./components/Page/Authentication/AuthenticationLayout";
+import SignInPage from "./components/Page/Authentication/SignInPage";
+import SignUpPage from "./components/Page/Authentication/SignUpPage";
 import BasketPage from "./components/Page/BasketPage";
 import ProductCategoryPage from "./components/Page/ProductCategoryPage";
-import ProductDetail from "./components/Page/ProductDetail/ProductDetail";
+import ProductDetailPage from "./components/Page/ProductDetail/ProductDetailPage";
 function App() {
   return (
-    <div style={{ height: "200vh" }}>
-      <Header></Header>
-      <ProductDetail></ProductDetail>
-    </div>
+    <Routes>
+      <Route path="/sign-in" element={<SignInPage></SignInPage>} />
+    </Routes>
   );
 }
 

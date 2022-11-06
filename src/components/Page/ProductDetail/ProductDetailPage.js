@@ -20,6 +20,7 @@ const Right = styled.div`
   margin-top: 20px;
   top: 70px;
   width: 100%;
+  margin-bottom: 50px;
 `;
 
 const ProductImg = styled.img`
@@ -27,7 +28,7 @@ const ProductImg = styled.img`
   border-radius: 10px;
 `;
 
-const ProductDetail = () => {
+const ProductDetailPage = () => {
   return (
     <Container>
       <Grid container spacing={2}>
@@ -52,4 +53,4 @@ const ProductDetail = () => {
   );
 };
 
-export default ProductDetail;
+export default ProductDetailPage;
