@@ -90,7 +90,7 @@ const Footer = (probs) => {
                         <FooterItems>
                             {categoryItems.map((item)=>(
                                 <Items>
-                                    <a onMouseEnter={() => setHover('#fff')} onMouseLeave={()=> setHover('#ffdb00')} style={{borderBottom:`solid 3px ${onHover}`}} >
+                                    <a>
                                         {item.content}
                                     </a>    
                                 </Items>

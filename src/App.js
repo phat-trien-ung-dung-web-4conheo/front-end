@@ -1,10 +1,11 @@
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import AboutUsPage from "./components/Page/AboutUsPage";
 
 function App() {
   return (
     <div>
-      <Footer></Footer>
+      <AboutUsPage></AboutUsPage>
     </div>
   );
 }
