@@ -22,13 +22,13 @@ const AuthenticationLayout = ({ children }) => {
   return (
     <Container>
       <Authentication
-        data-aos="fade-down"
-        data-aos-anchor-placement="bottom-center"
-        data-aos-easing="ease-in-sine"
-        data-aos-duration="1000"
+        
       >
         {children}
+        
       </Authentication>
+      <section>
+      </section>
     </Container>
   );
 };
