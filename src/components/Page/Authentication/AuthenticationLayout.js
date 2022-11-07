@@ -21,7 +21,6 @@ const Authentication = styled.div`
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  top: 10%;
   color: #fff;
 `;
 
@@ -34,7 +33,13 @@ const AuthenticationLayout = ({ children }) => {
         alt=""
       />
       <div className="bg-black opacity-60 absolute top-0 left-0 right-0 bottom-0"></div>
-      <Authentication>{children}</Authentication>
+      <div
+        data-aos="fade-down"
+        data-aos-easing="ease-in-sine"
+        className="pt-12"
+      >
+        <Authentication>{children}</Authentication>
+      </div>
     </Container>
   );
 };
