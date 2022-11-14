@@ -5,47 +5,47 @@ import SpaIcon from "@mui/icons-material/Spa";
 export const dataNav = [
   {
     id: 1,
-    name: "item1",
+    name: "Product",
   },
   {
     id: 2,
-    name: "item2",
+    name: "Product",
   },
   {
     id: 3,
-    name: "item3",
+    name: "Product",
   },
   {
     id: 4,
-    name: "item4",
+    name: "Product",
   },
   {
     id: 5,
-    name: "item5",
+    name: "Product",
   },
 ];
 
 export const dataSliderImg = [
   {
-    src: "https://source.unsplash.com/random/600x300/?fruit",
+    src: "https://images.hdqwalls.com/wallpapers/retro-big-sun-sp.jpg",
   },
   {
-    src: "https://source.unsplash.com/random/600x300",
+    src: "https://images.hdqwalls.com/download/the-big-universe-is-here-4k-q4-1920x1080.jpg",
   },
   {
-    src: "https://scontent.fsgn13-4.fna.fbcdn.net/v/t39.30808-6/313036313_1256576148408754_7642436188012359655_n.jpg?_nc_cat=1&ccb=1-7&_nc_sid=730e14&_nc_ohc=Gel6PfmgDc0AX-iJqyp&_nc_ht=scontent.fsgn13-4.fna&oh=00_AfA-gJzPbRDb5u1fXr-YyCWst7tcQ-KYSgio_kGM27yCHQ&oe=6367A01F",
+    src: "https://images.hdqwalls.com/download/dreamscape-blue-morning-4k-fp-1920x1080.jpg",
   },
   {
     src: "https://6.viki.io/image/45be732ff5984180a2adb844c7741cd9/dummy.jpeg?s=900x600&e=t",
   },
   {
-    src: "https://kenh14cdn.com/thumb_w/660/2020/2/11/4-1581382109758754211406.jpg",
+    src: "https://images.hdqwalls.com/download/the-big-universe-is-here-4k-q4-1920x1080.jpg",
   },
   {
-    src: "https://source.unsplash.com/random/600x300",
+    src: "https://images8.alphacoders.com/118/1186452.jpg",
   },
   {
-    src: "https://source.unsplash.com/random/600x300",
+    src: "https://c4.wallpaperflare.com/wallpaper/1006/174/564/elden-ring-edit-video-game-art-video-games-fromsoftware-hd-wallpaper-preview.jpg",
   },
 ];
 
@@ -53,49 +53,42 @@ export const dataProduct = [
   {
     id: 1,
     src: "https://source.unsplash.com/random/600x300",
-    name: "name",
+    name: "Product",
     price: "100d",
   },
   {
     id: 2,
 
     src: "https://source.unsplash.com/random/600x300",
-    name: "name",
+    name: "Product",
     price: "100d",
   },
   {
     id: 3,
 
     src: "https://source.unsplash.com/random/600x300",
-    name: "name",
+    name: "Product",
     price: "100d",
   },
   {
     id: 4,
 
     src: "https://source.unsplash.com/random/600x300",
-    name: "name",
+    name: "Product",
     price: "100d",
   },
   {
     id: 5,
 
     src: "https://source.unsplash.com/random/600x300",
-    name: "name",
+    name: "Product",
     price: "100d",
   },
   {
     id: 6,
 
     src: "https://source.unsplash.com/random/600x300",
-    name: "name",
-    price: "100d",
-  },
-  {
-    id: 7,
-
-    src: "https://source.unsplash.com/random/600x300",
-    name: "name",
+    name: "Product",
     price: "100d",
   },
 ];
