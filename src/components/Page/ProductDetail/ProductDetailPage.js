@@ -46,9 +46,6 @@ const ProductDetailPage = () => {
           </Right>
         </Grid>
       </Grid>
-      <footer>
-        <div className="p-10 bg-black"></div>
-      </footer>
     </Container>
   );
 };
