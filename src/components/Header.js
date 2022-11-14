@@ -85,6 +85,8 @@ const NavItem = styled.li`
   position: relative;
   cursor: pointer;
   transform: all 0.7s linear;
+  font-size: 16px;
+  text-align: center;
   &::before {
     transform: scaleX(0);
     transform-origin: bottom right;
@@ -133,7 +135,11 @@ const RightHeader = styled.div`
   gap: 10px;
 `;
 
-const Logo = styled.div``;
+const Logo = styled.div`
+  font-size: 25px;
+  font-weight: bold;
+  cursor:pointer; 
+`;
 const Cart = styled.div`
   width: 40px;
   height: 40px;
@@ -233,7 +239,7 @@ const Header = (props) => {
             <Search>
               <SearchIcon></SearchIcon>
             </Search>
-            <Logo>Logo</Logo>
+            <Logo>Ovion</Logo>
             <RightHeader>
               <Cart>
                 <ShoppingCartIcon></ShoppingCartIcon>{" "}
