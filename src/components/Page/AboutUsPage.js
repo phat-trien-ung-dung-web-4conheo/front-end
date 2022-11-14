@@ -2,10 +2,12 @@ import React, { useRef, useState } from 'react';
 import Footer from '../Footer'
 import { MenuItems, ItemContent } from '../../data/aboutus_data';
 import styled from 'styled-components';
+import Header from '../Header';
 
 const UpdateStatus = styled.div`
     background-color: #ffdb00;
     padding: 64px 0px 80px 96px;
+    margin-top:10%;
 `
 const UpdateStatusContent = styled.h2`
     font-size:25px;
@@ -73,12 +75,9 @@ const Text = styled.p`
     font-size:16px;
 `   
 const AboutUsPage = () => {
-    const ref = useRef(null);
-    const handleClick = (elementRef) => {
-        elementRef.current?.scrollIntoView({behavior: 'smooth'});
-      };
     return (
         <div>
+            <Header></Header>
             <UpdateStatus>
                 <UpdateStatusContent>Privacy Policy</UpdateStatusContent>
                 <UpdateStatusTime>Last update....</UpdateStatusTime>
@@ -90,9 +89,7 @@ const AboutUsPage = () => {
                         {MenuItems.map((item)=>(
                             <MenuChoice>
                                 <ListItem
-                                    onClick={()=>{
-                                        // handleClick(item.ref)
-                                    }}
+                                   
                                 >{item.content}</ListItem>
                             </MenuChoice>
                         ))}
@@ -104,7 +101,7 @@ const AboutUsPage = () => {
                         {ItemContent.map((item)=>(
                             <TextWrap>
                                 <div>                                   
-                                    <TextHeading ref={ref}>{item.heading}</TextHeading>
+                                    <TextHeading>{item.heading}</TextHeading>
                                     <Text>{item.content}</Text>
                                 </div>
                             </TextWrap>

@@ -15,6 +15,7 @@ const Wrap = styled.div`
     gap: 1.25rem;
     padding-top: 1.25rem;
     padding-bottom: 1.25rem;
+
 `
 const FooterItems = styled.ul`
     color: black;
@@ -27,7 +28,14 @@ const Items = styled.li`
     padding: 0 5px;
     row-gap:10px;
     width:100%;
+    font-weight:400;
     cursor: pointer;
+   
+`
+const LiText = styled.a`
+    &:hover {
+            border-bottom: solid 3px white;
+    }
 `
 const Heading = styled.h3`
     color:black;
@@ -81,18 +89,17 @@ const LicenseIcon = styled.div`
     justify-content:space-around;
 `
 const Footer = (probs) => {
-    const [onHover, setHover] = useState("#fff");
         return (
             <div>
-                <div style={{display:"flex", padding:"40px",height:"100%",backgroundColor:"#ffdb00",flexGrow:"1"}} id='footer_container'>
+                <div style={{display:"flex", padding:"40px",height:"100%",backgroundColor:"#ffdb00",flexGrow:"1",marginTop:"8%"}} id='footer_container'>
                     <Wrap>
                         <Heading>Category</Heading>
                         <FooterItems>
                             {categoryItems.map((item)=>(
                                 <Items>
-                                    <a onMouseEnter={() => setHover('#fff')} onMouseLeave={()=> setHover('#ffdb00')} style={{borderBottom:`solid 3px ${onHover}`}} >
+                                    <LiText>
                                         {item.content}
-                                    </a>    
+                                    </LiText>    
                                 </Items>
                             ))}
                         </FooterItems>
@@ -102,9 +109,9 @@ const Footer = (probs) => {
                         <FooterItems>
                             {menuItems.map((item)=>(
                                 <Items>
-                                    <a>
+                                    <LiText>
                                         {item.content}
-                                    </a>    
+                                    </LiText>    
                                 </Items>
                             ))}
                         </FooterItems>
@@ -114,9 +121,9 @@ const Footer = (probs) => {
                         <FooterItems>
                             {categoryItems.map((item)=>(
                                 <Items>
-                                    <a>
+                                    <LiText>
                                         {item.content}
-                                    </a>    
+                                    </LiText>    
                                 </Items>
                             ))}
                         </FooterItems>
