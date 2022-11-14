@@ -27,12 +27,13 @@ const ChoiceUsItem = styled.div`
 const ChoiceUsIcon = styled.div``;
 
 const GetIdeaCollection = styled.div`
-  margin-top: 50px;
+  margin-top: 10%;
 `;
 const LeftIdea = styled.div`
   background-color: #ffdb00;
   padding: 30px;
   display: flex;
+  font-size:20px;
   flex-direction: column;
   border-radius: 12px;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 10px 2px;
@@ -46,7 +47,7 @@ const GetIdeaImg = styled.img`
 `;
 const ProductHomePage = () => {
   return (
-    <div className="p-5">
+    <div className="p-5 mt-20">
       <ChoiceUs>
         <h2 className="text-3xl text-center mb-[25px] mt-[60px]">
           What make our brand different
