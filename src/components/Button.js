@@ -6,6 +6,8 @@ const ButtonStyle = styled.button`
   box-shadow: rgba(0, 0, 0, 0.6) 0px 7px 5px 0px;
   transform: translateY(0);
   transition: all 0.3s ease;
+  background-color: white;
+  font-size:20px;
   &:hover {
     transform: translateY(-4px);
 
