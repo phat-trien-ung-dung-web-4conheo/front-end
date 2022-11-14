@@ -6,7 +6,7 @@ import Stack from '@mui/material/Stack';
 import GoogleIcon from '@mui/icons-material/Google';
 
 const Container = styled.div`
-margin: '0px',
+margin: 0px;
 font-size: 20px;
 text-align: center;
 `;
@@ -28,7 +28,7 @@ const SignInPage = () => {
       
       <Container>
         <Stack spacing={2} sx={{ width: 300 }}>
-          <h1 style={{fontSize: "30px"}}> Avion </h1>
+          <h1 style={{fontSize: "30px"}}> Ovion </h1>
 
             <input style={BoxInput} type="email" placeholder="Enter your email"></input>
             <input style={BoxInput} type="passworld" placeholder="Enter your passworld"></input>
