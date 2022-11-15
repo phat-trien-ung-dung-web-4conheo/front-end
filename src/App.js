@@ -10,12 +10,17 @@ import BasketPage from "./components/Page/BasketPage";
 import FullPage from "./components/Page/FullPage/FullPage";
 import ProductCategoryPage from "./components/Page/ProductCategoryPage";
 import ProductDetailPage from "./components/Page/ProductDetail/ProductDetailPage";
+import UserProfilePage from "./components/Page/UserProfile/UserProfilePage";
 function App() {
   return (
 
     <Routes>
       <Route path="/sign-in" element={<SignInPage></SignInPage>} />
       <Route path="/sign-up" element={<SignUpPage></SignUpPage>} />
+      <Route
+          path="/profile/:id"
+          element={<UserProfilePage></UserProfilePage>}
+        />
       <Route path="/" element={<FullPage />}>
         <Route path="/" element={<MainHomePage></MainHomePage>} />
         <Route
@@ -27,6 +32,7 @@ function App() {
           path="/product-category/:id"
           element={<ProductCategoryPage></ProductCategoryPage>}
         />
+         
       </Route>
     </Routes>
 
