@@ -81,6 +81,7 @@ const Nav = styled.ul`
 `;
 
 const NavItem = styled.li`
+  font-weight: 600;
   padding: 2px 40px;
   position: relative;
   cursor: pointer;
