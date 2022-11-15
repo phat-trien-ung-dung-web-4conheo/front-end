@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
@@ -20,6 +20,7 @@ const ProductName = styled.div`
   font-size: 24px;
   font-weight: 700;
   line-height: 30px;
+  margin-bottom:28px;
 `;
 const ProductPrice = styled.div`
   max-width:25%;
@@ -30,17 +31,20 @@ const ProductPrice = styled.div`
   padding:12px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 `;
-const ProductDescription = styled.div``;
+const ProductDescription = styled.div`
+  margin-bottom: 50px;
+`;
 const ProductDimensionContainer = styled.div``;
 const ProductDimensions = styled.ul`
-  display: flex;
-  gap: 30px;
+  display:flex;
+  gap: 40px;
   align-items: center;
 `;
 const ProductDimension = styled.li`
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  padding: 5px 25px;
+  padding: 25px 30px;
   border-radius: 10px;
+  cursor: pointer;
 `;
 const ProductColorsContainer = styled.div``;
 const ProductColors = styled.ul`
@@ -61,21 +65,29 @@ const ProductQuantity = styled.div``;
 
 const Quantities = styled.span``;
 const ProductDetailContent = () => {
+  const [sizeSelected, isSizeSelect] = useState("#fff");
   return (
     <ProductDetailContentStyles>
+
       <ProductName>
         {fakeDataProduct.name}
         <ProductPrice>{fakeDataProduct.price}</ProductPrice>
       </ProductName>
+
       <ProductDescription>
-        <h3>Product description</h3>
-        <p>{fakeDataProduct.desc}</p>
+        <h3 style={{color:"#2a254b",fontSize:"24px",fontWeight:"700"}}>Product description</h3>
+        <p style={{fontSize:"18px", color:"black"}}>{fakeDataProduct.desc}</p>
       </ProductDescription>
+
       <ProductDimensionContainer>
-        <h3>Dimension</h3>
+        <h3 style={{color:"#2a254b",fontSize:"24px",fontWeight:"700", marginBottom:"16px"}}>Dimension</h3>
         <ProductDimensions>
           {fakeDataProduct.dimension.map((item) => (
-            <ProductDimension>{item.size}</ProductDimension>
+            <ProductDimension 
+            onClick={()=>{
+              isSizeSelect("#ffdb00")
+            }}
+            style={{backgroundColor:sizeSelected}}>{item.size}</ProductDimension>
           ))}
         </ProductDimensions>
       </ProductDimensionContainer>
