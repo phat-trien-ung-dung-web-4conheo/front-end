@@ -91,7 +91,7 @@ const LicenseIcon = styled.div`
 const Footer = (probs) => {
         return (
             <div>
-                <div style={{display:"flex", padding:"40px",height:"100%",backgroundColor:"#ffdb00",flexGrow:"1",marginTop:"8%"}} id='footer_container'>
+                <div style={{display:"flex", padding:"40px",height:"100%",backgroundColor:"#ffdb00",flexGrow:"1"}} id='footer_container'>
                     <Wrap>
                         <Heading>Category</Heading>
                         <FooterItems>
