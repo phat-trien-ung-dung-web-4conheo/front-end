@@ -119,3 +119,18 @@ export const dataChoiceUs = [
     desc: "We use 100% recycled to ensure our footprint is more manageable",
   },
 ];
+
+export const BannerListItem = [
+  {
+      id: 1,
+      content: "Exclusive Offer",
+  },
+  {
+      id: 2,
+      content: "Free Events",
+  },
+  {
+      id: 2,
+      content: "Large Discount",
+  },
+]
