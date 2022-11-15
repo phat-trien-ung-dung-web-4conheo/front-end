@@ -47,7 +47,7 @@ const GetIdeaImg = styled.img`
 `;
 const ProductHomePage = () => {
   return (
-    <div className="p-5 mt-20">
+    <div className="p-5 mt-10">
       <ChoiceUs>
         <h2 className="text-3xl text-center mb-[25px] mt-[60px]">
           What make our brand different
@@ -64,7 +64,7 @@ const ProductHomePage = () => {
           ))}
         </Grid>
       </ChoiceUs>
-      <h1 className="text-2xl py-5">All product</h1>
+      <h1 className="text-2xl py-5" style={{textAlign:"center", fontWeight:"400"}}>All product</h1>
 
       <ProductList></ProductList>
 
