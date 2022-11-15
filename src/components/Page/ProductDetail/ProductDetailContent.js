@@ -11,6 +11,7 @@ const fakeDataProduct = {
 };
 
 const ProductDetailContentStyles = styled.div`
+  
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -41,10 +42,13 @@ const ProductDimensions = styled.ul`
   align-items: center;
 `;
 const ProductDimension = styled.li`
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  box-shadow: rgba(99, 99, 99, 0.5) 0px 2px 8px 0px;
   padding: 25px 30px;
   border-radius: 10px;
   cursor: pointer;
+  &:hover{
+    background-color: #ccc;
+  }
 `;
 const ProductColorsContainer = styled.div``;
 const ProductColors = styled.ul`
@@ -56,16 +60,35 @@ const ProductColor = styled.li`
   box-shadow: rgba(99, 99, 99, 0.4) 0px 2px 10px 2px;
   padding: 20px;
   border-radius: 50%;
+  margin-top:10px;
+  margin-bottom:10px;
+  cursor: pointer;
+  &:hover{
+    transition: ease all 0.2s;
+    scale: 1.2;
+  }
 `;
-
+const ProductHeading = styled.h3`
+  color: #2a254b;
+  font-size:24px;
+  font-weight: 700;
+`
 const ProductQuantities = styled.div``;
 const ProductQuantityLabel = styled.div``;
 
-const ProductQuantity = styled.div``;
+const ProductQuantity = styled.div`
+  width: 20%;
+  box-shadow: rgba(99, 99, 99, 0.15) 0px 2px 10px 2px;
+  background-color: #f9f9f9;
+  margin-top:20px;
+  padding:15px;
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+`;
 
 const Quantities = styled.span``;
 const ProductDetailContent = () => {
-  const [sizeSelected, isSizeSelect] = useState("#fff");
   return (
     <ProductDetailContentStyles>
 
@@ -75,24 +98,22 @@ const ProductDetailContent = () => {
       </ProductName>
 
       <ProductDescription>
-        <h3 style={{color:"#2a254b",fontSize:"24px",fontWeight:"700"}}>Product description</h3>
+        <ProductHeading style={{color:"#2a254b",fontSize:"24px",fontWeight:"700"}}>Product description</ProductHeading>
         <p style={{fontSize:"18px", color:"black"}}>{fakeDataProduct.desc}</p>
       </ProductDescription>
 
       <ProductDimensionContainer>
-        <h3 style={{color:"#2a254b",fontSize:"24px",fontWeight:"700", marginBottom:"16px"}}>Dimension</h3>
+        <ProductHeading style={{color:"#2a254b",fontSize:"24px",fontWeight:"700", marginBottom:"16px"}}>Dimension</ProductHeading>
         <ProductDimensions>
           {fakeDataProduct.dimension.map((item) => (
             <ProductDimension 
-            onClick={()=>{
-              isSizeSelect("#ffdb00")
-            }}
-            style={{backgroundColor:sizeSelected}}>{item.size}</ProductDimension>
+            >{item.size}</ProductDimension>
           ))}
         </ProductDimensions>
       </ProductDimensionContainer>
+
       <ProductColorsContainer>
-        <h3>Color</h3>
+        <ProductHeading >Color</ProductHeading>
         <ProductColors>
           {fakeDataProduct.color.map((item) => (
             <ProductColor
@@ -101,14 +122,22 @@ const ProductDetailContent = () => {
           ))}
         </ProductColors>
       </ProductColorsContainer>
+
       <ProductQuantities>
-        <ProductQuantityLabel>Quantity</ProductQuantityLabel>
+        <ProductQuantityLabel>
+          <ProductHeading>
+            Quantity
+          </ProductHeading>    
+        </ProductQuantityLabel>
+
         <ProductQuantity>
-          <RemoveIcon></RemoveIcon>
+          <RemoveIcon style={{cursor:"pointer"}}></RemoveIcon>
           <Quantities>1</Quantities>
-          <AddIcon></AddIcon>
+          <AddIcon style={{cursor:"pointer"}}></AddIcon>
         </ProductQuantity>
+
       </ProductQuantities>
+
     </ProductDetailContentStyles>
   );
 };

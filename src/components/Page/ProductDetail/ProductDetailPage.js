@@ -36,8 +36,6 @@ const ProductDetailPage = () => {
           <Left>
             <ProductImg src="https://images.unsplash.com/photo-1667392267120-d3bc9a16dc1e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzN3x8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60"></ProductImg>
             <ProductImg src="https://images.unsplash.com/photo-1667392267120-d3bc9a16dc1e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzN3x8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60"></ProductImg>
-            <ProductImg src="https://images.unsplash.com/photo-1667392267120-d3bc9a16dc1e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzN3x8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60"></ProductImg>
-            <ProductImg src="https://images.unsplash.com/photo-1667392267120-d3bc9a16dc1e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzN3x8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60"></ProductImg>
           </Left>
         </Grid>
         <Grid item xs={5} style={{ position: "relative" }}>
