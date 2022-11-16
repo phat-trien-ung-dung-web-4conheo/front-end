@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import AuthenticationLayout from "./AuthenticationLayout";
+
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import GoogleIcon from "@mui/icons-material/Google";
+import { shouldSkipGeneratingVar } from "@mui/material";
 
 const Container = styled.div`
   margin: "0px";
@@ -11,12 +13,11 @@ const Container = styled.div`
   text-align: center;
 `;
 const BoxInput = {
+  color: "black",
   height: "40px",
   padding: "10px",
   borderRadius: "5px",
-  margin: "5px",
-  border: "1px",
-  borderColor: "rgb(202, 198, 218)",
+  border: "1px solid rgb(202, 198, 218)",
 };
 const ForgotPassword = {
   color: "white",
@@ -28,26 +29,31 @@ const SignInPage = () => {
       <Container>
         <Stack spacing={2} sx={{ width: 300 }}>
           <h1 style={{ fontSize: "30px" }}> Avion </h1>
-
-          <input
-            style={BoxInput}
-            type="email"
-            placeholder="Enter your email"
-          ></input>
-          <input
-            style={BoxInput}
-            type="passworld"
-            placeholder="Enter your passworld"
-          ></input>
+          <Stack spacing={1}>
+            <input
+              style={BoxInput}
+              type="email"
+              placeholder="Enter your email"
+              id="email"
+            ></input>
+            <input
+              style={BoxInput}
+              type="passworld"
+              placeholder="Enter your password"
+              id="password"
+            ></input>
+          </Stack>
 
           <a style={ForgotPassword} id="forgot" href=" https://widgetbox.app/">
-            Forgot passworld
+            Forgot password
           </a>
           <Button
             style={{
               fontSize: 16,
-              backgroundColor: "#2a254b",
+              backgroundColor: "#ffdb00",
               textTransform: "capitalize",
+              fontWeight: "bold",
+              color: "black",
             }}
             variant="contained"
             disableElevation
@@ -94,10 +100,11 @@ const SignInPage = () => {
               </h2>
             </div>
           </Button>
+
           <h2>
             Don't have an account?
             <u>
-              <a href=" https://widgetbox.app/" target="_blank">
+              <a href="sign-up " target="_blank">
                 {" "}
                 Sign up
               </a>
