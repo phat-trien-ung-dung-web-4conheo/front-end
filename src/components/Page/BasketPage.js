@@ -22,10 +22,10 @@ const BasketPage = () => {
     <Container>
       <Grid container spacing={2}>
         <Grid item xs={8}>
-          <Left></Left>
+          <Left>Your code is here</Left>
         </Grid>
         <Grid item xs={4}>
-          <Right></Right>
+          <Right>Your code is here</Right>
         </Grid>
       </Grid>
     </Container>
