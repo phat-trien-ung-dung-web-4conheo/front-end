@@ -87,7 +87,7 @@ const ProductHomePage = () => {
           </Grid>
           <Grid item xs={6}>
             <RightIdea>
-              <GetIdeaImg src="https://gbl-sc9u2-prd-cdn.azureedge.net/-/media/aboutikea/images/contact/how-to-buy-ikea-products-from-a-different-country/a-man-setting-a-table-ai2001-02-ph156953-ikea-l.jpg?rev=5d9ca4cf1a7b402fb98dfac9d10f3f79"></GetIdeaImg>
+              <GetIdeaImg src="https://fapxy.info/wp-content/uploads/2022/01/nike-store.jpg"></GetIdeaImg>
             </RightIdea>
           </Grid>
         </Grid>

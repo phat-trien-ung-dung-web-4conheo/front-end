@@ -10,6 +10,8 @@ import BasketPage from "./components/Page/BasketPage";
 import FullPage from "./components/Page/FullPage/FullPage";
 import ProductCategoryPage from "./components/Page/ProductCategoryPage";
 import ProductDetailPage from "./components/Page/ProductDetail/ProductDetailPage";
+
+
 function App() {
   return (
 
