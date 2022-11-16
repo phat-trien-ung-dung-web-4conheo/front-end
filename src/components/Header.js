@@ -7,11 +7,13 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { dataNav } from "../data/data";
+import BasketPagePopup from "./Page/BasketPagePopup";
 const Container = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 120px;
+  position: relative;
 `;
 
 const Left = styled.div`
@@ -71,6 +73,7 @@ const HeaderMain = styled.header`
   border-bottom: 1px solid #ccc;
   padding-bottom: 10px;
   width: 100%;
+  z-index: 99;
 `;
 
 const Nav = styled.ul`
@@ -139,7 +142,7 @@ const RightHeader = styled.div`
 const Logo = styled.div`
   font-size: 25px;
   font-weight: bold;
-  cursor:pointer; 
+  cursor: pointer;
 `;
 const Cart = styled.div`
   width: 40px;
@@ -223,6 +226,9 @@ const Header = (props) => {
     };
   }, [scrollY]);
   //END GET SCROLL
+  //APPEAR BASKETPOPUP
+  const [appear, setAppear] = useState(false);
+  //END APPEAR BASKETPOPUP
   return (
     <Container>
       <Left>
@@ -258,14 +264,37 @@ const Header = (props) => {
         </HeaderContainer>
       </Center>
       <Right>
-        <CartRight ref={cartRight}>
-          <CartRightBox>
+        <CartRight
+          ref={cartRight}
+          onClick={() => {
+            setAppear(!appear);
+          }}
+        >
+          <CartRightBox
+            className={
+              appear
+                ? "bg-[#ffdb00] text-black"
+                : "hover:bg-[#ffdb00] transition-all duration-500"
+            }
+          >
             <ShoppingCartOutlinedIcon
               style={{ width: "20px", height: "20px" }}
             ></ShoppingCartOutlinedIcon>
           </CartRightBox>
         </CartRight>
       </Right>
+      <div
+        onClick={() => {
+          setAppear(!appear);
+        }}
+        className={`${
+          appear ? "backdrop-blur  w-full h-[200vh] z-40" : ""
+        } fixed`}
+      ></div>
+      <BasketPagePopup
+        isAppear={appear}
+        className="fixed top-0 left-0 w-full h-full "
+      ></BasketPagePopup>
     </Container>
   );
 };
