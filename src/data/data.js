@@ -25,6 +25,21 @@ export const dataNav = [
   },
 ];
 
+export const dataFloatNav = [
+  {
+    id: 1,
+    name: "Black Friday Sale | Save Up to 60%",
+  },
+  {
+    id: 2,
+    name: "Free Shipping + Returns, Free Membership, Exclusive Products",
+  },
+  {
+    id: 3,
+    name: "Shop Now, Relax Later",
+  },
+];
+
 export const dataSliderImg = [
   {
     src: "https://images.hdqwalls.com/wallpapers/retro-big-sun-sp.jpg",
@@ -122,15 +137,15 @@ export const dataChoiceUs = [
 
 export const BannerListItem = [
   {
-      id: 1,
-      content: "Exclusive Offer",
+    id: 1,
+    content: "Exclusive Offer",
   },
   {
-      id: 2,
-      content: "Free Events",
+    id: 2,
+    content: "Free Events",
   },
   {
-      id: 2,
-      content: "Large Discount",
+    id: 2,
+    content: "Large Discount",
   },
-]
+];

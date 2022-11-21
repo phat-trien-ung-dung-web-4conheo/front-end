@@ -21,7 +21,7 @@ const Container = styled.div`
   transform: ${(props) =>
     props.isAppear ? "translateY(0)" : "translateY(100%)"};
   transition: transform 0.5s ease;
-  height: 70vh;
+  height: 75vh;
   bottom: 0;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -114,13 +114,13 @@ const BasketPagePopup = ({
                   flexDirection: "row",
                   cursor: "pointer",
                   border: "1px solid black",
-                  padding: "10px 10px",
+                  padding: "10px 15px",
                   borderRadius: "10% 10% 10%",
                 }}
               >
-                <div class="quan-bar__btn">-</div>
-                <span class="quan-bar__text">1</span>
-                <div class="quan-bar__btn">+</div>
+                <div className="p-2">-</div>
+                <p class="quan-bar__text">1</p>
+                <div class="p-2">+</div>
               </div>
               <IconButton aria-label="delete" style={{ color: "#f44336" }}>
                 <DeleteIcon />

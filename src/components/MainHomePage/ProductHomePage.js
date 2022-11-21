@@ -17,10 +17,15 @@ const ChoiceUsItem = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
-
+  overflow: hidden;
+  transition: transform 1s ease;
   &:hover .choice-icon {
     transition: transform 1s ease;
+
     transform: translateX(90%);
+  }
+  &:hover {
+    transform: scale(1.1);
   }
 `;
 
@@ -33,7 +38,7 @@ const LeftIdea = styled.div`
   background-color: #ffdb00;
   padding: 30px;
   display: flex;
-  font-size:20px;
+  font-size: 20px;
   flex-direction: column;
   border-radius: 12px;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 10px 2px;
@@ -64,7 +69,12 @@ const ProductHomePage = () => {
           ))}
         </Grid>
       </ChoiceUs>
-      <h1 className="text-2xl py-5" style={{textAlign:"center", fontWeight:"400"}}>All product</h1>
+      <h1
+        className="text-2xl py-5"
+        style={{ textAlign: "center", fontWeight: "400" }}
+      >
+        All product
+      </h1>
 
       <ProductList></ProductList>
 
