@@ -1,5 +1,6 @@
 import { Grid } from "@mui/material";
 import React, { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { dataProduct, dataChoiceUs } from "../../data/data";
 import Button from "../Button";
@@ -51,6 +52,7 @@ const GetIdeaImg = styled.img`
   box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 10px 2px;
 `;
 const ProductHomePage = () => {
+  const navigate = useNavigate();
   return (
     <div className="p-5 mt-10">
       <ChoiceUs>
@@ -90,8 +92,9 @@ const ProductHomePage = () => {
                 </p>
               </div>
               <Button
+                navigate="/products"
                 content="View collection"
-                className="w-full p-3 rounded-lg mt-auto"
+                className="w-full p-3 rounded-lg mt-auto bg-white !text-black"
               ></Button>
             </LeftIdea>
           </Grid>

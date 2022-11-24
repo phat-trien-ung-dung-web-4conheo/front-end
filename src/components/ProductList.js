@@ -1,6 +1,7 @@
 import { Grid } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { dataProduct } from "../data/data";
 import Button from "./Button";
@@ -62,6 +63,7 @@ const ProductList = ({ cat, sort, filters }) => {
   const infoProduct = useRef();
   const [products, setProducts] = useState([]);
   const [filterdProducts, setFilterdProducts] = useState([]);
+  //GET PRODUCT
   useEffect(() => {
     const getProducts = async () => {
       try {
@@ -77,6 +79,7 @@ const ProductList = ({ cat, sort, filters }) => {
     };
     getProducts();
   }, []);
+  //FILTER
   useEffect(() => {
     cat
       ? setFilterdProducts(
@@ -92,13 +95,27 @@ const ProductList = ({ cat, sort, filters }) => {
         )
       : setFilterdProducts(products);
   }, [cat, products, filters]);
-  console.log(products);
+  //SORT
+  useEffect(() => {
+    if (sort === "newest") {
+      setFilterdProducts((prev) => {
+        return [...prev].sort((a, b) => {
+          return a.createdAt.localeCompare(b.createdAt);
+        });
+      });
+    } else if (sort === "asc") {
+      setFilterdProducts((prev) => [...prev].sort((a, b) => a.price - b.price));
+    } else if (sort === "desc") {
+      setFilterdProducts((prev) => [...prev].sort((a, b) => b.price - a.price));
+    }
+  }, [sort, filters]);
+  const navigate = useNavigate();
   return (
     <ProductListStyle>
       <Grid container spacing={4}>
         {filterdProducts.map((item) => (
-          <Grid item xs={4} key={item.id}>
-            <ProductItem>
+          <Grid item xs={4} key={item._id}>
+            <ProductItem onClick={() => navigate(`/product/${item._id}`)}>
               <ProductImg src={item.img}></ProductImg>
               <Info className="product-info" ref={infoProduct}>
                 <InfoDetail>

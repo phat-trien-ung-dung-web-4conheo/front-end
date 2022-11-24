@@ -54,6 +54,7 @@ const ProductCategoryPage = () => {
           <FormControl fullWidth className="">
             <InputLabel id="demo-simple-select-label">Color</InputLabel>
             <Select
+              defaultValue=""
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               name="color"
@@ -81,6 +82,7 @@ const ProductCategoryPage = () => {
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Size</InputLabel>
             <Select
+              defaultValue=""
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               name="size"
@@ -111,13 +113,14 @@ const ProductCategoryPage = () => {
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Newest</InputLabel>
             <Select
+              defaultValue=""
               onChange={(e) => {
                 setSort(e.target.value);
               }}
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              name="size"
-              label="Size"
+              name="newest"
+              label="Newest"
               className="w-[100px]"
               sx={{
                 "&.MuiOutlinedInput-root": {
@@ -130,9 +133,7 @@ const ProductCategoryPage = () => {
                 },
               }}
             >
-              <MenuItem selected value="newest">
-                Newest
-              </MenuItem>
+              <MenuItem value="newest">Newest</MenuItem>
               <MenuItem value="desc">Price (desc)</MenuItem>
               <MenuItem value="asc">Price (asc)</MenuItem>
             </Select>

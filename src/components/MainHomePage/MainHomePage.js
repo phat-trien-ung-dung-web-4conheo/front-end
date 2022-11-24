@@ -41,8 +41,9 @@ const MainHomePage = () => {
         </h1>
         <Button
           content="Shop now"
+          navigate="/products"
           backgroundColor="#000"
-          className="mx-auto p-4 rounded-lg text-white "
+          className="mx-auto p-4 rounded-lg text-white inline-block hover:-translate-y-1 hover:shadow-2xl shadow-3xl transition-all"
         ></Button>
       </div>
 

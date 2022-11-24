@@ -23,13 +23,13 @@ const ProductName = styled.div`
   margin-bottom: 28px;
 `;
 const ProductPrice = styled.div`
-  max-width: 25%;
   text-align: center;
   margin-top: 15px;
   font-size: 16px;
   padding: 5px;
   padding: 12px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  display: inline-block;
 `;
 const ProductDescription = styled.div`
   margin-bottom: 50px;
@@ -91,7 +91,7 @@ const ProductDetailContent = () => {
   return (
     <ProductDetailContentStyles>
       <ProductName>
-        {fakeDataProduct.name}
+        <p>{fakeDataProduct.name}</p>
         <ProductPrice>{fakeDataProduct.price}</ProductPrice>
       </ProductName>
 

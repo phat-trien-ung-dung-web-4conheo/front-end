@@ -22,7 +22,11 @@ function App() {
         />
         <Route path="/basket" element={<BasketPage></BasketPage>} />
         <Route
-          path="/products/men"
+          path="/products/"
+          element={<ProductCategoryPage></ProductCategoryPage>}
+        />
+        <Route
+          path="/products/:id"
           element={<ProductCategoryPage></ProductCategoryPage>}
         />
       </Route>

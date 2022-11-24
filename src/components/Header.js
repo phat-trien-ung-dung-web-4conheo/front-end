@@ -8,6 +8,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { dataNav } from "../data/data";
 import BasketPagePopup from "./Page/BasketPagePopup";
+import { useNavigate } from "react-router-dom";
 const Container = styled.header`
   display: flex;
   justify-content: space-between;
@@ -81,6 +82,8 @@ const Nav = styled.ul`
   justify-content: center;
   align-items: center;
   padding-top: 10px;
+  right: 0;
+  left: 0;
 `;
 
 const NavItem = styled.li`
@@ -91,6 +94,7 @@ const NavItem = styled.li`
   transform: all 0.7s linear;
   font-size: 16px;
   text-align: center;
+
   &::before {
     transform: scaleX(0);
     transform-origin: bottom right;
@@ -156,6 +160,7 @@ const Cart = styled.div`
     background-color: rgba(255, 219, 0, 0.5);
     border-radius: 50%;
   }
+  border: none;
 `;
 
 const User = styled.div`
@@ -203,7 +208,6 @@ const CartRightBox = styled.div`
 const Header = (props) => {
   const headerScroll = useRef();
   const cartRight = useRef();
-
   //GET SCROLL
   const [scrollY, setScrollY] = useState(0);
   const handleScroll = () => {
@@ -226,9 +230,11 @@ const Header = (props) => {
     };
   }, [scrollY]);
   //END GET SCROLL
+
   //APPEAR BASKETPOPUP
   const [appear, setAppear] = useState(false);
   //END APPEAR BASKETPOPUP
+  const navigate = useNavigate();
   return (
     <Container>
       <Left>
@@ -246,19 +252,23 @@ const Header = (props) => {
             <Search>
               <SearchIcon></SearchIcon>
             </Search>
-            <Logo>Ovion</Logo>
+            <Logo onClick={() => navigate("/")}>Ovion</Logo>
             <RightHeader>
-              <Cart>
+              <Cart onClick={() => navigate("/basket")}>
                 <ShoppingCartIcon></ShoppingCartIcon>{" "}
               </Cart>
-              <User>
+              <User onClick={() => navigate("/user")}>
                 <AccountCircleIcon></AccountCircleIcon>{" "}
               </User>
             </RightHeader>
           </HeaderMain>
           <Nav>
             {dataNav.map((item) => (
-              <NavItem key={item.id}>{item.name}</NavItem>
+              <>
+                <NavItem className="nav__item" key={item.id}>
+                  {item.name}
+                </NavItem>
+              </>
             ))}
           </Nav>
         </HeaderContainer>
