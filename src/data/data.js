@@ -6,22 +6,39 @@ export const dataNav = [
   {
     id: 1,
     name: "Product",
+    category: "123",
   },
   {
     id: 2,
-    name: "Product",
+    name: "adu",
+    category: 2,
   },
   {
     id: 3,
-    name: "Product",
+    name: "san pham",
   },
   {
     id: 4,
-    name: "Product",
+    name: "san pham2",
   },
   {
     id: 5,
-    name: "Product",
+    name: "san pham 3",
+  },
+];
+
+export const dataFloatNav = [
+  {
+    id: 1,
+    name: "Black Friday Sale | Save Up to 60%",
+  },
+  {
+    id: 2,
+    name: "Free Shipping + Returns, Free Membership, Exclusive Products",
+  },
+  {
+    id: 3,
+    name: "Shop Now, Relax Later",
   },
 ];
 
@@ -122,15 +139,15 @@ export const dataChoiceUs = [
 
 export const BannerListItem = [
   {
-      id: 1,
-      content: "Exclusive Offer",
+    id: 1,
+    content: "Exclusive Offer",
   },
   {
-      id: 2,
-      content: "Free Events",
+    id: 2,
+    content: "Free Events",
   },
   {
-      id: 2,
-      content: "Large Discount",
+    id: 2,
+    content: "Large Discount",
   },
-]
+];

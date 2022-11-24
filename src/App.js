@@ -1,4 +1,3 @@
-
 import { Route, Routes } from "react-router-dom";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -14,7 +13,6 @@ import ProductDetailPage from "./components/Page/ProductDetail/ProductDetailPage
 
 function App() {
   return (
-
     <Routes>
       <Route path="/sign-in" element={<SignInPage></SignInPage>} />
       <Route path="/sign-up" element={<SignUpPage></SignUpPage>} />
@@ -26,12 +24,15 @@ function App() {
         />
         <Route path="/basket" element={<BasketPage></BasketPage>} />
         <Route
-          path="/product-category/:id"
+          path="/products/"
+          element={<ProductCategoryPage></ProductCategoryPage>}
+        />
+        <Route
+          path="/products/:id"
           element={<ProductCategoryPage></ProductCategoryPage>}
         />
       </Route>
     </Routes>
-
   );
 }
 

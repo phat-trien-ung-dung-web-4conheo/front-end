@@ -7,11 +7,14 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { dataNav } from "../data/data";
+import BasketPagePopup from "./Page/BasketPagePopup";
+import { useNavigate } from "react-router-dom";
 const Container = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 120px;
+  position: relative;
 `;
 
 const Left = styled.div`
@@ -71,6 +74,7 @@ const HeaderMain = styled.header`
   border-bottom: 1px solid #ccc;
   padding-bottom: 10px;
   width: 100%;
+  z-index: 99;
 `;
 
 const Nav = styled.ul`
@@ -78,6 +82,8 @@ const Nav = styled.ul`
   justify-content: center;
   align-items: center;
   padding-top: 10px;
+  right: 0;
+  left: 0;
 `;
 
 const NavItem = styled.li`
@@ -88,6 +94,7 @@ const NavItem = styled.li`
   transform: all 0.7s linear;
   font-size: 16px;
   text-align: center;
+
   &::before {
     transform: scaleX(0);
     transform-origin: bottom right;
@@ -139,7 +146,7 @@ const RightHeader = styled.div`
 const Logo = styled.div`
   font-size: 25px;
   font-weight: bold;
-  cursor:pointer; 
+  cursor: pointer;
 `;
 const Cart = styled.div`
   width: 40px;
@@ -153,6 +160,7 @@ const Cart = styled.div`
     background-color: rgba(255, 219, 0, 0.5);
     border-radius: 50%;
   }
+  border: none;
 `;
 
 const User = styled.div`
@@ -200,7 +208,6 @@ const CartRightBox = styled.div`
 const Header = (props) => {
   const headerScroll = useRef();
   const cartRight = useRef();
-
   //GET SCROLL
   const [scrollY, setScrollY] = useState(0);
   const handleScroll = () => {
@@ -223,6 +230,11 @@ const Header = (props) => {
     };
   }, [scrollY]);
   //END GET SCROLL
+
+  //APPEAR BASKETPOPUP
+  const [appear, setAppear] = useState(false);
+  //END APPEAR BASKETPOPUP
+  const navigate = useNavigate();
   return (
     <Container>
       <Left>
@@ -240,32 +252,59 @@ const Header = (props) => {
             <Search>
               <SearchIcon></SearchIcon>
             </Search>
-            <Logo>Ovion</Logo>
+            <Logo onClick={() => navigate("/")}>Ovion</Logo>
             <RightHeader>
-              <Cart>
+              <Cart onClick={() => navigate("/basket")}>
                 <ShoppingCartIcon></ShoppingCartIcon>{" "}
               </Cart>
-              <User>
+              <User onClick={() => navigate("/user")}>
                 <AccountCircleIcon></AccountCircleIcon>{" "}
               </User>
             </RightHeader>
           </HeaderMain>
           <Nav>
             {dataNav.map((item) => (
-              <NavItem key={item.id}>{item.name}</NavItem>
+              <>
+                <NavItem className="nav__item" key={item.id}>
+                  {item.name}
+                </NavItem>
+              </>
             ))}
           </Nav>
         </HeaderContainer>
       </Center>
       <Right>
-        <CartRight ref={cartRight}>
-          <CartRightBox>
+        <CartRight
+          ref={cartRight}
+          onClick={() => {
+            setAppear(!appear);
+          }}
+        >
+          <CartRightBox
+            className={
+              appear
+                ? "bg-[#ffdb00] text-black"
+                : "hover:bg-[#ffdb00] transition-all duration-500"
+            }
+          >
             <ShoppingCartOutlinedIcon
               style={{ width: "20px", height: "20px" }}
             ></ShoppingCartOutlinedIcon>
           </CartRightBox>
         </CartRight>
       </Right>
+      <div
+        onClick={() => {
+          setAppear(!appear);
+        }}
+        className={`${
+          appear ? "backdrop-blur  w-full h-[200vh] z-40" : ""
+        } fixed`}
+      ></div>
+      <BasketPagePopup
+        isAppear={appear}
+        className="fixed top-0 left-0 w-full h-full "
+      ></BasketPagePopup>
     </Container>
   );
 };

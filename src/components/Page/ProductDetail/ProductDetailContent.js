@@ -11,7 +11,6 @@ const fakeDataProduct = {
 };
 
 const ProductDetailContentStyles = styled.div`
-  
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -21,23 +20,23 @@ const ProductName = styled.div`
   font-size: 24px;
   font-weight: 700;
   line-height: 30px;
-  margin-bottom:28px;
+  margin-bottom: 28px;
 `;
 const ProductPrice = styled.div`
-  max-width:25%;
   text-align: center;
   margin-top: 15px;
   font-size: 16px;
   padding: 5px;
-  padding:12px;
+  padding: 12px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  display: inline-block;
 `;
 const ProductDescription = styled.div`
   margin-bottom: 50px;
 `;
 const ProductDimensionContainer = styled.div``;
 const ProductDimensions = styled.ul`
-  display:flex;
+  display: flex;
   gap: 40px;
   align-items: center;
 `;
@@ -46,7 +45,7 @@ const ProductDimension = styled.li`
   padding: 25px 30px;
   border-radius: 10px;
   cursor: pointer;
-  &:hover{
+  &:hover {
     background-color: #ccc;
   }
 `;
@@ -60,19 +59,19 @@ const ProductColor = styled.li`
   box-shadow: rgba(99, 99, 99, 0.4) 0px 2px 10px 2px;
   padding: 20px;
   border-radius: 50%;
-  margin-top:10px;
-  margin-bottom:10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   cursor: pointer;
-  &:hover{
+  &:hover {
     transition: ease all 0.2s;
     scale: 1.2;
   }
 `;
 const ProductHeading = styled.h3`
   color: #2a254b;
-  font-size:24px;
+  font-size: 24px;
   font-weight: 700;
-`
+`;
 const ProductQuantities = styled.div``;
 const ProductQuantityLabel = styled.div``;
 
@@ -80,9 +79,9 @@ const ProductQuantity = styled.div`
   width: 20%;
   box-shadow: rgba(99, 99, 99, 0.15) 0px 2px 10px 2px;
   background-color: #f9f9f9;
-  margin-top:20px;
-  padding:15px;
-  display:flex;
+  margin-top: 20px;
+  padding: 15px;
+  display: flex;
   justify-content: space-between;
   align-items: center;
 `;
@@ -91,32 +90,46 @@ const Quantities = styled.span``;
 const ProductDetailContent = () => {
   return (
     <ProductDetailContentStyles>
-
       <ProductName>
-        {fakeDataProduct.name}
+        <p>{fakeDataProduct.name}</p>
         <ProductPrice>{fakeDataProduct.price}</ProductPrice>
       </ProductName>
 
       <ProductDescription>
-        <ProductHeading style={{color:"#2a254b",fontSize:"24px",fontWeight:"700"}}>Product description</ProductHeading>
-        <p style={{fontSize:"18px", color:"black"}}>{fakeDataProduct.desc}</p>
+        <ProductHeading
+          style={{ color: "#2a254b", fontSize: "24px", fontWeight: "700" }}
+        >
+          Product description
+        </ProductHeading>
+        <p style={{ fontSize: "18px", color: "black" }}>
+          {fakeDataProduct.desc}
+        </p>
       </ProductDescription>
 
       <ProductDimensionContainer>
-        <ProductHeading style={{color:"#2a254b",fontSize:"24px",fontWeight:"700", marginBottom:"16px"}}>Dimension</ProductHeading>
+        <ProductHeading
+          style={{
+            color: "#2a254b",
+            fontSize: "24px",
+            fontWeight: "700",
+            marginBottom: "16px",
+          }}
+        >
+          Dimension
+        </ProductHeading>
         <ProductDimensions>
-          {fakeDataProduct.dimension.map((item) => (
-            <ProductDimension 
-            >{item.size}</ProductDimension>
+          {fakeDataProduct.dimension.map((item, idx) => (
+            <ProductDimension key={idx}>{item.size}</ProductDimension>
           ))}
         </ProductDimensions>
       </ProductDimensionContainer>
 
       <ProductColorsContainer>
-        <ProductHeading >Color</ProductHeading>
+        <ProductHeading>Color</ProductHeading>
         <ProductColors>
-          {fakeDataProduct.color.map((item) => (
+          {fakeDataProduct.color.map((item, idx) => (
             <ProductColor
+              key={idx}
               style={{ backgroundColor: `${item.color}` }}
             ></ProductColor>
           ))}
@@ -125,19 +138,15 @@ const ProductDetailContent = () => {
 
       <ProductQuantities>
         <ProductQuantityLabel>
-          <ProductHeading>
-            Quantity
-          </ProductHeading>    
+          <ProductHeading>Quantity</ProductHeading>
         </ProductQuantityLabel>
 
         <ProductQuantity>
-          <RemoveIcon style={{cursor:"pointer"}}></RemoveIcon>
+          <RemoveIcon style={{ cursor: "pointer" }}></RemoveIcon>
           <Quantities>1</Quantities>
-          <AddIcon style={{cursor:"pointer"}}></AddIcon>
+          <AddIcon style={{ cursor: "pointer" }}></AddIcon>
         </ProductQuantity>
-
       </ProductQuantities>
-
     </ProductDetailContentStyles>
   );
 };
