@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material";
+import { Grid, useMediaQuery } from "@mui/material";
 import React from "react";
 import styled from "styled-components";
 import Typography from "@mui/material/Typography";
@@ -30,6 +30,8 @@ const Right = styled.div`
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 `;
 const BasketPage = () => {
+  const tablet = useMediaQuery("(min-width:768px)");
+  const laptop = useMediaQuery("(min-width:1024px)");
   return (
     <Container>
       <Box sx={{ my: 3, mx: 2 }}>
@@ -72,7 +74,7 @@ const BasketPage = () => {
           </div>
           <ListItemText
             sx={{ display: "inline-block", margin: "10px" }}
-            primary="CERAMIC HOOK"
+            primary={`CERAMIC HOOK`}
             secondary={
               <React.Fragment>
                 <Typography
@@ -89,7 +91,7 @@ const BasketPage = () => {
           <Grid item xs={4} container spacing={1}>
             <Box
               sx={{ "& > :not(style)": { m: 1 } }}
-              style={{ marginTop: "30px" }}
+              style={{ marginTop: "30px", display: "flex" }}
             >
               <div
                 style={{

@@ -1,8 +1,9 @@
-import { Grid } from "@mui/material";
+import { Grid, useMediaQuery } from "@mui/material";
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { dataProduct, dataChoiceUs } from "../../data/data";
+import { device } from "../../responsiveBreakpoint";
 import Button from "../Button";
 import ProductList from "../ProductList";
 
@@ -53,6 +54,7 @@ const GetIdeaImg = styled.img`
 `;
 const ProductHomePage = () => {
   const navigate = useNavigate();
+  const mobile = useMediaQuery("(min-width:320px)");
   return (
     <div className="p-5 mt-10">
       <ChoiceUs>

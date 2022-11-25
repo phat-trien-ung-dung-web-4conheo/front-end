@@ -9,6 +9,8 @@ import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { dataNav } from "../data/data";
 import BasketPagePopup from "./Page/BasketPagePopup";
 import { useNavigate } from "react-router-dom";
+import { device } from "../responsiveBreakpoint";
+import { useMediaQuery } from "@mui/material";
 const Container = styled.header`
   display: flex;
   justify-content: space-between;
@@ -200,12 +202,16 @@ const CartRightBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px;
   border: 1px solid #ccc;
   border-radius: 10px;
+  padding: 10px;
 `;
 
 const Header = (props) => {
+  //TEST
+  const mobile = useMediaQuery("(max-width: 768px)");
+
+  //
   const headerScroll = useRef();
   const cartRight = useRef();
   //GET SCROLL
