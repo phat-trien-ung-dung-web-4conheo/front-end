@@ -3,7 +3,7 @@ import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { dataProduct, dataChoiceUs } from "../../data/data";
-import { device } from "../../responsiveBreakpoint";
+import { device } from "../../ResponsiveBreakpoint";
 import Button from "../Button";
 import ProductList from "../ProductList";
 
@@ -26,8 +26,10 @@ const ChoiceUsItem = styled.div`
 
     transform: translateX(90%);
   }
-  &:hover {
-    transform: scale(1.1);
+  @media ${device.laptop} {
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 `;
 
@@ -54,7 +56,8 @@ const GetIdeaImg = styled.img`
 `;
 const ProductHomePage = () => {
   const navigate = useNavigate();
-  const mobile = useMediaQuery("(min-width:320px)");
+  const tablet = useMediaQuery("(min-width:768px)");
+  const laptop = useMediaQuery("(min-width:1024px)");
   return (
     <div className="p-5 mt-10">
       <ChoiceUs>
@@ -63,7 +66,7 @@ const ProductHomePage = () => {
         </h2>
         <Grid container spacing={3}>
           {dataChoiceUs.map((item, index) => (
-            <Grid key={index} item xs={3}>
+            <Grid key={index} item xs={tablet ? (laptop ? 3 : 6) : 12}>
               <ChoiceUsItem>
                 <ChoiceUsIcon className="choice-icon">{item.icon}</ChoiceUsIcon>
                 <h3 className="text-xl">{item.title}</h3>
@@ -84,7 +87,7 @@ const ProductHomePage = () => {
 
       <GetIdeaCollection>
         <Grid container spacing={4}>
-          <Grid item xs={6}>
+          <Grid item xs={laptop ? 6 : 12}>
             <LeftIdea>
               <div className="flex flex-col gap-2">
                 <h2 className="text-2xl py-5">It started with a small idea</h2>
@@ -96,13 +99,16 @@ const ProductHomePage = () => {
               <Button
                 navigate="/products"
                 content="View collection"
-                className="w-full p-3 rounded-lg mt-auto bg-white !text-black"
+                className="w-full p-3 rounded-lg laptop:mt-auto mobile:mt-5 bg-white !text-black"
               ></Button>
             </LeftIdea>
           </Grid>
-          <Grid item xs={6}>
-            <RightIdea>
-              <GetIdeaImg src="https://fapxy.info/wp-content/uploads/2022/01/nike-store.jpg"></GetIdeaImg>
+          <Grid item xs={laptop ? 6 : 12}>
+            <RightIdea className="w-full">
+              <GetIdeaImg
+                className="w-full"
+                src="https://fapxy.info/wp-content/uploads/2022/01/nike-store.jpg"
+              ></GetIdeaImg>
             </RightIdea>
           </Grid>
         </Grid>

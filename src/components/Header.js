@@ -9,7 +9,7 @@ import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { dataNav } from "../data/data";
 import BasketPagePopup from "./Page/BasketPagePopup";
 import { useNavigate } from "react-router-dom";
-import { device } from "../responsiveBreakpoint";
+import { device } from "../ResponsiveBreakpoint";
 import { useMediaQuery } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 const Container = styled.header`
@@ -24,7 +24,7 @@ const Left = styled.div`
   @media ${device.mobile} {
     display: none;
   }
-  @media ${device.tablet} {
+  @media ${device.laptop} {
     flex: 1;
     display: block;
   }
@@ -34,7 +34,7 @@ const LightMode = styled.div`
   @media ${device.mobile} {
     position: fixed;
   }
-  @media ${device.tablet} {
+  @media ${device.laptop} {
     position: fixed;
     z-index: 50;
     left: 5%;
@@ -63,7 +63,7 @@ const Center = styled.div`
   @media ${device.mobile} {
     flex: 1;
   }
-  @media ${device.tablet} {
+  @media ${device.laptop} {
     flex: 4;
   }
   position: relative;
@@ -73,9 +73,11 @@ const Center = styled.div`
 const HeaderContainer = styled.div`
   @media ${device.mobile} {
     width: 100%;
+    padding: 5px 20px;
   }
-  @media ${device.tablet} {
+  @media ${device.laptop} {
     width: 70%;
+    padding: 10px 40px;
   }
   transform: translate(0);
   transition: transform 0.5s ease;
@@ -86,7 +88,6 @@ const HeaderContainer = styled.div`
   align-items: center;
   flex-direction: column;
   position: fixed;
-  padding: 10px 40px;
   z-index: 99;
   background-color: rgba(255, 255, 255, 0.9);
 `;
@@ -98,7 +99,7 @@ const HeaderMain = styled.header`
   padding-bottom: 10px;
   width: 100%;
   z-index: 99;
-  @media ${device.tablet} {
+  @media ${device.laptop} {
     border-bottom: 1px solid #ccc;
   }
 `;
@@ -107,7 +108,7 @@ const Nav = styled.ul`
   @media ${device.mobile} {
     display: none;
   }
-  @media ${device.tablet} {
+  @media ${device.laptop} {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -157,7 +158,7 @@ const Search = styled.div`
   /* @media ${device.mobile} {
     display: none;
   }
-  @media ${device.tablet} {
+  @media ${device.laptop} {
   } */
   display: flex;
   width: 40px;
@@ -172,7 +173,19 @@ const Search = styled.div`
   }
 `;
 
-const Menu = styled.div``;
+const Menu = styled.div`
+  display: flex;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  padding: 10px;
+  align-items: center;
+  transition: all 0.5s ease;
+  &:hover {
+    background-color: rgba(255, 219, 0, 0.5);
+    border-radius: 50%;
+  }
+`;
 
 const RightHeader = styled.div`
   display: flex;
@@ -219,7 +232,7 @@ const Right = styled.div`
   @media ${device.mobile} {
     display: none;
   }
-  @media ${device.tablet} {
+  @media ${device.laptop} {
     flex: 1;
     display: block;
   }
@@ -251,7 +264,7 @@ const CartRightBox = styled.div`
 
 const Header = (props) => {
   //responsive variables
-  const tablet = useMediaQuery("(min-width: 768px)");
+  const laptop = useMediaQuery("(min-width: 1024px)");
   const mobile = useMediaQuery("(min-width: 320px)");
   //
   const headerScroll = useRef();
@@ -270,18 +283,18 @@ const Header = (props) => {
     setScrollY(position);
   };
   useEffect(() => {
-    tablet &&
+    laptop &&
       window.addEventListener("scroll", handleScroll, { passive: true });
     if (
       headerScroll.current.style.transform === "translateY(-62px)" &&
-      !tablet
+      !laptop
     ) {
       headerScroll.current.style.transform = "translateY(0)";
     }
     return () => {
-      tablet && window.removeEventListener("scroll", handleScroll);
+      laptop && window.removeEventListener("scroll", handleScroll);
     };
-  }, [scrollY, tablet, mobile]);
+  }, [scrollY, laptop, mobile]);
   //END GET SCROLL
 
   //APPEAR BASKETPOPUP
@@ -302,14 +315,14 @@ const Header = (props) => {
       <Center>
         <HeaderContainer ref={headerScroll}>
           <HeaderMain>
-            {tablet && (
+            {laptop && (
               <Search>
                 <SearchIcon></SearchIcon>
               </Search>
             )}
             <Logo onClick={() => navigate("/")}>Ovion</Logo>
             <RightHeader>
-              {!tablet && (
+              {!laptop && (
                 <Search>
                   <SearchIcon></SearchIcon>
                 </Search>
@@ -317,7 +330,7 @@ const Header = (props) => {
               <Cart onClick={() => navigate("/basket")}>
                 <ShoppingCartIcon></ShoppingCartIcon>{" "}
               </Cart>
-              {!tablet && (
+              {!laptop && (
                 <Menu>
                   <MenuIcon></MenuIcon>
                 </Menu>
