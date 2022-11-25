@@ -2,11 +2,18 @@ import React, { Component } from "react";
 import { useState } from "react";
 import styled from "styled-components";
 import { categoryItems, menuItems } from "../data/footer_data";
+import device from '../ResponsiveBreakpoint'
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
-
+const FooterWrap = styled.div`
+  display: flex; 
+  padding: 40px;
+  height: 100%;
+  background-color: #ffdb00;
+  flex-grow: 1;
+`
 const Wrap = styled.div`
   width: calc(50% / 3);
   bottom: 0;
@@ -91,16 +98,7 @@ const LicenseIcon = styled.div`
 const Footer = (probs) => {
   return (
     <div>
-      <div
-        style={{
-          display: "flex",
-          padding: "40px",
-          height: "100%",
-          backgroundColor: "#ffdb00",
-          flexGrow: "1",
-        }}
-        id="footer_container"
-      >
+      <FooterWrap id="footer_container">
         <Wrap>
           <Heading>Category</Heading>
           <FooterItems>
@@ -138,7 +136,7 @@ const Footer = (probs) => {
             <SignUpBtn>Sign up now</SignUpBtn>
           </EmailForm>
         </Wrap>
-      </div>
+      </FooterWrap>
 
       <LicenseWrap>
         <Line></Line>
