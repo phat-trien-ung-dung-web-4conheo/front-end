@@ -3,7 +3,7 @@ import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { dataProduct, dataChoiceUs } from "../../data/data";
-import { device } from "../../responsiveBreakpoint";
+import { device } from "../../ResponsiveBreakpoint";
 import Button from "../Button";
 import ProductList from "../ProductList";
 
