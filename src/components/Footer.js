@@ -40,13 +40,17 @@ const Heading = styled.h3`
   font-size: 24px;
   line-height: 24px;
 `;
-const EmailForm = styled.div``;
+const EmailForm = styled.div`
+  
+`;
 const Form = styled.input`
   color: black;
   padding: 20px;
   border: 0.5px solid black;
   opacity: 0.2;
-  width: 60%;
+  max-width: calc(100%/2);
+  width: 100%;
+  flex:2;
   border-bottom-left-radius: 5px;
   border-top-left-radius: 5px;
   ::placeholder {
@@ -55,8 +59,9 @@ const Form = styled.input`
 `;
 const SignUpBtn = styled.button`
   color: #333;
-  width: 300px;
-  padding: 20.5px;
+  max-width: calc(100%/2 - 20%);
+  width: 100%;
+  padding: 20.5px ;
   background-color: #fff;
   border-bottom-right-radius: 5px;
   border-top-right-radius: 5px;
