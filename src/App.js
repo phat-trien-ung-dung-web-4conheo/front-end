@@ -7,6 +7,7 @@ import AuthenticationLayout from "./components/Page/Authentication/Authenticatio
 import SignInPage from "./components/Page/Authentication/SignInPage";
 import SignUpPage from "./components/Page/Authentication/SignUpPage";
 import BasketPage from "./components/Page/BasketPage";
+import ContactUs from "./components/Page/ContactUs";
 import ProductCategoryPage from "./components/Page/ProductCategoryPage";
 import ProductDetailPage from "./components/Page/ProductDetail/ProductDetailPage";
 function App() {
@@ -15,6 +16,7 @@ function App() {
     <Routes>
       <Route path="/sign-in" element={<SignInPage></SignInPage>} />
       <Route path="/sign-up" element={<SignUpPage></SignUpPage>}></Route>
+      <Route path="contactus" element={<ContactUs></ContactUs>}/> 
     </Routes>
 
   );
