@@ -2,38 +2,28 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-const fakeDataProduct = {
-  name: "Nike Air Max 270 React",
-  price: "200.000.000 VND",
-  desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
-  dimension: [{ size: 40 }, { size: 41 }, { size: 42 }, { size: 43 }],
-  color: [{ color: "red" }, { color: "blue" }, { color: "green" }],
-};
 
 const ProductDetailContentStyles = styled.div`
   display: flex;
   flex-direction: column;
   gap: 15px;
+  height: 100%;
 `;
 const ProductName = styled.div`
   color: #2a254b;
   font-size: 24px;
   font-weight: 700;
   line-height: 30px;
-  margin-bottom: 28px;
 `;
 const ProductPrice = styled.div`
   text-align: center;
-  margin-top: 15px;
+  margin-top: 10px;
   font-size: 16px;
-  padding: 5px;
-  padding: 12px;
+  padding: 5px 10px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   display: inline-block;
 `;
-const ProductDescription = styled.div`
-  margin-bottom: 50px;
-`;
+const ProductDescription = styled.div``;
 const ProductDimensionContainer = styled.div``;
 const ProductDimensions = styled.ul`
   display: flex;
@@ -42,7 +32,7 @@ const ProductDimensions = styled.ul`
 `;
 const ProductDimension = styled.li`
   box-shadow: rgba(99, 99, 99, 0.5) 0px 2px 8px 0px;
-  padding: 25px 30px;
+  padding: 10px 20px;
   border-radius: 10px;
   cursor: pointer;
   &:hover {
@@ -60,7 +50,6 @@ const ProductColor = styled.li`
   padding: 20px;
   border-radius: 50%;
   margin-top: 10px;
-  margin-bottom: 10px;
   cursor: pointer;
   &:hover {
     transition: ease all 0.2s;
@@ -79,7 +68,7 @@ const ProductQuantity = styled.div`
   width: 20%;
   box-shadow: rgba(99, 99, 99, 0.15) 0px 2px 10px 2px;
   background-color: #f9f9f9;
-  margin-top: 20px;
+  margin-top: 10px;
   padding: 15px;
   display: flex;
   justify-content: space-between;
@@ -87,12 +76,22 @@ const ProductQuantity = styled.div`
 `;
 
 const Quantities = styled.span``;
-const ProductDetailContent = () => {
+const ProductDetailContent = ({ data }) => {
+  const [counter, setCounter] = useState(1);
+  const handleCounter = (type) => {
+    if (type === "inc") {
+      setCounter(counter + 1);
+    } else {
+      if (counter > 1) {
+        setCounter(counter - 1);
+      }
+    }
+  };
   return (
     <ProductDetailContentStyles>
       <ProductName>
-        <p>{fakeDataProduct.name}</p>
-        <ProductPrice>{fakeDataProduct.price}</ProductPrice>
+        <p>{data?.title}</p>
+        <ProductPrice>{data?.price}</ProductPrice>
       </ProductName>
 
       <ProductDescription>
@@ -101,9 +100,7 @@ const ProductDetailContent = () => {
         >
           Product description
         </ProductHeading>
-        <p style={{ fontSize: "18px", color: "black" }}>
-          {fakeDataProduct.desc}
-        </p>
+        <p style={{ fontSize: "18px", color: "black" }}>{data?.desc}</p>
       </ProductDescription>
 
       <ProductDimensionContainer>
@@ -118,8 +115,8 @@ const ProductDetailContent = () => {
           Dimension
         </ProductHeading>
         <ProductDimensions>
-          {fakeDataProduct.dimension.map((item, idx) => (
-            <ProductDimension key={idx}>{item.size}</ProductDimension>
+          {data?.size?.map((item, idx) => (
+            <ProductDimension key={idx}>{item}</ProductDimension>
           ))}
         </ProductDimensions>
       </ProductDimensionContainer>
@@ -127,10 +124,10 @@ const ProductDetailContent = () => {
       <ProductColorsContainer>
         <ProductHeading>Color</ProductHeading>
         <ProductColors>
-          {fakeDataProduct.color.map((item, idx) => (
+          {data?.color?.map((item, idx) => (
             <ProductColor
               key={idx}
-              style={{ backgroundColor: `${item.color}` }}
+              style={{ backgroundColor: `${item}` }}
             ></ProductColor>
           ))}
         </ProductColors>
@@ -142,9 +139,15 @@ const ProductDetailContent = () => {
         </ProductQuantityLabel>
 
         <ProductQuantity>
-          <RemoveIcon style={{ cursor: "pointer" }}></RemoveIcon>
-          <Quantities>1</Quantities>
-          <AddIcon style={{ cursor: "pointer" }}></AddIcon>
+          <RemoveIcon
+            onClick={() => handleCounter("dec")}
+            style={{ cursor: "pointer" }}
+          ></RemoveIcon>
+          <Quantities>{counter}</Quantities>
+          <AddIcon
+            onClick={() => handleCounter("inc")}
+            style={{ cursor: "pointer" }}
+          ></AddIcon>
         </ProductQuantity>
       </ProductQuantities>
     </ProductDetailContentStyles>

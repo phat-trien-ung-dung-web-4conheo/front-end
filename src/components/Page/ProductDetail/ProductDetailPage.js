@@ -1,6 +1,10 @@
 import { Grid } from "@mui/material";
 import React from "react";
+import { useState } from "react";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
+import { publicRequest } from "../../../data/requestMethod";
 import ProductDetailContent from "./ProductDetailContent";
 
 const Container = styled.div``;
@@ -29,18 +33,33 @@ const ProductImg = styled.img`
 `;
 
 const ProductDetailPage = () => {
+  const location = useLocation();
+  const id = location.pathname.split("/")[2];
+  const [product, setProduct] = useState({});
+  useEffect(() => {
+    const getProduct = async () => {
+      try {
+        const res = await publicRequest.get("/products/find/" + id);
+        setProduct(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getProduct();
+  }, []);
+  console.log(product);
   return (
     <Container>
       <Grid container spacing={2}>
         <Grid item xs={7}>
           <Left>
-            <ProductImg src="https://images.unsplash.com/photo-1667392267120-d3bc9a16dc1e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzN3x8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60"></ProductImg>
+            <ProductImg src={product.img}></ProductImg>
             <ProductImg src="https://images.unsplash.com/photo-1667392267120-d3bc9a16dc1e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzN3x8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60"></ProductImg>
           </Left>
         </Grid>
         <Grid item xs={5} style={{ position: "relative" }}>
           <Right>
-            <ProductDetailContent></ProductDetailContent>
+            <ProductDetailContent data={product}></ProductDetailContent>
           </Right>
         </Grid>
       </Grid>
