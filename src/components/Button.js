@@ -6,6 +6,8 @@ const ButtonStyle = styled.button`
   box-shadow: rgba(0, 0, 0, 0.6) 0px 7px 5px 0px;
   transform: translateY(0);
   transition: all 0.3s ease;
+  background-color: white;
+  font-size: 20px;
   &:hover {
     transform: translateY(-4px);
 
@@ -57,7 +59,7 @@ const Button = ({
             width: width,
             height: height,
           }}
-          className="btn"
+          className={`${className} mx-auto p-4 rounded-lg text-white inline-block hover:-translate-y-1 hover:shadow-2xl shadow-3xl transition-all text-center`}
           to={navigate}
         >
           {content}

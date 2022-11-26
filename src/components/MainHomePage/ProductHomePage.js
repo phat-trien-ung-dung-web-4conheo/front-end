@@ -1,7 +1,9 @@
-import { Grid } from "@mui/material";
+import { Grid, useMediaQuery } from "@mui/material";
 import React, { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { dataProduct, dataChoiceUs } from "../../data/data";
+import { device } from "../../ResponsiveBreakpoint";
 import Button from "../Button";
 import ProductList from "../ProductList";
 
@@ -17,22 +19,28 @@ const ChoiceUsItem = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
-
+  overflow: hidden;
+  transition: transform 1s ease;
   &:hover .choice-icon {
     transition: transform 1s ease;
+
     transform: translateX(90%);
+  }
+  &:hover {
+    transform: scale(1.1);
   }
 `;
 
 const ChoiceUsIcon = styled.div``;
 
 const GetIdeaCollection = styled.div`
-  margin-top: 50px;
+  margin-top: 10%;
 `;
 const LeftIdea = styled.div`
   background-color: #ffdb00;
   padding: 30px;
   display: flex;
+  font-size: 20px;
   flex-direction: column;
   border-radius: 12px;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 10px 2px;
@@ -45,8 +53,10 @@ const GetIdeaImg = styled.img`
   box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 10px 2px;
 `;
 const ProductHomePage = () => {
+  const navigate = useNavigate();
+  const mobile = useMediaQuery("(min-width:320px)");
   return (
-    <div className="p-5">
+    <div className="p-5 mt-10">
       <ChoiceUs>
         <h2 className="text-3xl text-center mb-[25px] mt-[60px]">
           What make our brand different
@@ -63,7 +73,12 @@ const ProductHomePage = () => {
           ))}
         </Grid>
       </ChoiceUs>
-      <h1 className="text-2xl py-5">All product</h1>
+      <h1
+        className="text-2xl py-5"
+        style={{ textAlign: "center", fontWeight: "400" }}
+      >
+        All product
+      </h1>
 
       <ProductList></ProductList>
 
@@ -79,14 +94,15 @@ const ProductHomePage = () => {
                 </p>
               </div>
               <Button
+                navigate="/products"
                 content="View collection"
-                className="w-full p-3 rounded-lg mt-auto"
+                className="w-full p-3 rounded-lg mt-auto bg-white !text-black"
               ></Button>
             </LeftIdea>
           </Grid>
           <Grid item xs={6}>
             <RightIdea>
-              <GetIdeaImg src="https://gbl-sc9u2-prd-cdn.azureedge.net/-/media/aboutikea/images/contact/how-to-buy-ikea-products-from-a-different-country/a-man-setting-a-table-ai2001-02-ph156953-ikea-l.jpg?rev=5d9ca4cf1a7b402fb98dfac9d10f3f79"></GetIdeaImg>
+              <GetIdeaImg src="https://fapxy.info/wp-content/uploads/2022/01/nike-store.jpg"></GetIdeaImg>
             </RightIdea>
           </Grid>
         </Grid>

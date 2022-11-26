@@ -1,5 +1,7 @@
 import { Grid } from "@mui/material";
-import React, { useRef } from "react";
+import axios from "axios";
+import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { dataProduct } from "../data/data";
 import Button from "./Button";
@@ -57,21 +59,69 @@ const ProductContent = styled.div`
   flex-direction: column;
   align-items: center;
 `;
-const ProductList = () => {
+const ProductList = ({ cat, sort, filters }) => {
   const infoProduct = useRef();
-
+  const [products, setProducts] = useState([]);
+  const [filterdProducts, setFilterdProducts] = useState([]);
+  //GET PRODUCT
+  useEffect(() => {
+    const getProducts = async () => {
+      try {
+        const res = await axios.get(
+          cat
+            ? `http://localhost:3000/api/products?category=${cat}`
+            : "http://localhost:3000/api/products"
+        );
+        setProducts(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getProducts();
+  }, []);
+  //FILTER
+  useEffect(() => {
+    cat
+      ? setFilterdProducts(
+          products.filter((item) =>
+            Object.entries(filters).every(([key, value]) => {
+              if (value === "all") {
+                return item;
+              } else {
+                return item[key].includes(value);
+              }
+            })
+          )
+        )
+      : setFilterdProducts(products);
+  }, [cat, products, filters]);
+  //SORT
+  useEffect(() => {
+    if (sort === "newest") {
+      setFilterdProducts((prev) => {
+        return [...prev].sort((a, b) => {
+          return a.createdAt.localeCompare(b.createdAt);
+        });
+      });
+    } else if (sort === "asc") {
+      setFilterdProducts((prev) => [...prev].sort((a, b) => a.price - b.price));
+    } else if (sort === "desc") {
+      setFilterdProducts((prev) => [...prev].sort((a, b) => b.price - a.price));
+    }
+  }, [sort, filters]);
+  const navigate = useNavigate();
   return (
     <ProductListStyle>
       <Grid container spacing={4}>
-        {dataProduct.map((item, index) => (
-          <Grid item xs={4} key={item.id}>
-            <ProductItem>
-              <ProductImg src={item.src}></ProductImg>
+        {filterdProducts.map((item) => (
+          <Grid item xs={4} key={item._id}>
+            <ProductItem onClick={() => navigate(`/product/${item._id}`)}>
+              <ProductImg src={item.img}></ProductImg>
               <Info className="product-info" ref={infoProduct}>
                 <InfoDetail>
                   <Title>INFO</Title>
                   <ProductContent>
-                    <p className="self-start">Name: {item.name}</p>
+                    <p className="self-start">Name: {item.title}</p>
                     <p className="self-start">Price: {item.price}</p>
                     <Button
                       content="Add to cart"
