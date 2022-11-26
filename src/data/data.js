@@ -5,97 +5,103 @@ import SpaIcon from "@mui/icons-material/Spa";
 export const dataNav = [
   {
     id: 1,
-    name: "item1",
+    name: "Product",
+    category: "123",
   },
   {
     id: 2,
-    name: "item2",
+    name: "adu",
+    category: 2,
   },
   {
     id: 3,
-    name: "item3",
+    name: "san pham",
   },
   {
     id: 4,
-    name: "item4",
+    name: "san pham2",
   },
   {
     id: 5,
-    name: "item5",
+    name: "san pham 3",
+  },
+];
+
+export const dataFloatNav = [
+  {
+    id: 1,
+    name: "Black Friday Sale | Save Up to 60%",
+  },
+  {
+    id: 2,
+    name: "Free Shipping + Returns, Free Membership, Exclusive Products",
+  },
+  {
+    id: 3,
+    name: "Shop Now, Relax Later",
   },
 ];
 
 export const dataSliderImg = [
   {
-    src: "https://source.unsplash.com/random/600x300/?fruit",
+    src: "https://static.nike.com/a/images/f_auto,cs_srgb/w_1920,c_limit/e5853518-be79-4fcc-afe4-6d2df175de53/nike%E2%80%99s-best-casual-shoes-for-everyday-wear.jpg",
   },
   {
-    src: "https://source.unsplash.com/random/600x300",
+    src: "https://static.nike.com/a/images/f_auto,cs_srgb/w_1920,c_limit/f55bf732-7fa9-4b38-8464-3332d97f879a/nike%E2%80%99s-best-casual-shoes-for-everyday-wear.jpg",
   },
   {
-    src: "https://scontent.fsgn13-4.fna.fbcdn.net/v/t39.30808-6/313036313_1256576148408754_7642436188012359655_n.jpg?_nc_cat=1&ccb=1-7&_nc_sid=730e14&_nc_ohc=Gel6PfmgDc0AX-iJqyp&_nc_ht=scontent.fsgn13-4.fna&oh=00_AfA-gJzPbRDb5u1fXr-YyCWst7tcQ-KYSgio_kGM27yCHQ&oe=6367A01F",
+    src: "https://i.pinimg.com/736x/b1/22/28/b12228c6dc9e3de3581da1115914c02e.jpg",
   },
   {
-    src: "https://6.viki.io/image/45be732ff5984180a2adb844c7741cd9/dummy.jpeg?s=900x600&e=t",
+    src: "https://static.nike.com/a/images/f_auto,cs_srgb/w_1920,c_limit/e6424c44-7b50-4acb-8c40-aa9712c29924/nike%E2%80%99s-best-casual-shoes-for-everyday-wear.jpg",
   },
   {
-    src: "https://kenh14cdn.com/thumb_w/660/2020/2/11/4-1581382109758754211406.jpg",
+    src: "https://www.sneakerfiles.com/wp-content/uploads/2020/04/nike-air-max-verona-summer-2020-colorways-release-dates.jpg",
   },
   {
-    src: "https://source.unsplash.com/random/600x300",
+    src: "https://pbs.twimg.com/media/EYe1nv7XsAEpnVv.jpg",
   },
   {
-    src: "https://source.unsplash.com/random/600x300",
+    src: "https://i.pinimg.com/originals/6d/53/78/6d53788e47b855f23809015f4772195c.jpg",
   },
 ];
 
 export const dataProduct = [
   {
     id: 1,
-    src: "https://source.unsplash.com/random/600x300",
-    name: "name",
+    src: "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/f31c8f90-e370-4099-b6cd-99e4fa2e1285/star-runner-3-older-road-running-shoes-VW5vRH.png",
+    name: "Product",
     price: "100d",
   },
   {
     id: 2,
 
-    src: "https://source.unsplash.com/random/600x300",
-    name: "name",
+    src: "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/f31c8f90-e370-4099-b6cd-99e4fa2e1285/star-runner-3-older-road-running-shoes-VW5vRH.png",
+    name: "Product",
     price: "100d",
   },
   {
     id: 3,
-
-    src: "https://source.unsplash.com/random/600x300",
-    name: "name",
+    src: "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/f31c8f90-e370-4099-b6cd-99e4fa2e1285/star-runner-3-older-road-running-shoes-VW5vRH.png",
+    name: "Product",
     price: "100d",
   },
   {
     id: 4,
-
-    src: "https://source.unsplash.com/random/600x300",
-    name: "name",
+    src: "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/f31c8f90-e370-4099-b6cd-99e4fa2e1285/star-runner-3-older-road-running-shoes-VW5vRH.png",
+    name: "Product",
     price: "100d",
   },
   {
     id: 5,
-
-    src: "https://source.unsplash.com/random/600x300",
-    name: "name",
+    src: "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/f31c8f90-e370-4099-b6cd-99e4fa2e1285/star-runner-3-older-road-running-shoes-VW5vRH.png",
+    name: "Product",
     price: "100d",
   },
   {
     id: 6,
-
-    src: "https://source.unsplash.com/random/600x300",
-    name: "name",
-    price: "100d",
-  },
-  {
-    id: 7,
-
-    src: "https://source.unsplash.com/random/600x300",
-    name: "name",
+    src: "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/f31c8f90-e370-4099-b6cd-99e4fa2e1285/star-runner-3-older-road-running-shoes-VW5vRH.png",
+    name: "Product",
     price: "100d",
   },
 ];
@@ -124,5 +130,19 @@ export const dataChoiceUs = [
     icon: <SpaIcon></SpaIcon>,
     title: "Recycled packaging",
     desc: "We use 100% recycled to ensure our footprint is more manageable",
+  },
+];
+export const BannerListItem = [
+  {
+    id: 1,
+    content: "Exclusive Offer",
+  },
+  {
+    id: 2,
+    content: "Free Events",
+  },
+  {
+    id: 2,
+    content: "Large Discount",
   },
 ];
