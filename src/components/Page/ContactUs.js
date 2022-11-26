@@ -26,28 +26,31 @@ const ContactUs = () => {
                     <p className='text-gray-500 mt-8'>We're open for any suggestion or just to have a chat</p>
            
                     <div class="flex gap-3 mt-10 justify-center items-start flex-row-reverse">
-                        <div class="px-6 py-10 opacity-80 rounded-tr-3xl rounded-bl-3xl shadow-lg" style={{backgroundColor: "#4d4b8b"}} >
+                        <div class="px-6 py-10 opacity-80 flex flex-col rounded-tr-3xl rounded-bl-3xl shadow-lg w-[400px]" style={{backgroundColor: "#4d4b8b"}} >
                             <h3 className="text-left text-white text-lg"> Write Us</h3>
-                            <input type="text" id="name" class="mt-10 text-white placeholder-gray-400 text-sm" style={{backgroundColor: "#4d4b8b"}} placeholder="Name"></input>
-                            <div class="border-b pb-1"></div>
-                            <input type="text" id="email" class="mt-5 text-white placeholder-gray-400 text-sm" style={{backgroundColor: "#4d4b8b"}} placeholder="Email"></input>
-                            <div class="border-b pb-1"></div>
-                            <input type="text" id="subject" class="mt-5 text-white placeholder-gray-400 text-sm" style={{backgroundColor: "#4d4b8b"}} placeholder="Subject"></input>
-                            <div class="border-b pb-1 "></div>
-                            <textarea type="text" id="message" class="mt-5 text-white placeholder-gray-400 text-sm" style={{backgroundColor: "#4d4b8b"}} rows={4} placeholder="Message"></textarea>
-                            <div class="border-b pb-2"></div>
-                            <Button content="Send" width="80px" height="80px" radius="10" backgroundColor="#fff" color="#000" class="font-thin"></Button>  
+                            <input type="text" id="name" className="border-b block w-full mt-10 text-white placeholder-gray-400 text-sm" style={{backgroundColor: "#4d4b8b"}} placeholder="Name"></input>
+                           
+                            <input type="text" id="email" className="border-b block w-full mt-5 text-white placeholder-gray-400 text-sm" style={{backgroundColor: "#4d4b8b"}} placeholder="Email"></input>
+                           
+                            <input type="text" id="subject" className="border-b block w-full mt-5 text-white placeholder-gray-400 text-sm" style={{backgroundColor: "#4d4b8b"}} placeholder="Subject"></input>
+                          
+                            <textarea type="text" id="message" className="border-b block w-full mt-5 text-white placeholder-gray-400 text-sm" style={{backgroundColor: "#4d4b8b"}} rows={4} placeholder="Message"></textarea>
+                           
+                            <Button content="Send" className="mt-4 px-8 py-5 mr-auto" radius="10" backgroundColor="#fff" color="#000" class="font-thin"></Button>  
                         </div>
 
-                        <div class="pt-14 pb-10 px-5 opacity-80 rounded-tr-3xl rounded-bl-3xlshadow-lg" style={{backgroundColor: "#2d284a"}}>
+                        <div class="pt-14 pb-10 px-5 opacity-80 rounded-tr-3xl rounded-bl-3xl shadow-lg w-[400px]" style={{backgroundColor: "#2d284a"}}>
                             <button className=" text-white">
                                 <h3 class="text-left text-lg"> Contact information</h3>
                                 <div class="border-b pt-5 pb-2 "></div>
                                     <div class="flex gap-3 items-center pt-5 pb-2">
                                         <LocationOnIcon class="rounded-full bg-slate-600 p-1 h-7 fill-white"></LocationOnIcon>
-                                        <p class=" text-gray-500 text-sm">
-                                            <span class="text-white text-base">Address: </span>
-                                            4517 Washington Ave. Manch, Kentucky 39495 
+                                        <p class=" text-gray-500 text-sm text-left">
+                                            <span className="text-white text-base  ">Address: 
+                                             </span>
+                                            <span className=""> 
+                                                  &nbsp; 4517 Washington Ave. Manch. <br></br> Kentucky 39495 
+                                                </span> 
                                         </p>
                                     </div>
                                     <div class="flex gap-3 items-center pt-5 pb-2">
