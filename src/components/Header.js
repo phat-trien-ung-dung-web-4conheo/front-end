@@ -9,7 +9,7 @@ import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { dataNav } from "../data/data";
 import BasketPagePopup from "./Page/BasketPagePopup";
 import { useNavigate } from "react-router-dom";
-import { device } from "../responsiveBreakpoint";
+import { device } from "../ResponsiveBreakpoint";
 import { useMediaQuery } from "@mui/material";
 const Container = styled.header`
   display: flex;
