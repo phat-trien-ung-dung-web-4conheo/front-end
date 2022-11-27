@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { device } from "../ResponsiveBreakpoint";
 import { useMediaQuery } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import { useSelector } from "react-redux";
 const Container = styled.header`
   display: flex;
   justify-content: space-between;
@@ -229,6 +230,7 @@ const User = styled.div`
 `;
 
 const Right = styled.div`
+  position: relative;
   @media ${device.mobile} {
     display: none;
   }
@@ -236,6 +238,22 @@ const Right = styled.div`
     flex: 1;
     display: block;
   }
+`;
+
+const CartQuantity = styled.div`
+  position: absolute;
+  border-radius: 100%;
+  background-color: #ffdb00;
+  width: 25px;
+  height: 25px;
+  left: 65%;
+  bottom: 55%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: all 0.5s ease;
+  transform: ${(props) => (props.quantity > 0 ? "scale(1)" : "scale(0)")};
 `;
 
 const CartRight = styled.div`
@@ -260,6 +278,7 @@ const CartRightBox = styled.div`
   border: 1px solid #ccc;
   border-radius: 10px;
   padding: 10px;
+  position: relative;
 `;
 
 const Header = (props) => {
@@ -300,6 +319,11 @@ const Header = (props) => {
   //APPEAR BASKETPOPUP
   const [appear, setAppear] = useState(false);
   //END APPEAR BASKETPOPUP
+
+  //GET QUANTITY PRODUCT
+  const quantity = useSelector((state) => state.cart.quantity);
+
+  console.log("🚀 ~ file: Header.js ~ line 321 ~ Header ~ quantity", quantity);
   const navigate = useNavigate();
   return (
     <Container>
@@ -368,6 +392,7 @@ const Header = (props) => {
             <ShoppingCartOutlinedIcon
               style={{ width: "20px", height: "20px" }}
             ></ShoppingCartOutlinedIcon>
+            <CartQuantity quantity={quantity}>{quantity}</CartQuantity>
           </CartRightBox>
         </CartRight>
       </Right>

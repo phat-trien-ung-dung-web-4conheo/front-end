@@ -4,6 +4,8 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import Button from "../../Button";
 import { device } from "../../../ResponsiveBreakpoint";
+import { addProduct } from "../../../redux/cartSlice";
+import { useDispatch } from "react-redux";
 const ProductDetailContentStyles = styled.div`
   display: flex;
   flex-direction: column;
@@ -89,6 +91,7 @@ const ButtonBox = styled.div`
   gap: 30px;
 `;
 const ProductDetailContent = ({ data }) => {
+  //COUNTER
   const [counter, setCounter] = useState(1);
   const handleCounter = (type) => {
     if (type === "inc") {
@@ -98,6 +101,15 @@ const ProductDetailContent = ({ data }) => {
         setCounter(counter - 1);
       }
     }
+  };
+  //GET SIZE
+  const [size, setSize] = useState("");
+  //GET COLOR
+  const [color, setColor] = useState("");
+  //ADD TO CART FUNCTION
+  const dispatch = useDispatch();
+  const addToCart = () => {
+    dispatch(addProduct({ ...data, quantity: counter }));
   };
   return (
     <ProductDetailContentStyles>
@@ -128,7 +140,13 @@ const ProductDetailContent = ({ data }) => {
         </ProductHeading>
         <ProductDimensions>
           {data?.size?.map((item, idx) => (
-            <ProductDimension key={idx}>{item}</ProductDimension>
+            <ProductDimension
+              className={`${size === item ? "bg-[#ccc]" : ""} transition-all`}
+              onClick={() => setSize(item)}
+              key={idx}
+            >
+              {item}
+            </ProductDimension>
           ))}
         </ProductDimensions>
       </ProductDimensionContainer>
@@ -138,6 +156,8 @@ const ProductDetailContent = ({ data }) => {
         <ProductColors>
           {data?.color?.map((item, idx) => (
             <ProductColor
+              className={`${color === item ? "scale-75" : ""} transition-all`}
+              onClick={() => setColor(item)}
               key={idx}
               style={{ backgroundColor: `${item}` }}
             ></ProductColor>
@@ -164,6 +184,7 @@ const ProductDetailContent = ({ data }) => {
       </ProductQuantities>
       <ButtonBox className="">
         <Button
+          handleClick={addToCart}
           content="Add to cart"
           className="w-full py-3 laptop:p-4 rounded-lg !bg-primary "
         ></Button>
