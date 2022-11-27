@@ -126,7 +126,7 @@ const NavItem = styled.li`
   transform: all 0.7s linear;
   font-size: 16px;
   text-align: center;
-
+  white-space: nowrap;
   &::before {
     transform: scaleX(0);
     transform-origin: bottom right;
