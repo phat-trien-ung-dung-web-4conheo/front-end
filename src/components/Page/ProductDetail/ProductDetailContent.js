@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-
+import Button from "../../Button";
+import { device } from "../../../ResponsiveBreakpoint";
 const ProductDetailContentStyles = styled.div`
   display: flex;
   flex-direction: column;
@@ -65,17 +66,28 @@ const ProductQuantities = styled.div``;
 const ProductQuantityLabel = styled.div``;
 
 const ProductQuantity = styled.div`
-  width: 20%;
   box-shadow: rgba(99, 99, 99, 0.15) 0px 2px 10px 2px;
   background-color: #f9f9f9;
   margin-top: 10px;
   padding: 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: inline-block;
 `;
 
-const Quantities = styled.span``;
+const Quantities = styled.p`
+  display: inline-block;
+  padding: 0 10px;
+`;
+const ButtonBox = styled.div`
+  @media ${device.mobile} {
+    display: flex;
+    flex-direction: column;
+  }
+  @media ${device.laptop} {
+    display: flex;
+    flex-direction: row;
+  }
+  gap: 30px;
+`;
 const ProductDetailContent = ({ data }) => {
   const [counter, setCounter] = useState(1);
   const handleCounter = (type) => {
@@ -134,22 +146,32 @@ const ProductDetailContent = ({ data }) => {
       </ProductColorsContainer>
 
       <ProductQuantities>
-        <ProductQuantityLabel>
-          <ProductHeading>Quantity</ProductHeading>
-        </ProductQuantityLabel>
+        <ProductHeading>Quantity</ProductHeading>
 
         <ProductQuantity>
           <RemoveIcon
             onClick={() => handleCounter("dec")}
             style={{ cursor: "pointer" }}
+            className="inline-block"
           ></RemoveIcon>
           <Quantities>{counter}</Quantities>
           <AddIcon
             onClick={() => handleCounter("inc")}
             style={{ cursor: "pointer" }}
+            className="inline-block"
           ></AddIcon>
         </ProductQuantity>
       </ProductQuantities>
+      <ButtonBox className="">
+        <Button
+          content="Add to cart"
+          className="w-full py-3 laptop:p-4 rounded-lg !bg-primary "
+        ></Button>
+        <Button
+          content="Save to favorite"
+          className="w-full py-3 laptop:p-4 rounded-lg hover:bg-primary hover:bg-opacity-10 transition-all"
+        ></Button>
+      </ButtonBox>
     </ProductDetailContentStyles>
   );
 };
