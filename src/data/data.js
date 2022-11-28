@@ -7,23 +7,93 @@ export const dataNav = [
     id: 1,
     name: "Product",
     category: "123",
+    subnav: [
+      {
+        title: 'Sub Product',
+        url: 'adu/'
+      },
+      {
+        title: 'Sub Product',
+        url: 'adu2/'
+      },
+      {
+        title: 'Sub Product',
+        url: 'adu3/'
+      },
+    ]
   },
   {
     id: 2,
-    name: "adu",
+    name: "Product",
     category: 2,
+    subnav: [
+      {
+        title: 'Sub Product',
+        url: 'adu/'
+      },
+      {
+        title: 'Sub Product',
+        url: 'adu2/'
+      },
+      {
+        title: 'Sub Product',
+        url: 'adu3/'
+      },
+    ]
   },
   {
     id: 3,
-    name: "san pham",
+    name: "Product",
+    subnav: [
+      {
+        title: 'Sub Product',
+        url: 'adu/'
+      },
+      {
+        title: 'Sub Product',
+        url: 'adu2/'
+      },
+      {
+        title: 'Sub Product',
+        url: 'adu3/'
+      },
+    ]
   },
   {
     id: 4,
-    name: "san pham2",
+    name: "Product",
+    subnav: [
+      {
+        title: 'Sub Product',
+        url: 'adu/'
+      },
+      {
+        title: 'Sub Product',
+        url: 'adu2/'
+      },
+      {
+        title: 'Sub Product',
+        url: 'adu3/'
+      },
+    ]
   },
   {
     id: 5,
-    name: "san pham 3",
+    name: "Product",
+    subnav: [
+      {
+        title: 'Sub Product',
+        url: 'adu/'
+      },
+      {
+        title: 'Sub Product',
+        url: 'adu2/'
+      },
+      {
+        title: 'Sub Product',
+        url: 'adu3/'
+      },
+    ]
   },
 ];
 

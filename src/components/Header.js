@@ -4,6 +4,7 @@ import styled from "styled-components";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import MenuSubNav from "./MenuSubNav";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { dataNav } from "../data/data";
@@ -119,7 +120,7 @@ const Nav = styled.ul`
 `;
 
 const NavItem = styled.li`
-  font-weight: 600;
+  font-weight: 400;
   padding: 2px 40px;
   position: relative;
   cursor: pointer;
@@ -148,7 +149,7 @@ const NavItem = styled.li`
     bottom: 0;
     left: 0;
     inset: 0 0 0 0;
-    background: rgba(255, 219, 0, 0.5);
+    background: rgba(255, 219, 0, 0.4);
     z-index: -1;
     transition: transform 0.3s ease;
   }
@@ -269,6 +270,7 @@ const Header = (props) => {
   //
   const headerScroll = useRef();
   const cartRight = useRef();
+
   //GET SCROLL
   const [scrollY, setScrollY] = useState(0);
   const handleScroll = () => {
@@ -297,9 +299,17 @@ const Header = (props) => {
   }, [scrollY, laptop, mobile]);
   //END GET SCROLL
 
+  // DROPDOWN NAV 
+  const [selectElement, setSelectElement] = useState(0);
+  const handleItemDrop = (id) => {
+      setSelectElement(id);
+  }
+  // END DROPDOWN NAV
+
   //APPEAR BASKETPOPUP
   const [appear, setAppear] = useState(false);
   //END APPEAR BASKETPOPUP
+
   const navigate = useNavigate();
   return (
     <Container>
@@ -340,14 +350,26 @@ const Header = (props) => {
               </User>
             </RightHeader>
           </HeaderMain>
-          <Nav>
-            {dataNav.map((item) => (
+          <Nav> 
+            {dataNav.map((item, index) =>
+             {
+                        
+                    return (
+                    <NavItem className="nav__item">
+                      <MenuSubNav items={item} key={index} />
+                    </NavItem>
+                    )
+                    
+                  
+              /* (
               <>
-                <NavItem className="nav__item" key={item.id}>
+                <NavItem className="nav__item" key={item.id} onClick={()=> handleItemDrop(item.id)} >
                   {item.name}
+                  {selectElement === item.id? 'selected': 'not'}
                 </NavItem>
               </>
-            ))}
+            ) */}
+            )}
           </Nav>
         </HeaderContainer>
       </Center>
