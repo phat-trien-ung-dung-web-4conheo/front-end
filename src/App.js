@@ -9,11 +9,12 @@ import BasketPage from "./components/Page/BasketPage";
 import FullPage from "./components/Page/FullPage/FullPage";
 import ProductCategoryPage from "./components/Page/ProductCategoryPage";
 import ProductDetailPage from "./components/Page/ProductDetail/ProductDetailPage";
-
+import AdminLogin from "./components/Page/AdminPage/AdminLogin";
 
 function App() {
   return (
     <Routes>
+      <Route path="/admin/login" element= {<AdminLogin></AdminLogin>}/>
       <Route path="/sign-in" element={<SignInPage></SignInPage>} />
       <Route path="/sign-up" element={<SignUpPage></SignUpPage>} />
       <Route path="/" element={<FullPage />}>

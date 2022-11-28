@@ -59,3 +59,15 @@ h6 {
   margin:9px;
 
 }
+
+#input__admin,#input__admin-password{
+  border: solid 1px black;
+}
+#input__admin-password {
+  position: relative;
+}
+.showpass {
+  position: absolute;
+  top: 64%;
+  left: 90%;
+}
