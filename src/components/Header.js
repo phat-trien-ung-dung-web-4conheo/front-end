@@ -299,12 +299,6 @@ const Header = (props) => {
   }, [scrollY, laptop, mobile]);
   //END GET SCROLL
 
-  // DROPDOWN NAV 
-  const [selectElement, setSelectElement] = useState(0);
-  const handleItemDrop = (id) => {
-      setSelectElement(id);
-  }
-  // END DROPDOWN NAV
 
   //APPEAR BASKETPOPUP
   const [appear, setAppear] = useState(false);
@@ -352,23 +346,14 @@ const Header = (props) => {
           </HeaderMain>
           <Nav> 
             {dataNav.map((item, index) =>
-             {
-                        
-                    return (
-                    <NavItem className="nav__item">
-                      <MenuSubNav items={item} key={index} />
-                    </NavItem>
-                    )
-                    
-                  
-              /* (
-              <>
-                <NavItem className="nav__item" key={item.id} onClick={()=> handleItemDrop(item.id)} >
-                  {item.name}
-                  {selectElement === item.id? 'selected': 'not'}
-                </NavItem>
-              </>
-            ) */}
+              {
+                          
+                      return (
+                      <NavItem className="nav__item">
+                        <MenuSubNav items={item} key={index} />
+                      </NavItem>
+                      )
+              }
             )}
           </Nav>
         </HeaderContainer>
