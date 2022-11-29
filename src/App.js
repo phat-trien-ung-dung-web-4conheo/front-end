@@ -1,8 +1,6 @@
-import { Route, Routes } from "react-router-dom";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
+import { useSelector } from "react-redux";
+import { Link, Navigate, NavLink, Route, Routes } from "react-router-dom";
 import MainHomePage from "./components/MainHomePage/MainHomePage";
-import AuthenticationLayout from "./components/Page/Authentication/AuthenticationLayout";
 import SignInPage from "./components/Page/Authentication/SignInPage";
 import SignUpPage from "./components/Page/Authentication/SignUpPage";
 import BasketPage from "./components/Page/BasketPage";
@@ -10,11 +8,14 @@ import FullPage from "./components/Page/FullPage/FullPage";
 import ProductCategoryPage from "./components/Page/ProductCategoryPage";
 import ProductDetailPage from "./components/Page/ProductDetail/ProductDetailPage";
 
-
 function App() {
+  const user = useSelector((state) => state.user.currentUser);
   return (
     <Routes>
-      <Route path="/sign-in" element={<SignInPage></SignInPage>} />
+      <Route
+        path="/sign-in"
+        element={user ? <Navigate to="/" /> : <SignInPage></SignInPage>}
+      />
       <Route path="/sign-up" element={<SignUpPage></SignUpPage>} />
       <Route path="/" element={<FullPage />}>
         <Route path="/" element={<MainHomePage></MainHomePage>} />

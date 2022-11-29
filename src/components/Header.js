@@ -208,6 +208,7 @@ const Cart = styled.div`
   display: flex;
   align-items: center;
   transition: all 0.5s ease;
+  position: relative;
   &:hover {
     background-color: rgba(255, 219, 0, 0.5);
     border-radius: 50%;
@@ -299,7 +300,7 @@ const Header = (props) => {
       headerScroll.current.style.transform = "translateY(0)";
       cartRight.current.style.transform = "translateY(-50px)";
     }
-    setScrollY(position);
+    // setScrollY(position);
   };
   useEffect(() => {
     laptop &&
@@ -313,7 +314,7 @@ const Header = (props) => {
     return () => {
       laptop && window.removeEventListener("scroll", handleScroll);
     };
-  }, [scrollY, laptop, mobile]);
+  }, [laptop, mobile]);
   //END GET SCROLL
 
   //APPEAR BASKETPOPUP
@@ -323,7 +324,6 @@ const Header = (props) => {
   //GET QUANTITY PRODUCT
   const quantity = useSelector((state) => state.cart.quantity);
 
-  console.log("🚀 ~ file: Header.js ~ line 321 ~ Header ~ quantity", quantity);
   const navigate = useNavigate();
   return (
     <Container>
@@ -353,6 +353,7 @@ const Header = (props) => {
               )}
               <Cart onClick={() => navigate("/basket")}>
                 <ShoppingCartIcon></ShoppingCartIcon>{" "}
+                <CartQuantity quantity={quantity}>{quantity}</CartQuantity>
               </Cart>
               {!laptop && (
                 <Menu>

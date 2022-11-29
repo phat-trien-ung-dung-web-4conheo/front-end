@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -51,11 +52,10 @@ h5,
 h6 {
   overflow-wrap: break-word;
 }
-#footer_form{
+#footer_form {
   display: flex;
   flex-grow: 3;
 }
-#license-icon{
-  margin:9px;
-
+#license-icon {
+  margin: 9px;
 }

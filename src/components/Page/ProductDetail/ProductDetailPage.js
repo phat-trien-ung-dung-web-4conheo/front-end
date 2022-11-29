@@ -96,7 +96,6 @@ const ProductDetailPage = () => {
   //Scroll to index image when click on image item
   const scrollToImg = (index) => {
     console.log(index);
-    console.log("Asdsad");
     window.scrollTo({
       top: index * (leftRect?.height / 4) + 80,
       left: 0,

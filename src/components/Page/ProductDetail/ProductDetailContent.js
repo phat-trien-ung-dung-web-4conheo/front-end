@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
@@ -6,6 +6,8 @@ import Button from "../../Button";
 import { device } from "../../../ResponsiveBreakpoint";
 import { addProduct } from "../../../redux/cartSlice";
 import { useDispatch } from "react-redux";
+import Swal from "sweetalert2/dist/sweetalert2.js";
+import "sweetalert2/src/sweetalert2.scss";
 const ProductDetailContentStyles = styled.div`
   display: flex;
   flex-direction: column;
@@ -104,12 +106,31 @@ const ProductDetailContent = ({ data }) => {
   };
   //GET SIZE
   const [size, setSize] = useState("");
+
+  const getSize = (item) => {
+    if (item === "") {
+      setSize(data?.size[0]);
+    } else {
+      setSize(item);
+    }
+  };
   //GET COLOR
   const [color, setColor] = useState("");
   //ADD TO CART FUNCTION
+  //SWEAT ALERT
+
   const dispatch = useDispatch();
   const addToCart = () => {
-    dispatch(addProduct({ ...data, quantity: counter }));
+    if (size === "" || color === "") {
+      return Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `You must choose ${size ? "" : "size"} ${
+          !size && !color ? "and" : ""
+        } ${color ? "" : "color"}!`,
+      });
+    }
+    dispatch(addProduct({ ...data, quantity: counter, color, size }));
   };
   return (
     <ProductDetailContentStyles>
@@ -142,7 +163,7 @@ const ProductDetailContent = ({ data }) => {
           {data?.size?.map((item, idx) => (
             <ProductDimension
               className={`${size === item ? "bg-[#ccc]" : ""} transition-all`}
-              onClick={() => setSize(item)}
+              onClick={() => getSize(item)}
               key={idx}
             >
               {item}

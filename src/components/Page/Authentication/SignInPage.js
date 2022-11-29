@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import AuthenticationLayout from "./AuthenticationLayout";
 
@@ -6,6 +6,8 @@ import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import GoogleIcon from "@mui/icons-material/Google";
 import { shouldSkipGeneratingVar } from "@mui/material";
+import { login } from "../../../redux/apiCalls";
+import { useDispatch } from "react-redux";
 
 const Container = styled.div`
   margin: 0px;
@@ -24,6 +26,14 @@ const ForgotPassword = {
   textAlign: "left",
 };
 const SignInPage = () => {
+  //Sign In
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const handleClick = (e) => {
+    e.preventDefault();
+    login(dispatch, { email, password });
+  };
   return (
     <AuthenticationLayout>
       <Container>
@@ -35,12 +45,14 @@ const SignInPage = () => {
               type="email"
               placeholder="Enter your email"
               id="email"
+              onChange={(e) => setEmail(e.target.value)}
             ></input>
             <input
               style={BoxInput}
               type="passworld"
               placeholder="Enter your password"
               id="password"
+              onChange={(e) => setPassword(e.target.value)}
             ></input>
           </Stack>
 
@@ -55,6 +67,7 @@ const SignInPage = () => {
               fontWeight: "bold",
               color: "black",
             }}
+            onClick={handleClick}
             variant="contained"
             disableElevation
           >
