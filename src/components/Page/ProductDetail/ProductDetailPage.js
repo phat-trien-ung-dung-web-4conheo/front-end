@@ -95,20 +95,22 @@ const ProductDetailPage = () => {
   ];
   //Scroll to index image when click on image item
   const [leftReactState, setLeftReactState] = useState(0);
+  const [reRender, setReRender] = useState(false);
+  // const handleRender = () => {
+  //   setReRender(!reRender);
+  // };
+  // useEffect(() => {
+  //   window.addEventListener("load", () => {
+  //     const leftDetailHeight =
+  //       document.querySelector(".detail__left").clientHeight;
+  //     setLeftReactState(leftDetailHeight);
 
-  useEffect(() => {
-    window.addEventListener("load", () => {
-      const leftDetailHeight =
-        document.querySelector(".detail__left").clientHeight;
-      setLeftReactState(leftDetailHeight);
-
-      console.log("asdasdasdds", leftDetailHeight);
-    });
-  }, [leftReactState]);
-  // console.log(leftRect);
+  //     console.log("asdasdasdds", leftDetailHeight);
+  //   });
+  // }, [leftReactState]);
   const scrollToImg = (index) => {
     window.scrollTo({
-      top: index * (leftReactState / 4) + 80,
+      top: index * leftRect?.height + 200,
       left: 0,
       behavior: "smooth",
     });
@@ -118,15 +120,19 @@ const ProductDetailPage = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
   // console.log(leftRect?.height);
+  console.log(product?.img?.length);
   return (
     <Container>
       <Grid container spacing={2}>
         {/* TABLET RESPONSIVE FOR SLIDER IMG */}
         {tablet && (
           <Grid item xs={7}>
-            <Left ref={leftDiv} className="detail__left">
+            <Left className="detail__left">
               {product?.img?.map((item) => (
-                <div className="w-full h-[calc(100vh-144px)] laptop:h-[calc(100vh-80px)] rounded-xl overflow-hidden shadow-lg shadow-gray-800/40">
+                <div
+                  ref={leftDiv}
+                  className="w-full h-[calc(100vh-144px)] laptop:h-[calc(100vh-80px)] rounded-xl overflow-hidden shadow-lg shadow-gray-800/40"
+                >
                   <ProductImg
                     className="w-full m-h-full object-cover"
                     src={item}
@@ -135,7 +141,9 @@ const ProductDetailPage = () => {
               ))}
               <SliderImg
                 className={`fixed bottom-0 left-1/4 w-72 h-20 flex gap-2  ${
-                  scrollY <= (leftReactState / 4) * 3 + 80 && scrollY > 0
+                  scrollY <=
+                    leftRect?.height * (product?.img?.length - 1) + 200 &&
+                  scrollY > 0
                     ? "translate-y-0 z-30"
                     : "translate-y-full"
                 } transition-all duration-200 -translate-x-1/3 laptop:-translate-x-1/4 p-2 rounded-lg bg-black`}

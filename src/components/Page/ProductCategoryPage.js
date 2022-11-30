@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../Header";
 import styled from "styled-components";
 import ProductList from "../ProductList";
@@ -63,6 +63,10 @@ const ProductCategoryPage = () => {
     handleRender();
   };
   // console.log(filters);
+  //automatic scroll to top when change page
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   return (
     <Container>
       <FilterContainer>

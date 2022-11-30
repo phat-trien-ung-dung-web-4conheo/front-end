@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Button from '../Button';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -19,6 +19,10 @@ const Customer = styled.div``
 
 const ContactUs = () => {
     const laptop = useMediaQuery("(min-width: 1024px)")
+     //automatic scroll to top when change page
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
     return (
 
         <Container className="tablet:relative">

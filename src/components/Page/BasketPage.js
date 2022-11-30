@@ -1,5 +1,5 @@
 import { Grid, useMediaQuery } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import Typography from "@mui/material/Typography";
 import List from "@mui/material/List";
@@ -48,6 +48,10 @@ const BasketPage = () => {
   const tablet = useMediaQuery("(min-width:768px)");
   const laptop = useMediaQuery("(min-width:1024px)");
   const cart = useSelector((state) => state.cart);
+  //automatic scroll to top when change page
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   return (
     <Container>
       <Box sx={{ my: 3, mx: 2 }}>

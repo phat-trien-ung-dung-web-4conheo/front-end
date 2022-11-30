@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../MainHomePage/MainHomePage.css";
@@ -7,6 +7,10 @@ import Slider from "react-slick";
 import ProductHomePage from "./ProductHomePage";
 import Button from "../Button";
 const MainHomePage = () => {
+  //automatic scroll to top when change page
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   const settings = {
     dots: true,
     infinite: true,

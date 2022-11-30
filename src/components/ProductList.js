@@ -98,32 +98,35 @@ const ProductList = ({ cat, sort, filters }) => {
   }, []);
   //FILTER
   useEffect(() => {
-    cat
-      ? setFilterdProducts(
-          products.filter((item) =>
-            Object.entries(filters).every(([key, value]) => {
-              if (value === "all") {
-                return item;
-              } else {
-                // console.log(value);
-                return item[key].includes(value);
-              }
-            })
-          )
+    cat &&
+      setFilterdProducts(
+        products.filter((item) =>
+          Object.entries(filters).every(([key, value]) => {
+            if (value === "all") {
+              return item;
+            } else {
+              // console.log(value);
+              return item[key].includes(value);
+            }
+          })
         )
-      : setFilterdProducts(
-          products.filter((item) =>
-            Object.entries(filters).every(([key, value]) => {
-              if (value === "all") {
-                return item;
-              } else {
-                console.log(value);
-                return item[key].includes(value);
-              }
-            })
-          )
-        );
+      );
   }, [cat, products, filters]);
+  useEffect(() => {
+    !cat &&
+      setFilterdProducts(
+        products.filter((item) =>
+          Object.entries(filters || {}).every(([key, value]) => {
+            if (value === "all") {
+              return item;
+            } else {
+              // console.log(value);
+              return item[key].includes(value);
+            }
+          })
+        )
+      );
+  }, [filters, products, cat]);
   //SORT
   useEffect(() => {
     if (sort === "newest") {
