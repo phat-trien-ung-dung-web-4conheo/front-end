@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { useState } from "react";
 import styled from "styled-components";
 import { categoryItems, menuItems, ourCom } from "../data/footer_data";
-import device from "../ResponsiveBreakpoint";
+import { device } from "../ResponsiveBreakpoint";
 
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
@@ -91,8 +91,9 @@ const SignUpBtn = styled.button`
     max-width: calc(100% / 2 - 10%);
   }
   @media ${device.laptop} {
-    max-width: calc(100% / 2 - 20%);
+    max-width: calc(100% / 2 - 14%);
   }
+  white-space: nowrap;
   color: #333;
   width: 100%;
   padding: 20.5px;
