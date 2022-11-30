@@ -65,7 +65,7 @@ const BasketPagePopup = ({
   const dispatch = useDispatch();
   const handleRemoveProduct = (id, quantity, price) => {
     console.log(id, quantity, price);
-    dispatch(removeProduct({ id, quantity, price }));
+    dispatch(removeProduct({ id, price }));
   };
   localStorage.clear();
   return (
@@ -158,9 +158,7 @@ const BasketPagePopup = ({
                   <div class="quan-bar__btn">+</div>
                 </div>
                 <IconButton
-                  onClick={() =>
-                    handleRemoveProduct(item._id, item.quantity, item.price)
-                  }
+                  onClick={() => handleRemoveProduct(item._id, item.price)}
                   aria-label="delete"
                   style={{ color: "#f44336" }}
                 >
@@ -180,9 +178,6 @@ const BasketPagePopup = ({
           </ListItem>
         ))}
       </List>
-
-      <div></div>
-
       <Divider variant="middle" />
 
       <div class="flex flex-row-reverse my-4">

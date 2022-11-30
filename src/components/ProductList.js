@@ -131,19 +131,19 @@ const ProductList = ({ cat, sort, filters }) => {
   //RESPONSIVE
   const laptop = useMediaQuery("(min-width: 1024px)");
   //GET SIZE
+  const [id, setId] = useState("");
   const [size, setSize] = useState("");
   const sizeRef = useRef();
-  const [active, setActive] = useState("");
-  const onSetActiveMenuItem = (id, item) => {
-    if (item !== active) {
-      setActive(item);
-    } else {
-      setActive(""); // handle click on currently active item
-    }
-    console.log(id, active);
+  const onSetSize = (id, sizeItem) => {
+    setId(id);
+    setSize(sizeItem);
   };
   //GET COLOR
   const [color, setColor] = useState("");
+  const onSetColor = (id, sizeItem) => {
+    setId(id);
+    setColor(sizeItem);
+  };
   //ADD TO CART FUNCTION
   //SWEAT ALERT
   const dispatch = useDispatch();
@@ -167,7 +167,7 @@ const ProductList = ({ cat, sort, filters }) => {
             <ProductItem>
               <ProductImg
                 onClick={() => navigate(`/product/${item._id}`)}
-                src={item.img}
+                src={item.img[0]}
               ></ProductImg>
               <Info className="product-info" ref={infoProduct}>
                 <InfoDetail>
@@ -185,9 +185,11 @@ const ProductList = ({ cat, sort, filters }) => {
                       {item?.color.map((colorItem) => (
                         <Color
                           className={`border my-3 laptop:my-0 hover:scale-110 transition-all ${
-                            colorItem === color ? "border-black" : ""
+                            item._id === id && colorItem === color
+                              ? "border-black"
+                              : ""
                           }`}
-                          onClick={() => setColor(colorItem)}
+                          onClick={() => onSetColor(item._id, colorItem)}
                           style={{ backgroundColor: `${colorItem}` }}
                         ></Color>
                       ))}
@@ -198,9 +200,13 @@ const ProductList = ({ cat, sort, filters }) => {
                         <span
                           ref={sizeRef}
                           className={`${
-                            size === sizeItem ? "bg-[#ccc]" : ""
+                            item._id === id && sizeItem === size
+                              ? "bg-[#ccc]"
+                              : ""
                           } mr-2 p-2 border rounded-lg hover:bg-slate-300 transition-all duration-200`}
-                          onClick={() => setSize(sizeItem)}
+                          onClick={() => {
+                            onSetSize(item._id, sizeItem);
+                          }}
                         >
                           {sizeItem}
                         </span>

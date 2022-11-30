@@ -152,8 +152,6 @@ const BasketPage = () => {
         ))}
       </List>
 
-      <div></div>
-
       <Divider variant="middle" />
 
       <div class="flex flex-row-reverse my-4">

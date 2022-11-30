@@ -94,10 +94,20 @@ const ProductDetailPage = () => {
     },
   ];
   //Scroll to index image when click on image item
+  const [leftReactState, setLeftReactState] = useState(0);
+
+  useEffect(() => {
+    window.addEventListener("load", () => {
+      const leftDetailHeight =
+        document.querySelector(".detail__left").clientHeight;
+      setLeftReactState(leftDetailHeight);
+      console.log(leftDetailHeight);
+    });
+  }, [leftReactState]);
+  // console.log(leftRect);
   const scrollToImg = (index) => {
-    console.log(index);
     window.scrollTo({
-      top: index * (leftRect?.height / 4) + 80,
+      top: index * (leftReactState?.height / 4) + 80,
       left: 0,
       behavior: "smooth",
     });
@@ -109,27 +119,27 @@ const ProductDetailPage = () => {
         {/* TABLET RESPONSIVE FOR SLIDER IMG */}
         {tablet && (
           <Grid item xs={7}>
-            <Left ref={leftDiv}>
-              {imgFake.map((item) => (
+            <Left ref={leftDiv} className="detail__left">
+              {product?.img?.map((item) => (
                 <div className="w-full h-[calc(100vh-144px)] laptop:h-[calc(100vh-80px)] rounded-xl overflow-hidden shadow-lg shadow-gray-800/40">
                   <ProductImg
                     className="w-full m-h-full object-cover"
-                    src={item.src}
+                    src={item}
                   ></ProductImg>
                 </div>
               ))}
               <SliderImg
                 className={`fixed bottom-0 left-1/4 w-72 h-20 flex gap-2  ${
-                  scrollY <= (leftRect?.height / 4) * 3 + 80 && scrollY > 0
+                  scrollY <= (leftReactState / 4) * 3 + 80 && scrollY > 0
                     ? "translate-y-0 z-30"
                     : "translate-y-full"
                 } transition-all duration-200 -translate-x-1/3 laptop:-translate-x-1/4 p-2 rounded-lg bg-black`}
               >
-                {imgFake.map((item, idx) => (
+                {product.img?.map((item, idx) => (
                   <div className="h-full w-full">
                     <ProductImg
                       className="h-full w-full cursor-pointer object-cover"
-                      src={item.src}
+                      src={item}
                       onClick={() => scrollToImg(idx)}
                     ></ProductImg>
                   </div>
@@ -142,14 +152,14 @@ const ProductDetailPage = () => {
         {!tablet && (
           <Grid item xs={12}>
             <Slider {...settings} className="slider__adjust">
-              {imgFake.map((item, index) => (
+              {product?.img?.map((item, index) => (
                 <div
                   key={index}
                   className=" p-5 w-[600px] h-[600px] object-cover"
                 >
                   <img
                     className="rounded-lg shadow-3xl object-cover w-full h-full"
-                    src={item.src}
+                    src={item}
                     alt=""
                   />
                 </div>
