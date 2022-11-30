@@ -105,12 +105,24 @@ const ProductList = ({ cat, sort, filters }) => {
               if (value === "all") {
                 return item;
               } else {
+                // console.log(value);
                 return item[key].includes(value);
               }
             })
           )
         )
-      : setFilterdProducts(products);
+      : setFilterdProducts(
+          products.filter((item) =>
+            Object.entries(filters).every(([key, value]) => {
+              if (value === "all") {
+                return item;
+              } else {
+                console.log(value);
+                return item[key].includes(value);
+              }
+            })
+          )
+        );
   }, [cat, products, filters]);
   //SORT
   useEffect(() => {

@@ -50,13 +50,19 @@ const ProductCategoryPage = () => {
 
   const [filters, setFilters] = useState({});
   const [sort, setSort] = useState("newest");
+  const [reRender, setReRender] = useState(false);
+  const handleRender = () => {
+    setReRender(!reRender);
+  };
   const handleFilters = (e) => {
     const value = e.target.value;
     setFilters({
       ...filters,
       [e.target.name]: value,
     });
+    handleRender();
   };
+  // console.log(filters);
   return (
     <Container>
       <FilterContainer>
@@ -87,7 +93,13 @@ const ProductCategoryPage = () => {
                 All
               </MenuItem>
               <MenuItem value="white">White</MenuItem>
+              <MenuItem value="black">Black</MenuItem>
               <MenuItem value="grey">Grey</MenuItem>
+              <MenuItem value="orange">Orange</MenuItem>
+              <MenuItem value="yellow">Yellow</MenuItem>
+              <MenuItem value="pink">Pink</MenuItem>
+              <MenuItem value="blue">Blue</MenuItem>
+              <MenuItem value="green">Green</MenuItem>
             </Select>
           </FormControl>
           <FormControl fullWidth>
@@ -114,8 +126,13 @@ const ProductCategoryPage = () => {
               <MenuItem selected value="all">
                 all
               </MenuItem>
-              <MenuItem value={6.5}>6.5</MenuItem>
-              <MenuItem value={7}>7</MenuItem>
+              <MenuItem value="4">4</MenuItem>
+              <MenuItem value="4.5">4.5</MenuItem>
+              <MenuItem value="5">5</MenuItem>
+              <MenuItem value="5.5">5.5</MenuItem>
+              <MenuItem value="6">6</MenuItem>
+              <MenuItem value="6.5">6.5</MenuItem>
+              <MenuItem value="7">7</MenuItem>
             </Select>
           </FormControl>
         </Right>

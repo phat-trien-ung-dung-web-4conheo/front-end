@@ -54,41 +54,54 @@ const BasketPage = () => {
         <Typography gutterBottom variant="h4" component="div">
           Your shopping cart
         </Typography>
-        <Grid container alignItems="center">
-          <Grid item xs={8}>
-            <Typography color="text.primary" variant="body1">
-              Product
-            </Typography>
+        {tablet && (
+          <Grid container alignItems="center">
+            <Grid item xs={8}>
+              <Typography color="text.primary" variant="body1">
+                Product
+              </Typography>
+            </Grid>
+            <Grid item xs>
+              <Typography color="text.primary" variant="body1">
+                Quantity
+              </Typography>
+            </Grid>
+            <Grid item>
+              <Typography color="text.primary" variant="body1">
+                Total
+              </Typography>
+            </Grid>
           </Grid>
-          <Grid item xs>
-            <Typography color="text.primary" variant="body1">
-              Quantity
-            </Typography>
-          </Grid>
-          <Grid item>
-            <Typography color="text.primary" variant="body1">
-              Total
-            </Typography>
-          </Grid>
-        </Grid>
+        )}
       </Box>
 
       <Divider variant="middle" />
 
       <List sx={{ width: "100%", bgcolor: "background.paper" }}>
         {cart.products.map((item) => (
-          <ListItem className="!justify-between" alignItems="flex-start">
+          <ListItem
+            className="!justify-between !block tablet:!flex"
+            alignItems="flex-start"
+          >
             <div className="flex gap-2">
-              <Link href="" target="_blank">
+              <Link
+                href=""
+                target="_blank"
+                className="!flex-1 tablet:!flex-none w-[110px] h-[164px] "
+              >
                 <img
                   src={item.img}
-                  style={{ width: "110px", height: "134px" }}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                  }}
                   alt=""
                 />
               </Link>
               <ListItemText
                 sx={{ display: "inline-block", margin: "10px" }}
-                className="font-bold max-w-[400px]"
+                className="font-bold max-w-[400px] !flex-1 tablet:!flex-0"
                 primaryTypographyProps={{ fontWeight: "bold" }}
                 primary={item.title}
                 secondary={
@@ -117,7 +130,8 @@ const BasketPage = () => {
             <Grid item xs={4} className="!justify-center" container spacing={1}>
               <Box
                 sx={{ "& > :not(style)": { m: 1 } }}
-                style={{ marginTop: "30px", display: "flex" }}
+                style={{ display: "flex" }}
+                className="tablet:!flex mt-1 tablet:mt-[30px]"
               >
                 <div
                   style={{
@@ -126,28 +140,30 @@ const BasketPage = () => {
                     flexDirection: "row",
                     cursor: "pointer",
                     border: "1px solid black",
-                    padding: "10px 30px",
                     borderRadius: "10% 10% 10%",
+                    alignItems: "center",
                   }}
                 >
-                  <div class="quan-bar__btn">-</div>
-                  <span class="quan-bar__text">{item.quantity}</span>
-                  <div class="quan-bar__btn">+</div>
+                  <div className="quan-bar__btn p-3 px-4 ">-</div>
+                  <span className="quan-bar__text p-1">{item.quantity}</span>
+                  <div className="quan-bar__btn p-3 px-4">+</div>
                 </div>
                 <IconButton aria-label="delete" style={{ color: "#f44336" }}>
                   <DeleteIcon />
                 </IconButton>
               </Box>
             </Grid>
-            <Grid item xs={8} style={{ marginTop: "40px" }}>
-              <Typography
-                className="text-end w-[70px]"
-                color="text.primary"
-                variant="body1"
-              >
-                {item.price}
-              </Typography>
-            </Grid>
+            {tablet && (
+              <Grid item xs={8} className="mt-0 tablet:mt-[40px]">
+                <Typography
+                  className="text-end w-[70px]"
+                  color="text.primary"
+                  variant="body1"
+                >
+                  {item.price}
+                </Typography>
+              </Grid>
+            )}
           </ListItem>
         ))}
       </List>
