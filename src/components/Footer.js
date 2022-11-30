@@ -2,24 +2,43 @@ import React, { Component } from "react";
 import { useState } from "react";
 import styled from "styled-components";
 import { categoryItems, menuItems, ourCom } from "../data/footer_data";
-import device from '../ResponsiveBreakpoint'
+import device from "../ResponsiveBreakpoint";
+
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 const FooterWrap = styled.div`
-  display: flex; 
-  padding: 40px;
-  height: 100%;
-  background-color: #ffdb00;
+  @media ${device.mobile} {
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+  }
+  @media ${device.laptop} {
+    flex-direction: row;
+  }
   flex-grow: 1;
-`
+  display: flex;
+  height: 100%;
+  padding: 40px;
+  background-color: #ffdb00;
+`;
 const Wrap = styled.div`
-  width: calc(50% / 3);
+  @media ${device.mobile} {
+    width: 100%;
+    align-items: center;
+    border: solid 0.5px #6b4b27;
+    border-radius: 10px;
+  }
+  @media ${device.laptop} {
+    border: none;
+    align-items: baseline;
+    width: calc(50% / 3);
+  }
+  gap: 1.25rem;
+  flex-direction: column;
   bottom: 0;
   display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
 `;
@@ -47,17 +66,20 @@ const Heading = styled.h3`
   font-size: 24px;
   line-height: 24px;
 `;
-const EmailForm = styled.div`
-  
-`;
+const EmailForm = styled.div``;
 const Form = styled.input`
+  @media ${device.mobile} {
+    max-width: 60%;
+  }
+  @media ${device.laptop} {
+    max-width: calc(100% / 2);
+  }
   color: black;
   padding: 20px;
   border: 0.5px solid black;
   opacity: 0.2;
-  max-width: calc(100%/2);
   width: 100%;
-  flex:2;
+  flex: 2;
   border-bottom-left-radius: 5px;
   border-top-left-radius: 5px;
   ::placeholder {
@@ -65,10 +87,15 @@ const Form = styled.input`
   }
 `;
 const SignUpBtn = styled.button`
+  @media ${device.mobile} {
+    max-width: calc(100% / 2 - 10%);
+  }
+  @media ${device.laptop} {
+    max-width: calc(100% / 2 - 20%);
+  }
   color: #333;
-  max-width: calc(100%/2 - 20%);
   width: 100%;
-  padding: 20.5px ;
+  padding: 20.5px;
   background-color: #fff;
   border-bottom-right-radius: 5px;
   border-top-right-radius: 5px;
