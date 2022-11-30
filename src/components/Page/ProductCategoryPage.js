@@ -4,18 +4,26 @@ import styled from "styled-components";
 import ProductList from "../ProductList";
 import { useLocation } from "react-router-dom";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import { device } from "../../ResponsiveBreakpoint";
 
 const Container = styled.div`
   padding: 20px;
 `;
 const FilterContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   margin: 40px 0;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 12px;
   padding: 10px 15px;
   border-radius: 5px;
+  display: flex;
+  @media ${device.mobile} {
+    flex-direction: column;
+    gap: 20px;
+  }
+  @media ${device.tablet} {
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+  }
 `;
 const Right = styled.div`
   display: flex;
@@ -31,6 +39,9 @@ const FilterSelect = styled.select``;
 const Left = styled.div`
   display: flex;
   align-items: center;
+  @media ${device.mobile} {
+    gap: 30px;
+  }
 `;
 const FilterOption = styled.option``;
 const ProductCategoryPage = () => {

@@ -11,6 +11,7 @@ import BasketPagePopup from "./Page/BasketPagePopup";
 import { useNavigate } from "react-router-dom";
 import { device } from "../ResponsiveBreakpoint";
 import { useMediaQuery } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
 const Container = styled.header`
   display: flex;
   justify-content: space-between;
@@ -20,18 +21,29 @@ const Container = styled.header`
 `;
 
 const Left = styled.div`
-  flex: 1;
+  @media ${device.mobile} {
+    display: none;
+  }
+  @media ${device.laptop} {
+    flex: 1;
+    display: block;
+  }
 `;
 
 const LightMode = styled.div`
-  z-index: 50;
+  @media ${device.mobile} {
+    position: fixed;
+  }
+  @media ${device.laptop} {
+    position: fixed;
+    z-index: 50;
+    left: 5%;
+    transform: translateX(50%);
+    top: 5px;
+  }
   display: flex;
   justify-content: center;
   align-items: center;
-  position: fixed;
-  left: 5%;
-  transform: translateX(50%);
-  top: 5px;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
@@ -48,13 +60,25 @@ const AdjustMode = styled.div`
 `;
 
 const Center = styled.div`
-  flex: 4;
+  @media ${device.mobile} {
+    flex: 1;
+  }
+  @media ${device.laptop} {
+    flex: 4;
+  }
   position: relative;
   z-index: 99;
 `;
 
 const HeaderContainer = styled.div`
-  width: 70%;
+  @media ${device.mobile} {
+    width: 100%;
+    padding: 5px 20px;
+  }
+  @media ${device.laptop} {
+    width: 70%;
+    padding: 10px 40px;
+  }
   transform: translate(0);
   transition: transform 0.5s ease;
   box-shadow: rgba(0, 0, 0, 0.5) 0px 2px 10px;
@@ -64,7 +88,6 @@ const HeaderContainer = styled.div`
   align-items: center;
   flex-direction: column;
   position: fixed;
-  padding: 10px 40px;
   z-index: 99;
   background-color: rgba(255, 255, 255, 0.9);
 `;
@@ -73,19 +96,26 @@ const HeaderMain = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #ccc;
   padding-bottom: 10px;
   width: 100%;
   z-index: 99;
+  @media ${device.laptop} {
+    border-bottom: 1px solid #ccc;
+  }
 `;
 
 const Nav = styled.ul`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 10px;
-  right: 0;
-  left: 0;
+  @media ${device.mobile} {
+    display: none;
+  }
+  @media ${device.laptop} {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+    right: 0;
+    left: 0;
+  }
 `;
 
 const NavItem = styled.li`
@@ -124,11 +154,30 @@ const NavItem = styled.li`
 `;
 
 const Search = styled.div`
+  /* @media ${device.mobile} {
+    display: none;
+  }
+  @media ${device.laptop} {
+  } */
+  display: flex;
   width: 40px;
   height: 40px;
   cursor: pointer;
   padding: 10px;
+  align-items: center;
+  transition: all 0.5s ease;
+  &:hover {
+    background-color: rgba(255, 219, 0, 0.5);
+    border-radius: 50%;
+  }
+`;
+
+const Menu = styled.div`
   display: flex;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  padding: 10px;
   align-items: center;
   transition: all 0.5s ease;
   &:hover {
@@ -178,7 +227,13 @@ const User = styled.div`
 `;
 
 const Right = styled.div`
-  flex: 1;
+  @media ${device.mobile} {
+    display: none;
+  }
+  @media ${device.laptop} {
+    flex: 1;
+    display: block;
+  }
 `;
 
 const CartRight = styled.div`
@@ -205,9 +260,9 @@ const CartRightBox = styled.div`
   padding: 10px;
 `;
 const Header = (props) => {
-  //TEST
-  const mobile = useMediaQuery("(max-width: 768px)");
-
+  //responsive variables
+  const laptop = useMediaQuery("(min-width: 1024px)");
+  const mobile = useMediaQuery("(min-width: 320px)");
   //
   const headerScroll = useRef();
   const cartRight = useRef();
@@ -224,14 +279,19 @@ const Header = (props) => {
     }
     setScrollY(position);
   };
-
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll, { passive: true });
-
+    laptop &&
+      window.addEventListener("scroll", handleScroll, { passive: true });
+    if (
+      headerScroll.current.style.transform === "translateY(-62px)" &&
+      !laptop
+    ) {
+      headerScroll.current.style.transform = "translateY(0)";
+    }
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      laptop && window.removeEventListener("scroll", handleScroll);
     };
-  }, [scrollY]);
+  }, [scrollY, laptop, mobile]);
   //END GET SCROLL
   //APPEAR BASKETPOPUP
   const [appear, setAppear] = useState(false);
@@ -251,14 +311,26 @@ const Header = (props) => {
       <Center>
         <HeaderContainer ref={headerScroll}>
           <HeaderMain>
-            <Search>
-              <SearchIcon></SearchIcon>
-            </Search>
+            {laptop && (
+              <Search>
+                <SearchIcon></SearchIcon>
+              </Search>
+            )}
             <Logo onClick={() => navigate("/")}>Ovion</Logo>
             <RightHeader>
+              {!laptop && (
+                <Search>
+                  <SearchIcon></SearchIcon>
+                </Search>
+              )}
               <Cart onClick={() => navigate("/basket")}>
                 <ShoppingCartIcon></ShoppingCartIcon>{" "}
               </Cart>
+              {!laptop && (
+                <Menu>
+                  <MenuIcon></MenuIcon>
+                </Menu>
+              )}
               <User onClick={() => navigate("/user")}>
                 <AccountCircleIcon></AccountCircleIcon>{" "}
               </User>
