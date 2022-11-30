@@ -12,11 +12,11 @@ const MenuSubNav = ({items}) => {
           type="button" 
           aria-haspopup="menu"
           aria-expanded= {dropdown? "true" : "false"}
-          onMouseEnter= {()=> setDropdown((prev)=> !prev)} // why not onhover ? :v 
+          onMouseEnter= {()=> setDropdown((prev)=> !prev)} 
           >
             {items.name}{' '}
           </button>
-          <Dropdown submenus={items.subnav} dropdown={dropdown}/>
+        <Dropdown submenus={items.subnav} dropdown={dropdown}/>
         </>
       ) : (
         <a href='#'>{items.name}</a>
