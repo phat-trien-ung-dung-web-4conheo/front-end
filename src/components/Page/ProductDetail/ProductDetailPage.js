@@ -101,17 +101,22 @@ const ProductDetailPage = () => {
       const leftDetailHeight =
         document.querySelector(".detail__left").clientHeight;
       setLeftReactState(leftDetailHeight);
-      console.log(leftDetailHeight);
+
+      console.log("asdasdasdds", leftDetailHeight);
     });
   }, [leftReactState]);
   // console.log(leftRect);
   const scrollToImg = (index) => {
     window.scrollTo({
-      top: index * (leftReactState?.height / 4) + 80,
+      top: index * (leftReactState / 4) + 80,
       left: 0,
       behavior: "smooth",
     });
   };
+  //automatic scroll to top when change page
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   // console.log(leftRect?.height);
   return (
     <Container>
