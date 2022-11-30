@@ -76,7 +76,7 @@ const Color = styled.div`
   border-radius: 50%;
 `;
 const Size = styled.div``;
-const ProductList = ({ cat, sort, filters }) => {
+const ProductList = ({ catHome, cat, sort, filters }) => {
   const infoProduct = useRef();
   const [products, setProducts] = useState([]);
   const [filterdProducts, setFilterdProducts] = useState([]);
@@ -85,9 +85,11 @@ const ProductList = ({ cat, sort, filters }) => {
     const getProducts = async () => {
       try {
         const res = await axios.get(
-          cat
-            ? `http://localhost:3000/api/products?category=${cat}`
-            : "http://localhost:3000/api/products"
+          cat || catHome
+            ? `https://webdevis207.herokuapp.com/api/products?category=${
+                cat || catHome
+              }`
+            : "https://webdevis207.herokuapp.com/api/products"
         );
         setProducts(res.data);
       } catch (err) {
@@ -112,6 +114,7 @@ const ProductList = ({ cat, sort, filters }) => {
         )
       );
   }, [cat, products, filters]);
+
   useEffect(() => {
     !cat &&
       setFilterdProducts(
@@ -177,68 +180,138 @@ const ProductList = ({ cat, sort, filters }) => {
   return (
     <ProductListStyle>
       <Grid container spacing={4}>
-        {filterdProducts.map((item) => (
-          <Grid item xs={laptop ? 4 : 6} key={item._id}>
-            <ProductItem>
-              <ProductImg
-                onClick={() => navigate(`/product/${item._id}`)}
-                src={item.img[0]}
-              ></ProductImg>
-              <Info className="product-info" ref={infoProduct}>
-                <InfoDetail>
-                  <Title className="hidden laptop:block">INFO</Title>
-                  <ProductContent>
-                    <p className="self-start whitespace-nowrap overflow-hidden text-ellipsis w-full">
-                      <span className="font-bold">Name: </span>
-                      {item.title}
-                    </p>
-                    <p className="self-center my-1">
-                      <span className="font-bold">Price: </span>
-                      {item.price}
-                    </p>
-                    <div className="flex gap-3 laptop:mb-1">
-                      {item?.color.map((colorItem) => (
-                        <Color
-                          className={`border my-3 laptop:my-0 hover:scale-110 transition-all ${
-                            item._id === id && colorItem === color
-                              ? "border-black"
-                              : ""
-                          }`}
-                          onClick={() => onSetColor(item._id, colorItem)}
-                          style={{ backgroundColor: `${colorItem}` }}
-                        ></Color>
-                      ))}
-                    </div>
-                    <Size className="my-3 laptop:mt-2 laptop:mb-2">
-                      <span className="font-semibold">Size: </span>
-                      {item?.size.map((sizeItem) => (
-                        <span
-                          ref={sizeRef}
-                          className={`${
-                            item._id === id && sizeItem === size
-                              ? "bg-[#ccc]"
-                              : ""
-                          } mr-2 p-2 border rounded-lg hover:bg-slate-300 transition-all duration-200`}
-                          onClick={() => {
-                            onSetSize(item._id, sizeItem);
-                          }}
-                        >
-                          {sizeItem}
-                        </span>
-                      ))}
-                    </Size>
-                    <Button
-                      content="Add to cart"
-                      handleClick={() => addToCart(item)}
-                      backgroundColor="#ffdb00"
-                      className="mx-auto p-4 mt-1 rounded-lg"
-                    ></Button>
-                  </ProductContent>
-                </InfoDetail>
-              </Info>
-            </ProductItem>
-          </Grid>
-        ))}
+        {catHome
+          ? filterdProducts.slice(0, 3).map((item) => (
+              <Grid item xs={laptop ? 4 : 6} key={item._id}>
+                <ProductItem>
+                  <ProductImg
+                    onClick={() => navigate(`/product/${item._id}`)}
+                    src={item.img[0]}
+                  ></ProductImg>
+                  <Info className="product-info" ref={infoProduct}>
+                    <InfoDetail>
+                      <Title className="hidden laptop:block">INFO</Title>
+                      <ProductContent>
+                        <p className="self-start whitespace-nowrap overflow-hidden text-ellipsis w-full">
+                          <span className="font-bold">Name: </span>
+                          {item.title}
+                        </p>
+                        <p className="self-center my-1">
+                          <span className="font-bold">Price: </span>
+                          {item.price}
+                        </p>
+                        <div className="flex gap-3 laptop:mb-1">
+                          {item?.color.map((colorItem) => (
+                            <Color
+                              className={`border my-3 laptop:my-0 hover:scale-110 transition-all ${
+                                item._id === id && colorItem === color
+                                  ? "border-black"
+                                  : ""
+                              }`}
+                              onClick={() => onSetColor(item._id, colorItem)}
+                              style={{ backgroundColor: `${colorItem}` }}
+                            ></Color>
+                          ))}
+                        </div>
+                        <Size className="my-3 laptop:mt-2 laptop:mb-2">
+                          <span className="font-semibold">Size: </span>
+                          {item?.size.map((sizeItem) => (
+                            <span
+                              ref={sizeRef}
+                              className={`${
+                                item._id === id && sizeItem === size
+                                  ? "bg-[#ccc]"
+                                  : ""
+                              } mr-2 p-2 border rounded-lg hover:bg-slate-300 transition-all duration-200`}
+                              onClick={() => {
+                                onSetSize(item._id, sizeItem);
+                              }}
+                            >
+                              {sizeItem}
+                            </span>
+                          ))}
+                        </Size>
+                        <Button
+                          content="Add to cart"
+                          handleClick={() => addToCart(item)}
+                          backgroundColor="#ffdb00"
+                          className="mx-auto p-4 mt-1 rounded-lg"
+                        ></Button>
+                      </ProductContent>
+                    </InfoDetail>
+                  </Info>
+                </ProductItem>
+              </Grid>
+            ))
+          : filterdProducts.map((item) => (
+              <Grid
+                item
+                xs={laptop ? 4 : 6}
+                key={item._id}
+                data-aos="fade-down"
+                data-aos-easing="linear"
+                data-aos-duration="500"
+              >
+                <ProductItem>
+                  <ProductImg
+                    onClick={() => navigate(`/product/${item._id}`)}
+                    src={item.img[0]}
+                  ></ProductImg>
+                  <Info className="product-info" ref={infoProduct}>
+                    <InfoDetail>
+                      <Title className="hidden laptop:block">INFO</Title>
+                      <ProductContent>
+                        <p className="self-start whitespace-nowrap overflow-hidden text-ellipsis w-full">
+                          <span className="font-bold">Name: </span>
+                          {item.title}
+                        </p>
+                        <p className="self-center my-1">
+                          <span className="font-bold">Price: </span>
+                          {item.price}
+                        </p>
+                        <div className="flex gap-3 laptop:mb-1">
+                          {item?.color.map((colorItem) => (
+                            <Color
+                              className={`border my-3 laptop:my-0 hover:scale-110 transition-all ${
+                                item._id === id && colorItem === color
+                                  ? "border-black"
+                                  : ""
+                              }`}
+                              onClick={() => onSetColor(item._id, colorItem)}
+                              style={{ backgroundColor: `${colorItem}` }}
+                            ></Color>
+                          ))}
+                        </div>
+                        <Size className="my-3 laptop:mt-2 laptop:mb-2">
+                          <span className="font-semibold">Size: </span>
+                          {item?.size.map((sizeItem) => (
+                            <span
+                              ref={sizeRef}
+                              className={`${
+                                item._id === id && sizeItem === size
+                                  ? "bg-[#ccc]"
+                                  : ""
+                              } mr-2 p-2 border rounded-lg hover:bg-slate-300 transition-all duration-200`}
+                              onClick={() => {
+                                onSetSize(item._id, sizeItem);
+                              }}
+                            >
+                              {sizeItem}
+                            </span>
+                          ))}
+                        </Size>
+                        <Button
+                          content="Add to cart"
+                          handleClick={() => addToCart(item)}
+                          backgroundColor="#ffdb00"
+                          className="mx-auto p-4 mt-1 rounded-lg"
+                        ></Button>
+                      </ProductContent>
+                    </InfoDetail>
+                  </Info>
+                </ProductItem>
+              </Grid>
+            ))}
       </Grid>
     </ProductListStyle>
   );
