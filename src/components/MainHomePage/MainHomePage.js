@@ -6,7 +6,6 @@ import { dataFloatNav, dataSliderImg } from "../../data/data";
 import Slider from "react-slick";
 import ProductHomePage from "./ProductHomePage";
 import Button from "../Button";
-
 const MainHomePage = () => {
   const settings = {
     dots: true,
@@ -46,7 +45,6 @@ const MainHomePage = () => {
           className="mx-auto p-4 rounded-lg text-white inline-block hover:-translate-y-1 hover:shadow-2xl shadow-3xl transition-all"
         ></Button>
       </div>
-
       <Slider {...settings} className="slider__adjust">
         {dataSliderImg.map((item, index) => (
           <div key={index} className=" p-5 w-[600px] h-[600px] object-cover">

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import AuthenticationLayout from "./AuthenticationLayout";
-
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import GoogleIcon from "@mui/icons-material/Google";

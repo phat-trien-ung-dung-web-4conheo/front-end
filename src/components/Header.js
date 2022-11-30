@@ -194,7 +194,6 @@ const RightHeader = styled.div`
   align-items: center;
   gap: 10px;
 `;
-
 const Logo = styled.div`
   font-size: 25px;
   font-weight: bold;
@@ -281,7 +280,6 @@ const CartRightBox = styled.div`
   padding: 10px;
   position: relative;
 `;
-
 const Header = (props) => {
   //responsive variables
   const laptop = useMediaQuery("(min-width: 1024px)");
@@ -316,7 +314,6 @@ const Header = (props) => {
     };
   }, [laptop, mobile]);
   //END GET SCROLL
-
   //APPEAR BASKETPOPUP
   const [appear, setAppear] = useState(false);
   //END APPEAR BASKETPOPUP
@@ -360,7 +357,7 @@ const Header = (props) => {
                   <MenuIcon></MenuIcon>
                 </Menu>
               )}
-              <User onClick={() => navigate("/user")}>
+              <User onClick={() => navigate("/user/profile")}>
                 <AccountCircleIcon></AccountCircleIcon>{" "}
               </User>
             </RightHeader>

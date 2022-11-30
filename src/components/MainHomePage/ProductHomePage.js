@@ -59,7 +59,7 @@ const ProductHomePage = () => {
   const tablet = useMediaQuery("(min-width:768px)");
   const laptop = useMediaQuery("(min-width:1024px)");
   return (
-    <div className="p-5 mt-10">
+    <div className="p-5 mt-20">
       <ChoiceUs>
         <h2 className="text-3xl text-center mb-[25px] mt-[60px]">
           What make our brand different
@@ -82,9 +82,7 @@ const ProductHomePage = () => {
       >
         All product
       </h1>
-
       <ProductList></ProductList>
-
       <GetIdeaCollection>
         <Grid container spacing={4}>
           <Grid item xs={laptop ? 6 : 12}>

@@ -5,25 +5,33 @@ import SpaIcon from "@mui/icons-material/Spa";
 export const dataNav = [
   {
     id: 1,
-    name: "Product",
-    category: "123",
+    name: "Men",
+    category: "",
   },
   {
     id: 2,
-    name: "adu",
-    category: 2,
+    name: "Woman",
+    category: "",
   },
   {
     id: 3,
-    name: "san pham",
+    name: "Kids",
+    category: "",
   },
   {
     id: 4,
-    name: "san pham2",
+    name: "Customise",
+    category: "",
   },
   {
     id: 5,
-    name: "san pham 3",
+    name: "Sale",
+    category: "",
+  },
+  {
+    id: 6,
+    name: "Gifts",
+    category: "",
   },
 ];
 
@@ -70,43 +78,39 @@ export const dataProduct = [
   {
     id: 1,
     src: "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/f31c8f90-e370-4099-b6cd-99e4fa2e1285/star-runner-3-older-road-running-shoes-VW5vRH.png",
-    name: "Product",
-    price: "100d",
+    name: "Nike Air Force 1 Mid React",
+    price: "4,259,000VND",
   },
   {
     id: 2,
 
     src: "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/f31c8f90-e370-4099-b6cd-99e4fa2e1285/star-runner-3-older-road-running-shoes-VW5vRH.png",
-    name: "Product",
-    price: "100d",
+    name: "Nike Air Force 1 Mid React",
+    price: "4,259,000VND",
   },
   {
     id: 3,
-
     src: "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/f31c8f90-e370-4099-b6cd-99e4fa2e1285/star-runner-3-older-road-running-shoes-VW5vRH.png",
-    name: "Product",
-    price: "100d",
+    name: "Nike Air Force 1 Mid React",
+    price: "4,259,000VND",
   },
   {
     id: 4,
-
     src: "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/f31c8f90-e370-4099-b6cd-99e4fa2e1285/star-runner-3-older-road-running-shoes-VW5vRH.png",
-    name: "Product",
-    price: "100d",
+    name: "Nike Air Force 1 Mid React",
+    price: "4,259,000VND",
   },
   {
     id: 5,
-
     src: "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/f31c8f90-e370-4099-b6cd-99e4fa2e1285/star-runner-3-older-road-running-shoes-VW5vRH.png",
-    name: "Product",
-    price: "100d",
+    name: "Nike Air Force 1 Mid React",
+    price: "4,259,000VND",
   },
   {
     id: 6,
-
     src: "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/f31c8f90-e370-4099-b6cd-99e4fa2e1285/star-runner-3-older-road-running-shoes-VW5vRH.png",
-    name: "Product",
-    price: "100d",
+    name: "Nike Air Force 1 Mid React",
+    price: "4,259,000VND",
   },
 ];
 
@@ -136,7 +140,6 @@ export const dataChoiceUs = [
     desc: "We use 100% recycled to ensure our footprint is more manageable",
   },
 ];
-
 export const BannerListItem = [
   {
     id: 1,

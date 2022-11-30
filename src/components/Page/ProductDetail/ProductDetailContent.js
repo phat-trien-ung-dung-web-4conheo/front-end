@@ -185,7 +185,6 @@ const ProductDetailContent = ({ data }) => {
           ))}
         </ProductColors>
       </ProductColorsContainer>
-
       <ProductQuantities>
         <ProductHeading>Quantity</ProductHeading>
 

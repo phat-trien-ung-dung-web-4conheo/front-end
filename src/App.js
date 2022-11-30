@@ -4,11 +4,12 @@ import MainHomePage from "./components/MainHomePage/MainHomePage";
 import SignInPage from "./components/Page/Authentication/SignInPage";
 import SignUpPage from "./components/Page/Authentication/SignUpPage";
 import BasketPage from "./components/Page/BasketPage";
-
+import AboutUsPage from "./components/Page/AboutUs/AboutUsPage";
 import ContactUs from "./components/Page/ContactUs";
 import FullPage from "./components/Page/FullPage/FullPage";
 import ProductCategoryPage from "./components/Page/ProductCategoryPage";
 import ProductDetailPage from "./components/Page/ProductDetail/ProductDetailPage";
+import UserProfilePage from "./components/Page/UserProfile/UserProfilePage";
 
 function App() {
   const user = useSelector((state) => state.user.currentUser);
@@ -22,6 +23,14 @@ function App() {
       />
 
       <Route path="/sign-up" element={<SignUpPage></SignUpPage>} />
+      <Route
+        path="/user/profile"
+        element={<UserProfilePage></UserProfilePage>}
+      />
+      <Route
+        path="/profile/:id"
+        element={<UserProfilePage></UserProfilePage>}
+      />
       <Route path="/" element={<FullPage />}>
         <Route path="/" element={<MainHomePage></MainHomePage>} />
         <Route
