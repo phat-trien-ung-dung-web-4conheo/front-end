@@ -1,7 +1,9 @@
-import { Grid } from "@mui/material";
+import { Grid, useMediaQuery } from "@mui/material";
 import React, { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { dataProduct, dataChoiceUs } from "../../data/data";
+import { device } from "../../ResponsiveBreakpoint";
 import Button from "../Button";
 import ProductList from "../ProductList";
 
@@ -17,10 +19,17 @@ const ChoiceUsItem = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
-
+  overflow: hidden;
+  transition: transform 1s ease;
   &:hover .choice-icon {
     transition: transform 1s ease;
+
     transform: translateX(90%);
+  }
+  @media ${device.laptop} {
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 `;
 
@@ -33,7 +42,7 @@ const LeftIdea = styled.div`
   background-color: #ffdb00;
   padding: 30px;
   display: flex;
-  font-size:20px;
+  font-size: 20px;
   flex-direction: column;
   border-radius: 12px;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 10px 2px;
@@ -46,6 +55,9 @@ const GetIdeaImg = styled.img`
   box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 10px 2px;
 `;
 const ProductHomePage = () => {
+  const navigate = useNavigate();
+  const tablet = useMediaQuery("(min-width:768px)");
+  const laptop = useMediaQuery("(min-width:1024px)");
   return (
     <div className="p-5 mt-20">
       <ChoiceUs>
@@ -54,7 +66,7 @@ const ProductHomePage = () => {
         </h2>
         <Grid container spacing={3}>
           {dataChoiceUs.map((item, index) => (
-            <Grid key={index} item xs={3}>
+            <Grid key={index} item xs={tablet ? (laptop ? 3 : 6) : 12}>
               <ChoiceUsItem>
                 <ChoiceUsIcon className="choice-icon">{item.icon}</ChoiceUsIcon>
                 <h3 className="text-xl">{item.title}</h3>
@@ -64,13 +76,16 @@ const ProductHomePage = () => {
           ))}
         </Grid>
       </ChoiceUs>
-      <h1 className="text-2xl py-5">All product</h1>
-
+      <h1
+        className="text-2xl py-5"
+        style={{ textAlign: "center", fontWeight: "400" }}
+      >
+        All product
+      </h1>
       <ProductList></ProductList>
-
       <GetIdeaCollection>
         <Grid container spacing={4}>
-          <Grid item xs={6}>
+          <Grid item xs={laptop ? 6 : 12}>
             <LeftIdea>
               <div className="flex flex-col gap-2">
                 <h2 className="text-2xl py-5">It started with a small idea</h2>
@@ -80,14 +95,18 @@ const ProductHomePage = () => {
                 </p>
               </div>
               <Button
+                navigate="/products"
                 content="View collection"
-                className="w-full p-3 rounded-lg mt-auto"
+                className="w-full p-3 rounded-lg laptop:mt-auto mobile:mt-5 bg-white !text-black"
               ></Button>
             </LeftIdea>
           </Grid>
-          <Grid item xs={6}>
-            <RightIdea>
-              <GetIdeaImg src="https://gbl-sc9u2-prd-cdn.azureedge.net/-/media/aboutikea/images/contact/how-to-buy-ikea-products-from-a-different-country/a-man-setting-a-table-ai2001-02-ph156953-ikea-l.jpg?rev=5d9ca4cf1a7b402fb98dfac9d10f3f79"></GetIdeaImg>
+          <Grid item xs={laptop ? 6 : 12}>
+            <RightIdea className="w-full">
+              <GetIdeaImg
+                className="w-full"
+                src="https://fapxy.info/wp-content/uploads/2022/01/nike-store.jpg"
+              ></GetIdeaImg>
             </RightIdea>
           </Grid>
         </Grid>

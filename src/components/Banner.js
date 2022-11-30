@@ -9,7 +9,8 @@ const BannerWrap = styled.div`
     align-items: center;
     margin-top:5%;
     padding:50px;
-    background-image: url(https://www.topuytin.com/wp-content/uploads/2018/06/top-10-shop-giay-sneaker-dep-va-chat-luong-nhat-tai-tphcm-07.png);
+    background-image: url(http://cdn.tgdd.vn/Files/2022/04/01/1423481/huong-dan-order-giay-nike-o-nuoc-ngoai-cuc-de-202204012327161887.jpg);
+    
 `
 const BannerContainer = styled.div`
     color:white;

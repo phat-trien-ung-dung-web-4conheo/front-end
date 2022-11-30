@@ -6,88 +6,101 @@ export const dataNav = [
   {
     id: 1,
     name: "Product",
+    category: "123",
   },
   {
     id: 2,
-    name: "Product",
+    name: "adu",
+    category: 2,
   },
   {
     id: 3,
-    name: "Product",
+    name: "san pham",
   },
   {
     id: 4,
-    name: "Product",
+    name: "san pham2",
   },
   {
     id: 5,
-    name: "Product",
+    name: "san pham 3",
+  },
+];
+
+export const dataFloatNav = [
+  {
+    id: 1,
+    name: "Black Friday Sale | Save Up to 60%",
+  },
+  {
+    id: 2,
+    name: "Free Shipping + Returns, Free Membership, Exclusive Products",
+  },
+  {
+    id: 3,
+    name: "Shop Now, Relax Later",
   },
 ];
 
 export const dataSliderImg = [
   {
-    src: "https://images.hdqwalls.com/wallpapers/retro-big-sun-sp.jpg",
+    src: "https://static.nike.com/a/images/f_auto,cs_srgb/w_1920,c_limit/e5853518-be79-4fcc-afe4-6d2df175de53/nike%E2%80%99s-best-casual-shoes-for-everyday-wear.jpg",
   },
   {
-    src: "https://images.hdqwalls.com/download/the-big-universe-is-here-4k-q4-1920x1080.jpg",
+    src: "https://static.nike.com/a/images/f_auto,cs_srgb/w_1920,c_limit/f55bf732-7fa9-4b38-8464-3332d97f879a/nike%E2%80%99s-best-casual-shoes-for-everyday-wear.jpg",
   },
   {
-    src: "https://images.hdqwalls.com/download/dreamscape-blue-morning-4k-fp-1920x1080.jpg",
+    src: "https://i.pinimg.com/736x/b1/22/28/b12228c6dc9e3de3581da1115914c02e.jpg",
   },
   {
-    src: "https://6.viki.io/image/45be732ff5984180a2adb844c7741cd9/dummy.jpeg?s=900x600&e=t",
+    src: "https://static.nike.com/a/images/f_auto,cs_srgb/w_1920,c_limit/e6424c44-7b50-4acb-8c40-aa9712c29924/nike%E2%80%99s-best-casual-shoes-for-everyday-wear.jpg",
   },
   {
-    src: "https://images.hdqwalls.com/download/the-big-universe-is-here-4k-q4-1920x1080.jpg",
+    src: "https://www.sneakerfiles.com/wp-content/uploads/2020/04/nike-air-max-verona-summer-2020-colorways-release-dates.jpg",
   },
   {
-    src: "https://images8.alphacoders.com/118/1186452.jpg",
+    src: "https://pbs.twimg.com/media/EYe1nv7XsAEpnVv.jpg",
   },
   {
-    src: "https://c4.wallpaperflare.com/wallpaper/1006/174/564/elden-ring-edit-video-game-art-video-games-fromsoftware-hd-wallpaper-preview.jpg",
+    src: "https://i.pinimg.com/originals/6d/53/78/6d53788e47b855f23809015f4772195c.jpg",
   },
 ];
 
 export const dataProduct = [
   {
     id: 1,
-    src: "https://source.unsplash.com/random/600x300",
+    src: "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/f31c8f90-e370-4099-b6cd-99e4fa2e1285/star-runner-3-older-road-running-shoes-VW5vRH.png",
     name: "Product",
     price: "100d",
   },
   {
     id: 2,
 
-    src: "https://source.unsplash.com/random/600x300",
+    src: "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/f31c8f90-e370-4099-b6cd-99e4fa2e1285/star-runner-3-older-road-running-shoes-VW5vRH.png",
     name: "Product",
     price: "100d",
   },
   {
     id: 3,
-
-    src: "https://source.unsplash.com/random/600x300",
+    src: "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/f31c8f90-e370-4099-b6cd-99e4fa2e1285/star-runner-3-older-road-running-shoes-VW5vRH.png",
     name: "Product",
     price: "100d",
   },
   {
     id: 4,
-
-    src: "https://source.unsplash.com/random/600x300",
+    src: "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/f31c8f90-e370-4099-b6cd-99e4fa2e1285/star-runner-3-older-road-running-shoes-VW5vRH.png",
     name: "Product",
     price: "100d",
   },
   {
     id: 5,
-
-    src: "https://source.unsplash.com/random/600x300",
+    src: "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/f31c8f90-e370-4099-b6cd-99e4fa2e1285/star-runner-3-older-road-running-shoes-VW5vRH.png",
     name: "Product",
     price: "100d",
   },
   {
     id: 6,
-
-    src: "https://source.unsplash.com/random/600x300",
+    src: "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/f31c8f90-e370-4099-b6cd-99e4fa2e1285/star-runner-3-older-road-running-shoes-VW5vRH.png",
     name: "Product",
     price: "100d",
   },
@@ -119,18 +132,17 @@ export const dataChoiceUs = [
     desc: "We use 100% recycled to ensure our footprint is more manageable",
   },
 ];
-
 export const BannerListItem = [
   {
-      id: 1,
-      content: "Exclusive Offer",
+    id: 1,
+    content: "Exclusive Offer",
   },
   {
-      id: 2,
-      content: "Free Events",
+    id: 2,
+    content: "Free Events",
   },
   {
-      id: 2,
-      content: "Large Discount",
+    id: 2,
+    content: "Large Discount",
   },
-]
+];
