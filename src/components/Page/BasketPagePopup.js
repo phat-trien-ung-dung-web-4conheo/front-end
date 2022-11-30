@@ -67,7 +67,6 @@ const BasketPagePopup = ({
     console.log(id, quantity, price);
     dispatch(removeProduct({ id, price }));
   };
-  localStorage.clear();
   return (
     <Container className={className} isAppear={isAppear} onClick={onClick}>
       <Box sx={{ my: 3, mx: 2 }}>
