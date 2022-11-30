@@ -9,15 +9,15 @@ export const dataNav = [
     category: "123",
     subnav: [
       {
-        title: 'Sub Product',
+        title: 'Sub Product 1',
         url: 'adu/'
       },
       {
-        title: 'Sub Product',
+        title: 'Sub Product 2',
         url: 'adu2/'
       },
       {
-        title: 'Sub Product',
+        title: 'Sub Product 3',
         url: 'adu3/'
       },
     ]
@@ -28,15 +28,15 @@ export const dataNav = [
     category: 2,
     subnav: [
       {
-        title: 'Sub Product',
+        title: 'Sub Product 4',
         url: 'adu/'
       },
       {
-        title: 'Sub Product',
+        title: 'Sub Product 5',
         url: 'adu2/'
       },
       {
-        title: 'Sub Product',
+        title: 'Sub Product 6',
         url: 'adu3/'
       },
     ]
@@ -46,15 +46,15 @@ export const dataNav = [
     name: "Product",
     subnav: [
       {
-        title: 'Sub Product',
+        title: 'Sub Product 7',
         url: 'adu/'
       },
       {
-        title: 'Sub Product',
+        title: 'Sub Product 8',
         url: 'adu2/'
       },
       {
-        title: 'Sub Product',
+        title: 'Sub Product 9',
         url: 'adu3/'
       },
     ]
@@ -64,15 +64,15 @@ export const dataNav = [
     name: "Product",
     subnav: [
       {
-        title: 'Sub Product',
+        title: 'Sub Product 10',
         url: 'adu/'
       },
       {
-        title: 'Sub Product',
+        title: 'Sub Product 11',
         url: 'adu2/'
       },
       {
-        title: 'Sub Product',
+        title: 'Sub Product 12',
         url: 'adu3/'
       },
     ]
@@ -82,15 +82,15 @@ export const dataNav = [
     name: "Product",
     subnav: [
       {
-        title: 'Sub Product',
+        title: 'Sub Product 13',
         url: 'adu/'
       },
       {
-        title: 'Sub Product',
+        title: 'Sub Product 14',
         url: 'adu2/'
       },
       {
-        title: 'Sub Product',
+        title: 'Sub Product 15',
         url: 'adu3/'
       },
     ]
