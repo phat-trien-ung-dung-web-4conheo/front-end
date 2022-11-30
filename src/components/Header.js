@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { device } from "../ResponsiveBreakpoint";
 import { useMediaQuery } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import { useSelector } from "react-redux";
 const Container = styled.header`
   display: flex;
   justify-content: space-between;
@@ -207,6 +208,7 @@ const Cart = styled.div`
   display: flex;
   align-items: center;
   transition: all 0.5s ease;
+  position: relative;
   &:hover {
     background-color: rgba(255, 219, 0, 0.5);
     border-radius: 50%;
@@ -229,6 +231,7 @@ const User = styled.div`
 `;
 
 const Right = styled.div`
+  position: relative;
   @media ${device.mobile} {
     display: none;
   }
@@ -236,6 +239,22 @@ const Right = styled.div`
     flex: 1;
     display: block;
   }
+`;
+
+const CartQuantity = styled.div`
+  position: absolute;
+  border-radius: 100%;
+  background-color: #ffdb00;
+  width: 25px;
+  height: 25px;
+  left: 65%;
+  bottom: 55%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: all 0.5s ease;
+  transform: ${(props) => (props.quantity > 0 ? "scale(1)" : "scale(0)")};
 `;
 
 const CartRight = styled.div`
@@ -260,6 +279,7 @@ const CartRightBox = styled.div`
   border: 1px solid #ccc;
   border-radius: 10px;
   padding: 10px;
+  position: relative;
 `;
 
 const Header = (props) => {
@@ -280,7 +300,7 @@ const Header = (props) => {
       headerScroll.current.style.transform = "translateY(0)";
       cartRight.current.style.transform = "translateY(-50px)";
     }
-    setScrollY(position);
+    // setScrollY(position);
   };
   useEffect(() => {
     laptop &&
@@ -294,12 +314,16 @@ const Header = (props) => {
     return () => {
       laptop && window.removeEventListener("scroll", handleScroll);
     };
-  }, [scrollY, laptop, mobile]);
+  }, [laptop, mobile]);
   //END GET SCROLL
 
   //APPEAR BASKETPOPUP
   const [appear, setAppear] = useState(false);
   //END APPEAR BASKETPOPUP
+
+  //GET QUANTITY PRODUCT
+  const quantity = useSelector((state) => state.cart.quantity);
+
   const navigate = useNavigate();
   return (
     <Container>
@@ -329,6 +353,7 @@ const Header = (props) => {
               )}
               <Cart onClick={() => navigate("/basket")}>
                 <ShoppingCartIcon></ShoppingCartIcon>{" "}
+                <CartQuantity quantity={quantity}>{quantity}</CartQuantity>
               </Cart>
               {!laptop && (
                 <Menu>
@@ -368,6 +393,7 @@ const Header = (props) => {
             <ShoppingCartOutlinedIcon
               style={{ width: "20px", height: "20px" }}
             ></ShoppingCartOutlinedIcon>
+            <CartQuantity quantity={quantity}>{quantity}</CartQuantity>
           </CartRightBox>
         </CartRight>
       </Right>

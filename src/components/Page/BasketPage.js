@@ -13,6 +13,7 @@ import IconButton from "@mui/material/IconButton";
 import Stack from "@mui/material/Stack";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { textAlign } from "@mui/system";
+import { useSelector } from "react-redux";
 
 const Container = styled.div`
   padding-top: 50px;
@@ -29,9 +30,24 @@ const Right = styled.div`
   border-radius: 10px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 `;
+const BasketDesc = styled.p`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+`;
+const Color = styled.div`
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-top: 10px;
+`;
+const Size = styled.div``;
 const BasketPage = () => {
   const tablet = useMediaQuery("(min-width:768px)");
   const laptop = useMediaQuery("(min-width:1024px)");
+  const cart = useSelector((state) => state.cart);
   return (
     <Container>
       <Box sx={{ my: 3, mx: 2 }}>
@@ -60,68 +76,81 @@ const BasketPage = () => {
       <Divider variant="middle" />
 
       <List sx={{ width: "100%", bgcolor: "background.paper" }}>
-        <ListItem alignItems="flex-start">
-          <div id="image" style={{ display: "inline" }}>
-            <Link href="" target="_blank">
-              <img
-                src={
-                  "https://firebasestorage.googleapis.com/v0/b/avion-b7024.appspot.com/o/products%2FCB05cLCWbOvaUaHK9lyO%2F0?alt=media&token=4b932fd8-c0d7-4a1c-be41-7f3a6e3e2abd"
+        {cart.products.map((item) => (
+          <ListItem className="!justify-between" alignItems="flex-start">
+            <div className="flex gap-2">
+              <Link href="" target="_blank">
+                <img
+                  src={item.img}
+                  style={{ width: "110px", height: "134px" }}
+                  alt=""
+                />
+              </Link>
+              <ListItemText
+                sx={{ display: "inline-block", margin: "10px" }}
+                className="font-bold max-w-[400px]"
+                primaryTypographyProps={{ fontWeight: "bold" }}
+                primary={item.title}
+                secondary={
+                  <Typography
+                    component="span"
+                    variant="body2"
+                    color="text.primary"
+                  >
+                    <BasketDesc>{item.desc}</BasketDesc>
+                    <p>
+                      <span className="font-semibold">Price: </span>
+                      {item.price}
+                    </p>
+                    <Color
+                      className={`border`}
+                      style={{ backgroundColor: `${item.color}` }}
+                    ></Color>
+                    <Size className="laptop:mt-2">
+                      <span className="font-semibold">Size: </span>
+                      {item?.size}
+                    </Size>
+                  </Typography>
                 }
-                style={{ width: "110px", height: "134px" }}
-                alt=""
               />
-            </Link>
-          </div>
-          <ListItemText
-            sx={{ display: "inline-block", margin: "10px" }}
-            primary={`CERAMIC HOOK`}
-            secondary={
-              <React.Fragment>
-                <Typography
-                  component="span"
-                  variant="body2"
-                  color="text.primary"
-                >
-                  Metallic wall hook with two ceramic knob hooks.
-                  <p> $9.9</p>
-                </Typography>
-              </React.Fragment>
-            }
-          />
-          <Grid item xs={4} container spacing={1}>
-            <Box
-              sx={{ "& > :not(style)": { m: 1 } }}
-              style={{ marginTop: "30px", display: "flex" }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  flexDirection: "row",
-                  cursor: "pointer",
-                  border: "1px solid black",
-                  padding: "10px 30px",
-                  borderRadius: "10% 10% 10%",
-                }}
+            </div>
+            <Grid item xs={4} className="!justify-center" container spacing={1}>
+              <Box
+                sx={{ "& > :not(style)": { m: 1 } }}
+                style={{ marginTop: "30px", display: "flex" }}
               >
-                <div class="quan-bar__btn">-</div>
-                <span class="quan-bar__text">1</span>
-                <div class="quan-bar__btn">+</div>
-              </div>
-              <IconButton aria-label="delete" style={{ color: "#f44336" }}>
-                <DeleteIcon />
-              </IconButton>
-            </Box>
-          </Grid>
-          <Grid item xs={8} style={{ marginTop: "40px" }}>
-            <Typography color="text.primary" variant="body1">
-              $9.90
-            </Typography>
-          </Grid>
-        </ListItem>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    flexDirection: "row",
+                    cursor: "pointer",
+                    border: "1px solid black",
+                    padding: "10px 30px",
+                    borderRadius: "10% 10% 10%",
+                  }}
+                >
+                  <div class="quan-bar__btn">-</div>
+                  <span class="quan-bar__text">{item.quantity}</span>
+                  <div class="quan-bar__btn">+</div>
+                </div>
+                <IconButton aria-label="delete" style={{ color: "#f44336" }}>
+                  <DeleteIcon />
+                </IconButton>
+              </Box>
+            </Grid>
+            <Grid item xs={8} style={{ marginTop: "40px" }}>
+              <Typography
+                className="text-end w-[70px]"
+                color="text.primary"
+                variant="body1"
+              >
+                {item.price}
+              </Typography>
+            </Grid>
+          </ListItem>
+        ))}
       </List>
-
-      <div></div>
 
       <Divider variant="middle" />
 
@@ -136,7 +165,7 @@ const BasketPage = () => {
         >
           Subtotal &nbsp;
           <span style={{ display: "inline-block", fontSize: "25px" }}>
-            $9.90
+            {cart.total}
           </span>
         </p>
       </div>
