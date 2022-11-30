@@ -6,7 +6,7 @@ import AuthenticationLayout from "./components/Page/Authentication/Authenticatio
 import SignInPage from "./components/Page/Authentication/SignInPage";
 import SignUpPage from "./components/Page/Authentication/SignUpPage";
 import BasketPage from "./components/Page/BasketPage";
-
+import AboutUsPage from "./components/Page/AboutUs/AboutUsPage";
 import ContactUs from "./components/Page/ContactUs";
 import FullPage from "./components/Page/FullPage/FullPage";
 import ProductCategoryPage from "./components/Page/ProductCategoryPage";
@@ -15,7 +15,7 @@ function App() {
   return (
     <Routes>
       <Route path="/sign-in" element={<SignInPage></SignInPage>} />
-      
+      <Route path="/aboutus" element={<AboutUsPage></AboutUsPage>}/>
       <Route path="contactus" element={<ContactUs></ContactUs>}/> 
 
       <Route path="/sign-up" element={<SignUpPage></SignUpPage>} />

@@ -1,8 +1,8 @@
 import React, { useRef, useState } from 'react';
-import Footer from '../Footer'
-import { MenuItems, ItemContent } from '../../data/aboutus_data';
+import Footer from '../../Footer'
+import { MenuItems, ItemContent } from '../../../data/aboutus_data';
 import styled from 'styled-components';
-import Header from '../Header';
+import Header from '../../Header';
 
 const UpdateStatus = styled.div`
     background-color: #ffdb00;
