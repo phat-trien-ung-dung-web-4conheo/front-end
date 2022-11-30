@@ -1,11 +1,12 @@
 import { Grid, useMediaQuery } from "@mui/material";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { dataProduct, dataChoiceUs } from "../../data/data";
 import { device } from "../../ResponsiveBreakpoint";
 import Button from "../Button";
 import ProductList from "../ProductList";
+import ProductListCategory from "../ProductListCategory/ProductListCategory";
 
 const ChoiceUs = styled.div`
   margin: 30px 0;
@@ -58,6 +59,12 @@ const ProductHomePage = () => {
   const navigate = useNavigate();
   const tablet = useMediaQuery("(min-width:768px)");
   const laptop = useMediaQuery("(min-width:1024px)");
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  });
   return (
     <div className="p-5 mt-20">
       <ChoiceUs>
@@ -77,12 +84,15 @@ const ProductHomePage = () => {
         </Grid>
       </ChoiceUs>
       <h1
-        className="text-2xl py-5"
-        style={{ textAlign: "center", fontWeight: "400" }}
+        className="text-2xl px-4 py-3 my-4 bg-[#333] text-white rounded-lg inline-block"
+        style={{ textAlign: "left", fontWeight: "400" }}
       >
         All product
       </h1>
       <ProductList></ProductList>
+      <ProductListCategory categoryName="men"></ProductListCategory>
+      <ProductListCategory categoryName="women"></ProductListCategory>
+      <ProductListCategory categoryName="kid"></ProductListCategory>
       <GetIdeaCollection>
         <Grid container spacing={4}>
           <Grid item xs={laptop ? 6 : 12}>

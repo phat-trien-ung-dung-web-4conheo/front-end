@@ -120,7 +120,7 @@ const ProductDetailPage = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
   // console.log(leftRect?.height);
-  console.log(product?.img?.length);
+  // console.log(product?.img?.length);
   return (
     <Container>
       <Grid container spacing={2}>
