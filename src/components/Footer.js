@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { useState } from "react";
 import styled from "styled-components";
-import { categoryItems, menuItems } from "../data/footer_data";
+import { categoryItems, menuItems, ourCom } from "../data/footer_data";
 import device from '../ResponsiveBreakpoint'
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
@@ -122,7 +122,7 @@ const Footer = (probs) => {
         <Wrap>
           <Heading>Our Company</Heading>
           <FooterItems>
-            {categoryItems.map((item, idx) => (
+            {ourCom.map((item, idx) => (
               <Items key={idx}>
                 <LiText>{item.content}</LiText>
               </Items>
