@@ -43,13 +43,13 @@ const UserInfo = () => {
                         <TextField
                         id="outlined-uncontrolled"
                         label="Full Name"
-                        defaultValue="...."
+                        defaultValue=""
                         style={{width:"70%"}}
                         />
                         <TextField
                         id="outlined-uncontrolled"
                         label="Age"
-                        defaultValue="...."
+                        defaultValue=""
                         style={{width:"30%"}}
                         />     
                     </UserField>
@@ -57,7 +57,7 @@ const UserInfo = () => {
                         <TextField
                         id="outlined-uncontrolled"
                         label="Email"
-                        defaultValue="...."
+                        defaultValue=""
                         style={{width:"100%"}}
                         />  
                     </UserField>
@@ -65,7 +65,7 @@ const UserInfo = () => {
                         <TextField
                         id="outlined-uncontrolled"
                         label="Address"
-                        defaultValue="...."
+                        defaultValue=""
                         style={{width:"100%"}}
                         />           
                     </UserField>
@@ -73,7 +73,7 @@ const UserInfo = () => {
                         <TextField
                         id="outlined-uncontrolled"
                         label="Phone Number"
-                        defaultValue="...."
+                        defaultValue=""
                         style={{width:"100%"}}
                         />           
                     </UserField>

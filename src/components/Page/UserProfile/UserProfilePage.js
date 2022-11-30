@@ -2,12 +2,12 @@ import React, { useMemo, useState } from 'react';
 import styled from 'styled-components';
 import Header from '../../Header';
 import Footer from '../../Footer';
-import Banner from '../../Banner'
+import Banner from '../../Banner';
 import { Tab, Tabs } from '@mui/material';
-import ChangePassword from './ChangePassword'
+import ChangePassword from './ChangePassword';
 import OrderStatus from './OrderStatus.js'
-import UserInfo from './UserInfo'
-import Logout from './Logout'
+import UserInfo from './UserInfo';
+import Logout from './Logout';
 import TabPanel from './TabPanel';
 const PageBanner = styled.div`
     background-image: url(https://img.freepik.com/free-photo/gray-painted-background_53876-94041.jpg?w=2000);

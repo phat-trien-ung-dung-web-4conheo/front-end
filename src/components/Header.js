@@ -331,7 +331,7 @@ const Header = (props) => {
                   <MenuIcon></MenuIcon>
                 </Menu>
               )}
-              <User onClick={() => navigate("/user")}>
+              <User onClick={() => navigate("/user/profile")}>
                 <AccountCircleIcon></AccountCircleIcon>{" "}
               </User>
             </RightHeader>
