@@ -7,6 +7,7 @@ import GoogleIcon from "@mui/icons-material/Google";
 import { shouldSkipGeneratingVar } from "@mui/material";
 import { login } from "../../../redux/apiCalls";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   margin: 0px;
@@ -33,6 +34,7 @@ const SignInPage = () => {
     e.preventDefault();
     login(dispatch, { email, password });
   };
+  const isSignUp = useNavigate();
   return (
     <AuthenticationLayout>
       <Container>
@@ -116,10 +118,10 @@ const SignInPage = () => {
           <h2>
             Don't have an account?
             <u>
-              <a href="sign-up " target="_blank">
+              <span style={{cursor:"pointer"}} onClick={()=> isSignUp('/sign-up')}>
                 {" "}
                 Sign up
-              </a>
+              </span>
             </u>
           </h2>
         </Stack>

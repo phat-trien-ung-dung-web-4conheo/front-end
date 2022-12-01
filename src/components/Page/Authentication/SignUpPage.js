@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Button from "../../Button";
 import Input from "../../Input/Input";
 import AuthenticationLayout from "./AuthenticationLayout";
-
+import { useNavigate } from "react-router-dom";
 const Title = styled.h1`
   font-size: 24px;
 `;
@@ -17,6 +17,7 @@ const Or = styled.div`
   text-align: center;
 `;
 const SignUpPage = () => {
+  const isSignUp = useNavigate();
   return (
     <AuthenticationLayout>
       <Title>Sign up</Title>
@@ -52,9 +53,9 @@ const SignUpPage = () => {
       </div>
       <p class="text-h6 mt-6 text-center text-border_dark font-normal">
         Already a member? &nbsp;
-        <a href="/sign-in">
+        <span style={{cursor:"pointer"}} onClick={()=>isSignUp("/sign-in")}>
           <u class="text-dark_primary laptop:text-light_grey">Sign in</u>
-        </a>
+        </span>
       </p>
     </AuthenticationLayout>
   );
