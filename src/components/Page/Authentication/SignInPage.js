@@ -37,7 +37,7 @@ const SignInPage = () => {
     <AuthenticationLayout>
       <Container>
         <Stack spacing={2} sx={{ width: 300 }}>
-          <h1 style={{ fontSize: "30px" }}> Avion </h1>
+          <h1 style={{ fontSize: "30px" }}> Ovion </h1>
           <Stack spacing={1}>
             <input
               style={BoxInput}
