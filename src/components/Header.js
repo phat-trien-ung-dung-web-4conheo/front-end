@@ -284,6 +284,7 @@ const Header = (props) => {
   //responsive variables
   const laptop = useMediaQuery("(min-width: 1024px)");
   const mobile = useMediaQuery("(min-width: 320px)");
+  const user = useSelector((state) => state.user.currentUser)
   //
   const headerScroll = useRef();
   const cartRight = useRef();
@@ -357,7 +358,7 @@ const Header = (props) => {
                   <MenuIcon></MenuIcon>
                 </Menu>
               )}
-              <User onClick={() => navigate("/user/profile")}>
+              <User onClick={() => navigate(`${user ? "/user/profile" : "sign-in"}`)}>
                 <AccountCircleIcon></AccountCircleIcon>{" "}
               </User>
             </RightHeader>
