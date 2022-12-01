@@ -10,7 +10,7 @@ Giao diện UI thích ứng được độ phân giải của các thiết bị 
 
 ## Cách build project trên localhost:3000
 
-Mở Terminal tại thư mục lưu trữ dự án 
+## Mở Terminal tại thư mục lưu trữ dự án 
 
 ### `npm install` - install lại các dependency để hỗ trợ website
 
