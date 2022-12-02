@@ -11,14 +11,13 @@ import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   margin: 0px;
-  font-size: 20px;
   text-align: center;
 `;
 const BoxInput = {
   color: "black",
-  height: "40px",
   padding: "10px",
   borderRadius: "5px",
+  marginBottom: "10px",
   border: "1px solid rgb(202, 198, 218)",
 };
 const ForgotPassword = {
@@ -39,7 +38,13 @@ const SignInPage = () => {
     <AuthenticationLayout>
       <Container>
         <Stack spacing={2} sx={{ width: 300 }}>
-          <h1 style={{ fontSize: "30px" }}> Ovion </h1>
+          <h1
+            style={{ fontSize: "30px", cursor: "pointer" }}
+            onClick={() => isSignUp("/")}
+          >
+            {" "}
+            Ovion{" "}
+          </h1>
           <Stack spacing={1}>
             <input
               style={BoxInput}
@@ -118,7 +123,10 @@ const SignInPage = () => {
           <h2>
             Don't have an account?
             <u>
-              <span style={{cursor:"pointer"}} onClick={()=> isSignUp('/sign-up')}>
+              <span
+                style={{ cursor: "pointer" }}
+                onClick={() => isSignUp("/sign-up")}
+              >
                 {" "}
                 Sign up
               </span>

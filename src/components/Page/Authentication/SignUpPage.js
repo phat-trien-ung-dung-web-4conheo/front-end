@@ -20,7 +20,9 @@ const SignUpPage = () => {
   const isSignUp = useNavigate();
   return (
     <AuthenticationLayout>
-      <Title>Sign up</Title>
+      <Title onClick={() => isSignUp("/")} className="cursor-pointer">
+        Ovion
+      </Title>
       <Container>
         <Input
           label="Full name"
@@ -53,7 +55,10 @@ const SignUpPage = () => {
       </div>
       <p class="text-h6 mt-6 text-center text-border_dark font-normal">
         Already a member? &nbsp;
-        <span style={{cursor:"pointer"}} onClick={()=>isSignUp("/sign-in")}>
+        <span
+          style={{ cursor: "pointer" }}
+          onClick={() => isSignUp("/sign-in")}
+        >
           <u class="text-dark_primary laptop:text-light_grey">Sign in</u>
         </span>
       </p>
