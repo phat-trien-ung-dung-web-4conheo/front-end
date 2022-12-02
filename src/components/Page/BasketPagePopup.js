@@ -63,9 +63,9 @@ const BasketPagePopup = ({
 }) => {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
-  const handleRemoveProduct = (id, quantity, price) => {
-    console.log(id, quantity, price);
-    dispatch(removeProduct({ id, price }));
+  const handleRemoveProduct = (item) => {
+    dispatch(removeProduct(item));
+    // console.log(item);
   };
   return (
     <Container className={className} isAppear={isAppear} onClick={onClick}>
@@ -98,7 +98,7 @@ const BasketPagePopup = ({
         sx={{ width: "100%", bgcolor: "background.paper" }}
         className="h-[250px] overflow-y-auto"
       >
-        {cart.products.map((item) => (
+        {cart?.products?.map((item) => (
           <ListItem className="!justify-between" alignItems="flex-start">
             <div className="flex gap-2">
               <Link href="" target="_blank">
@@ -157,7 +157,7 @@ const BasketPagePopup = ({
                   <div class="quan-bar__btn">+</div>
                 </div>
                 <IconButton
-                  onClick={() => handleRemoveProduct(item._id, item.price)}
+                  onClick={() => handleRemoveProduct(item)}
                   aria-label="delete"
                   style={{ color: "#f44336" }}
                 >

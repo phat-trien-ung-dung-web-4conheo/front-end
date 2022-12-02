@@ -115,6 +115,8 @@ const ProductList = ({ catHome, cat, sort, filters }) => {
       );
   }, [cat, products, filters]);
 
+  console.log("🚀 ~ file: ProductList.js:118 ~ ProductList ~ filters", filters);
+
   useEffect(() => {
     !cat &&
       setFilterdProducts(
@@ -177,6 +179,7 @@ const ProductList = ({ catHome, cat, sort, filters }) => {
     }
     dispatch(addProduct({ ...item, quantity: 1, color, size }));
   };
+  // localStorage.clear();
   return (
     <ProductListStyle>
       <Grid container spacing={4}>
