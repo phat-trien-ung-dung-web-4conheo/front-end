@@ -13,10 +13,11 @@ import UserProfilePage from "./components/Page/UserProfile/UserProfilePage";
 
 function App() {
   const user = useSelector((state) => state.user.currentUser);
+  // localStorage.clear();
   return (
     <Routes>
       <Route path="contactus" element={<ContactUs></ContactUs>} />
-
+      <Route path="/aboutus" element={<AboutUsPage></AboutUsPage>}/>
       <Route
         path="/sign-in"
         element={user ? <Navigate to="/" /> : <SignInPage></SignInPage>}

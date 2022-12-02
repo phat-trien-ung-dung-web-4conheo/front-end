@@ -18,21 +18,6 @@ export const dataNav = [
     name: "Kids",
     category: "",
   },
-  {
-    id: 4,
-    name: "Customise",
-    category: "",
-  },
-  {
-    id: 5,
-    name: "Sale",
-    category: "",
-  },
-  {
-    id: 6,
-    name: "Gifts",
-    category: "",
-  },
 ];
 
 export const dataFloatNav = [

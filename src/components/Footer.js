@@ -8,6 +8,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
+import { Navigate, useNavigate } from "react-router-dom";
 const FooterWrap = styled.div`
   @media ${device.mobile} {
     flex-direction: column;
@@ -124,6 +125,7 @@ const LicenseIcon = styled.div`
   justify-content: space-around;
 `;
 const Footer = (probs) => {
+  const navigate = useNavigate()
   return (
     <div>
       <FooterWrap id="footer_container">
@@ -151,7 +153,13 @@ const Footer = (probs) => {
           <Heading>Our Company</Heading>
           <FooterItems>
             {ourCom.map((item, idx) => (
-              <Items key={idx}>
+              item.content === "Contact Us"?  
+              <Items key={idx} onClick={()=>navigate("/contactus")}>
+                <LiText>{item.content}</LiText>
+              </Items>: item.content === "About Us"?
+               <Items key={idx} onClick={()=>navigate("/aboutus")}>
+                <LiText>{item.content}</LiText>
+              </Items>: <Items key={idx}>
                 <LiText>{item.content}</LiText>
               </Items>
             ))}
