@@ -14,6 +14,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../Button";
 import { removeProduct } from "../../redux/cartSlice";
+import { deleteCart } from "../../redux/apiCalls";
 
 const Container = styled.div`
   padding-top: 50px;
@@ -62,11 +63,16 @@ const BasketPagePopup = ({
   className = "",
 }) => {
   const cart = useSelector((state) => state.cart);
+  const currentUser = useSelector((state) => state.user.currentUser);
+  console.log("🚀 ~ file: BasketPagePopup.js:66 ~ cart", cart);
   const dispatch = useDispatch();
   const handleRemoveProduct = (item) => {
-    dispatch(removeProduct(item));
+    deleteCart(dispatch, currentUser, item.cartId);
+    // console.log(item.cartId);
+    // dispatch(removeProduct(item.cartId));
     // console.log(item);
   };
+  // localStorage.clear();
   return (
     <Container className={className} isAppear={isAppear} onClick={onClick}>
       <Box sx={{ my: 3, mx: 2 }}>
@@ -98,12 +104,16 @@ const BasketPagePopup = ({
         sx={{ width: "100%", bgcolor: "background.paper" }}
         className="h-[250px] overflow-y-auto"
       >
-        {cart?.products?.map((item) => (
-          <ListItem className="!justify-between" alignItems="flex-start">
+        {cart?.products?.map((item, idx) => (
+          <ListItem
+            key={idx}
+            className="!justify-between"
+            alignItems="flex-start"
+          >
             <div className="flex gap-2">
               <Link href="" target="_blank">
                 <img
-                  src={item.img}
+                  src={item?.img}
                   style={{ width: "110px", height: "134px" }}
                   alt=""
                 />
@@ -152,9 +162,9 @@ const BasketPagePopup = ({
                     borderRadius: "10% 10% 10%",
                   }}
                 >
-                  <div class="quan-bar__btn">-</div>
-                  <span class="quan-bar__text">{item.quantity}</span>
-                  <div class="quan-bar__btn">+</div>
+                  <div className="quan-bar__btn">-</div>
+                  <span className="quan-bar__text">{item.quantity}</span>
+                  <div className="quan-bar__btn">+</div>
                 </div>
                 <IconButton
                   onClick={() => handleRemoveProduct(item)}
@@ -179,7 +189,7 @@ const BasketPagePopup = ({
       </List>
       <Divider variant="middle" />
 
-      <div class="flex flex-row-reverse my-4">
+      <div className="flex flex-row-reverse my-4">
         <p
           style={{
             color: "black",
@@ -194,7 +204,7 @@ const BasketPagePopup = ({
           </span>
         </p>
       </div>
-      <div class="flex flex-row-reverse">
+      <div className="flex flex-row-reverse">
         <p style={{ color: "black", fontSize: "20px", marginRight: "15px" }}>
           Taxes and shipping are calculated at checkout
         </p>

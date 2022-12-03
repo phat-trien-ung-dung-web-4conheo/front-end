@@ -84,14 +84,14 @@ const BasketPage = () => {
       <List sx={{ width: "100%", bgcolor: "background.paper" }}>
         {cart.products.map((item) => (
           <ListItem
-            className="!justify-between !block tablet:!flex"
+            classNameName="!justify-between !block tablet:!flex"
             alignItems="flex-start"
           >
-            <div className="flex gap-2">
+            <div classNameName="flex gap-2">
               <Link
                 href=""
                 target="_blank"
-                className="!flex-1 tablet:!flex-none w-[110px] h-[164px] "
+                classNameName="!flex-1 tablet:!flex-none w-[110px] h-[164px] "
               >
                 <img
                   src={item.img}
@@ -105,7 +105,7 @@ const BasketPage = () => {
               </Link>
               <ListItemText
                 sx={{ display: "inline-block", margin: "10px" }}
-                className="font-bold max-w-[400px] !flex-1 tablet:!flex-0"
+                classNameName="font-bold max-w-[400px] !flex-1 tablet:!flex-0"
                 primaryTypographyProps={{ fontWeight: "bold" }}
                 primary={item.title}
                 secondary={
@@ -116,26 +116,32 @@ const BasketPage = () => {
                   >
                     <BasketDesc>{item.desc}</BasketDesc>
                     <p>
-                      <span className="font-semibold">Price: </span>
+                      <span classNameName="font-semibold">Price: </span>
                       {item.price}
                     </p>
                     <Color
-                      className={`border`}
+                      classNameName={`border`}
                       style={{ backgroundColor: `${item.color}` }}
                     ></Color>
-                    <Size className="laptop:mt-2">
-                      <span className="font-semibold">Size: </span>
+                    <Size classNameName="laptop:mt-2">
+                      <span classNameName="font-semibold">Size: </span>
                       {item?.size}
                     </Size>
                   </Typography>
                 }
               />
             </div>
-            <Grid item xs={4} className="!justify-center" container spacing={1}>
+            <Grid
+              item
+              xs={4}
+              classNameName="!justify-center"
+              container
+              spacing={1}
+            >
               <Box
                 sx={{ "& > :not(style)": { m: 1 } }}
                 style={{ display: "flex" }}
-                className="tablet:!flex mt-1 tablet:mt-[30px]"
+                classNameName="tablet:!flex mt-1 tablet:mt-[30px]"
               >
                 <div
                   style={{
@@ -148,9 +154,11 @@ const BasketPage = () => {
                     alignItems: "center",
                   }}
                 >
-                  <div className="quan-bar__btn p-3 px-4 ">-</div>
-                  <span className="quan-bar__text p-1">{item.quantity}</span>
-                  <div className="quan-bar__btn p-3 px-4">+</div>
+                  <div classNameName="quan-bar__btn p-3 px-4 ">-</div>
+                  <span classNameName="quan-bar__text p-1">
+                    {item.quantity}
+                  </span>
+                  <div classNameName="quan-bar__btn p-3 px-4">+</div>
                 </div>
                 <IconButton aria-label="delete" style={{ color: "#f44336" }}>
                   <DeleteIcon />
@@ -158,9 +166,9 @@ const BasketPage = () => {
               </Box>
             </Grid>
             {tablet && (
-              <Grid item xs={8} className="mt-0 tablet:mt-[40px]">
+              <Grid item xs={8} classNameName="mt-0 tablet:mt-[40px]">
                 <Typography
-                  className="text-end w-[70px]"
+                  classNameName="text-end w-[70px]"
                   color="text.primary"
                   variant="body1"
                 >
@@ -174,7 +182,7 @@ const BasketPage = () => {
 
       <Divider variant="middle" />
 
-      <div class="flex flex-row-reverse my-4">
+      <div className="flex flex-row-reverse my-4">
         <p
           style={{
             color: "black",
@@ -189,7 +197,7 @@ const BasketPage = () => {
           </span>
         </p>
       </div>
-      <div class="flex flex-row-reverse">
+      <div className="flex flex-row-reverse">
         <p style={{ color: "black", fontSize: "20px", marginRight: "15px" }}>
           Taxes and shipping are calculated at checkout
         </p>

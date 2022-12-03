@@ -284,7 +284,7 @@ const Header = (props) => {
   //responsive variables
   const laptop = useMediaQuery("(min-width: 1024px)");
   const mobile = useMediaQuery("(min-width: 320px)");
-  const user = useSelector((state) => state.user.currentUser)
+  const user = useSelector((state) => state.user.currentUser);
   //
   const headerScroll = useRef();
   const cartRight = useRef();
@@ -320,8 +320,8 @@ const Header = (props) => {
   //END APPEAR BASKETPOPUP
 
   //GET QUANTITY PRODUCT
-  const quantity = useSelector((state) => state.cart.quantity);
-
+  const quantity = useSelector((state) => state.cart?.quantity);
+  // console.log(quantity);
   const navigate = useNavigate();
   return (
     <Container>
@@ -358,18 +358,20 @@ const Header = (props) => {
                   <MenuIcon></MenuIcon>
                 </Menu>
               )}
-              <User onClick={() => navigate(`${user ? "/user/profile" : "sign-in"}`)}>
+              <User
+                onClick={() =>
+                  navigate(`${user ? "/user/profile" : "sign-in"}`)
+                }
+              >
                 <AccountCircleIcon></AccountCircleIcon>{" "}
               </User>
             </RightHeader>
           </HeaderMain>
           <Nav>
             {dataNav.map((item) => (
-              <>
-                <NavItem className="nav__item" key={item.id}>
-                  {item.name}
-                </NavItem>
-              </>
+              <NavItem className="nav__item" key={item.id}>
+                {item.name}
+              </NavItem>
             ))}
           </Nav>
         </HeaderContainer>
