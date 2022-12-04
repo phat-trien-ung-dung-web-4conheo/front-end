@@ -1,15 +1,14 @@
 import { Grid, useMediaQuery } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { dataProduct } from "../data/data";
-import { addProduct } from "../redux/cartSlice";
 import { device } from "../ResponsiveBreakpoint";
 import Button from "./Button";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
+import { addProductToCart } from "../redux/apiCalls";
 const ProductListStyle = styled.ul``;
 
 const ProductItem = styled.li`
@@ -80,16 +79,20 @@ const ProductList = ({ catHome, cat, sort, filters }) => {
   const infoProduct = useRef();
   const [products, setProducts] = useState([]);
   const [filterdProducts, setFilterdProducts] = useState([]);
+  const currentUser = useSelector((state) => state.user.currentUser);
+  // console.log(currentUser);
   //GET PRODUCT
   useEffect(() => {
     const getProducts = async () => {
       try {
         const res = await axios.get(
           cat || catHome
-            ? `https://webdevis207.herokuapp.com/api/products?category=${
-                cat || catHome
-              }`
-            : "https://webdevis207.herokuapp.com/api/products"
+            ? `http://localhost:3000/api/products?category=${cat || catHome}`
+            : // `https://webdevis207.herokuapp.com/api/products?category=${
+              //   cat || catHome
+              // }`
+              "http://localhost:3000/api/products"
+          // : "https://webdevis207.herokuapp.com/api/products"
         );
         setProducts(res.data);
       } catch (err) {
@@ -115,7 +118,7 @@ const ProductList = ({ catHome, cat, sort, filters }) => {
       );
   }, [cat, products, filters]);
 
-  console.log("🚀 ~ file: ProductList.js:118 ~ ProductList ~ filters", filters);
+  // console.log("🚀 ~ file: ProductList.js:118 ~ ProductList ~ filters", filters);
 
   useEffect(() => {
     !cat &&
@@ -168,6 +171,13 @@ const ProductList = ({ catHome, cat, sort, filters }) => {
   //SWEAT ALERT
   const dispatch = useDispatch();
   const addToCart = (item) => {
+    if (!currentUser) {
+      return Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `You must login to add product to cart!`,
+      });
+    }
     if (size === "" || color === "") {
       return Swal.fire({
         icon: "error",
@@ -177,7 +187,11 @@ const ProductList = ({ catHome, cat, sort, filters }) => {
         } ${color ? "" : "color"}!`,
       });
     }
-    dispatch(addProduct({ ...item, quantity: 1, color, size }));
+    addProductToCart(
+      dispatch,
+      { ...item, quantity: 1, size, color },
+      currentUser
+    );
   };
   // localStorage.clear();
   return (
@@ -204,8 +218,9 @@ const ProductList = ({ catHome, cat, sort, filters }) => {
                           {item.price}
                         </p>
                         <div className="flex gap-3 laptop:mb-1">
-                          {item?.color.map((colorItem) => (
+                          {item?.color.map((colorItem, idx) => (
                             <Color
+                              key={idx}
                               className={`border my-3 laptop:my-0 hover:scale-110 transition-all ${
                                 item._id === id && colorItem === color
                                   ? "border-black"
@@ -218,8 +233,9 @@ const ProductList = ({ catHome, cat, sort, filters }) => {
                         </div>
                         <Size className="my-3 laptop:mt-2 laptop:mb-2">
                           <span className="font-semibold">Size: </span>
-                          {item?.size.map((sizeItem) => (
+                          {item?.size.map((sizeItem, idx) => (
                             <span
+                              key={idx}
                               ref={sizeRef}
                               className={`${
                                 item._id === id && sizeItem === size
@@ -273,8 +289,9 @@ const ProductList = ({ catHome, cat, sort, filters }) => {
                           {item.price}
                         </p>
                         <div className="flex gap-3 laptop:mb-1">
-                          {item?.color.map((colorItem) => (
+                          {item?.color.map((colorItem, idx) => (
                             <Color
+                              key={idx}
                               className={`border my-3 laptop:my-0 hover:scale-110 transition-all ${
                                 item._id === id && colorItem === color
                                   ? "border-black"
@@ -287,8 +304,9 @@ const ProductList = ({ catHome, cat, sort, filters }) => {
                         </div>
                         <Size className="my-3 laptop:mt-2 laptop:mb-2">
                           <span className="font-semibold">Size: </span>
-                          {item?.size.map((sizeItem) => (
+                          {item?.size.map((sizeItem, idx) => (
                             <span
+                              key={idx}
                               ref={sizeRef}
                               className={`${
                                 item._id === id && sizeItem === size

@@ -5,9 +5,10 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import Button from "../../Button";
 import { device } from "../../../ResponsiveBreakpoint";
 import { addProduct } from "../../../redux/cartSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
+import { addProductToCart } from "../../../redux/apiCalls";
 const ProductDetailContentStyles = styled.div`
   display: flex;
   flex-direction: column;
@@ -118,9 +119,9 @@ const ProductDetailContent = ({ data }) => {
   const [color, setColor] = useState("");
   //ADD TO CART FUNCTION
   //SWEAT ALERT
-
+  const currentUser = useSelector((state) => state.user.currentUser);
   const dispatch = useDispatch();
-  const addToCart = () => {
+  const addToCart = (data) => {
     if (size === "" || color === "") {
       return Swal.fire({
         icon: "error",
@@ -130,7 +131,11 @@ const ProductDetailContent = ({ data }) => {
         } ${color ? "" : "color"}!`,
       });
     }
-    dispatch(addProduct({ ...data, quantity: counter, color, size }));
+    addProductToCart(
+      dispatch,
+      { ...data, quantity: counter, size, color },
+      currentUser
+    );
   };
   return (
     <ProductDetailContentStyles>
@@ -204,7 +209,7 @@ const ProductDetailContent = ({ data }) => {
       </ProductQuantities>
       <ButtonBox className="">
         <Button
-          handleClick={addToCart}
+          handleClick={() => addToCart(data)}
           content="Add to cart"
           className="w-full py-3 laptop:p-4 rounded-lg !bg-primary "
         ></Button>
