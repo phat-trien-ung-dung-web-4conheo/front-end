@@ -171,6 +171,13 @@ const ProductList = ({ catHome, cat, sort, filters }) => {
   //SWEAT ALERT
   const dispatch = useDispatch();
   const addToCart = (item) => {
+    if (!currentUser) {
+      return Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `You must login to add product to cart!`,
+      });
+    }
     if (size === "" || color === "") {
       return Swal.fire({
         icon: "error",
