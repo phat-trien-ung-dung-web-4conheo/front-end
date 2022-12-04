@@ -320,7 +320,12 @@ const Header = (props) => {
   //END APPEAR BASKETPOPUP
 
   //GET QUANTITY PRODUCT
+  const cart = useSelector((state) => state.cart.cart);
   const quantity = useSelector((state) => state.cart?.quantity);
+  //GET CURRENT USER
+  const currentUser = useSelector((state) => state.user.currentUser);
+
+  console.log("🚀 ~ file: Header.js:327 ~ Header ~ currentUser", currentUser);
   // console.log(quantity);
   const navigate = useNavigate();
   return (
@@ -351,7 +356,9 @@ const Header = (props) => {
               )}
               <Cart onClick={() => navigate("/basket")}>
                 <ShoppingCartIcon></ShoppingCartIcon>{" "}
-                <CartQuantity quantity={quantity}>{quantity}</CartQuantity>
+                {currentUser?._id && (
+                  <CartQuantity quantity={quantity}>{quantity}</CartQuantity>
+                )}
               </Cart>
               {!laptop && (
                 <Menu>
@@ -393,7 +400,9 @@ const Header = (props) => {
             <ShoppingCartOutlinedIcon
               style={{ width: "20px", height: "20px" }}
             ></ShoppingCartOutlinedIcon>
-            <CartQuantity quantity={quantity}>{quantity}</CartQuantity>
+            {currentUser?._id && (
+              <CartQuantity quantity={quantity}>{quantity}</CartQuantity>
+            )}
           </CartRightBox>
         </CartRight>
       </Right>

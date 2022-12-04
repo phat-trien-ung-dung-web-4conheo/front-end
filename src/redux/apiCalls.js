@@ -6,7 +6,9 @@ export const login = async (dispatch, user) => {
   dispatch(loginStart());
   try {
     const res = await publicRequest.post("/auth/login", user);
-    dispatch(loginSucces(res.data));
+    await dispatch(loginSucces(res.data));
+    //Send userid after login to addproduct function for get product in cart with each userId similar in database
+    await dispatch(addProduct(res.data));
   } catch (err) {
     dispatch(loginFailure());
   }
@@ -19,7 +21,11 @@ export const addProductToCart = async (dispatch, product, user) => {
       //Add product to database
       {
         products: [
-          { productId: product._id, quantity: product.quantity, ...product },
+          {
+            productId: product._id,
+            quantity: product.quantity,
+            ...product,
+          },
         ],
         userId: user._id,
       },

@@ -12,6 +12,7 @@ import TabPanel from "./TabPanel";
 import { useDispatch } from "react-redux";
 import { logout } from "../../../redux/userSlice";
 import { useNavigate } from "react-router-dom";
+import { addProduct } from "../../../redux/cartSlice";
 const PageBanner = styled.div`
   background-image: url(https://img.freepik.com/free-photo/gray-painted-background_53876-94041.jpg?w=2000);
 `;

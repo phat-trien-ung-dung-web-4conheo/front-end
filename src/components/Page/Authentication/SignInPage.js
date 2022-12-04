@@ -6,8 +6,9 @@ import Stack from "@mui/material/Stack";
 import GoogleIcon from "@mui/icons-material/Google";
 import { shouldSkipGeneratingVar } from "@mui/material";
 import { login } from "../../../redux/apiCalls";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { addProduct } from "../../../redux/cartSlice";
 
 const Container = styled.div`
   margin: 0px;
@@ -29,6 +30,8 @@ const SignInPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
+  const currentUser = useSelector((state) => state.user.currentUser);
+  //CHANGE USERID FOR CART AFTER SIGN IN
   const handleClick = (e) => {
     e.preventDefault();
     login(dispatch, { email, password });
