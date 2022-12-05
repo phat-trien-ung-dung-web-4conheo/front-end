@@ -5,7 +5,7 @@ import Input from "../../Input/Input";
 import AuthenticationLayout from "./AuthenticationLayout";
 import { useNavigate } from "react-router-dom";
 import { useDispatch} from "react-redux";
-import { register } from "../../../redux/apiCalls";
+import { register, login } from "../../../redux/apiCalls";
 
 
 const Title = styled.h1`
@@ -44,7 +44,7 @@ const SignUpPage = () => {
       password: password,
       username: username
     };
-    register(newUser, dispatch, navigate )
+    login(newUser, dispatch, navigate )
   }
   
   return (
