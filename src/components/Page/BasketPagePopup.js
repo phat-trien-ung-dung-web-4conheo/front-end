@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Button from "../Button";
 import { removeProduct } from "../../redux/cartSlice";
 import { deleteCart } from "../../redux/apiCalls";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   padding-top: 50px;
@@ -69,6 +70,7 @@ const BasketPagePopup = ({
   const handleRemoveProduct = (item) => {
     deleteCart(dispatch, currentUser, item.cartId);
   };
+  const navigate = useNavigate();
   // localStorage.clear();
   return (
     <Container className={className} isAppear={isAppear} onClick={onClick}>
@@ -219,6 +221,7 @@ const BasketPagePopup = ({
       <Button
         content="Checkout"
         className="block rounded-lg px-5 py-4 bg-primary ml-auto"
+        onClick={() => navigate("/user/checkout")}
       ></Button>
     </Container>
   );

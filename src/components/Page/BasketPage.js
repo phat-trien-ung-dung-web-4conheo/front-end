@@ -15,6 +15,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { textAlign } from "@mui/system";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteCart } from "../../redux/apiCalls";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   padding-top: 50px;
@@ -55,6 +56,8 @@ const BasketPage = () => {
   const handleRemoveProduct = (item) => {
     deleteCart(dispatch, currentUser, item.cartId);
   };
+  const navigate = useNavigate();
+
   //automatic scroll to top when change page
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -226,6 +229,7 @@ const BasketPage = () => {
             marginRight: "15px",
             zIndex: 0,
           }}
+          onClick={() => navigate("/user/checkout")}
         >
           Go to checkout
         </Fab>

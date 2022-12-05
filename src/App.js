@@ -10,6 +10,7 @@ import FullPage from "./components/Page/FullPage/FullPage";
 import ProductCategoryPage from "./components/Page/ProductCategoryPage";
 import ProductDetailPage from "./components/Page/ProductDetail/ProductDetailPage";
 import UserProfilePage from "./components/Page/UserProfile/UserProfilePage";
+import CheckOutPage from "./components/Page/CheckoutPage/CheckOutPage";
 
 function App() {
   const user = useSelector((state) => state.user.currentUser);
@@ -17,7 +18,7 @@ function App() {
   return (
     <Routes>
       <Route path="contactus" element={<ContactUs></ContactUs>} />
-      <Route path="/aboutus" element={<AboutUsPage></AboutUsPage>}/>
+      <Route path="/aboutus" element={<AboutUsPage></AboutUsPage>} />
       <Route
         path="/sign-in"
         element={user ? <Navigate to="/" /> : <SignInPage></SignInPage>}
@@ -32,6 +33,8 @@ function App() {
         path="/profile/:id"
         element={<UserProfilePage></UserProfilePage>}
       />
+      <Route path="/user/checkout" element={<CheckOutPage></CheckOutPage>} />
+
       <Route path="/" element={<FullPage />}>
         <Route path="/" element={<MainHomePage></MainHomePage>} />
         <Route
