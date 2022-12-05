@@ -284,7 +284,7 @@ const Header = (props) => {
   //responsive variables
   const laptop = useMediaQuery("(min-width: 1024px)");
   const mobile = useMediaQuery("(min-width: 320px)");
-  const user = useSelector((state) => state.user.currentUser)
+  const user = useSelector((state) => state.user.currentUser);
   //
   const headerScroll = useRef();
   const cartRight = useRef();
@@ -320,8 +320,13 @@ const Header = (props) => {
   //END APPEAR BASKETPOPUP
 
   //GET QUANTITY PRODUCT
-  const quantity = useSelector((state) => state.cart.quantity);
+  const cart = useSelector((state) => state.cart.cart);
+  const quantity = useSelector((state) => state.cart?.quantity);
+  //GET CURRENT USER
+  const currentUser = useSelector((state) => state.user.currentUser);
 
+  console.log("🚀 ~ file: Header.js:327 ~ Header ~ currentUser", currentUser);
+  // console.log(quantity);
   const navigate = useNavigate();
   return (
     <Container>
@@ -351,25 +356,29 @@ const Header = (props) => {
               )}
               <Cart onClick={() => navigate("/basket")}>
                 <ShoppingCartIcon></ShoppingCartIcon>{" "}
-                <CartQuantity quantity={quantity}>{quantity}</CartQuantity>
+                {currentUser?._id && (
+                  <CartQuantity quantity={quantity}>{quantity}</CartQuantity>
+                )}
               </Cart>
               {!laptop && (
                 <Menu>
                   <MenuIcon></MenuIcon>
                 </Menu>
               )}
-              <User onClick={() => navigate(`${user ? "/user/profile" : "sign-in"}`)}>
+              <User
+                onClick={() =>
+                  navigate(`${user ? "/user/profile" : "sign-in"}`)
+                }
+              >
                 <AccountCircleIcon></AccountCircleIcon>{" "}
               </User>
             </RightHeader>
           </HeaderMain>
           <Nav>
             {dataNav.map((item) => (
-              <>
-                <NavItem className="nav__item" key={item.id}>
-                  {item.name}
-                </NavItem>
-              </>
+              <NavItem className="nav__item" key={item.id}>
+                {item.name}
+              </NavItem>
             ))}
           </Nav>
         </HeaderContainer>
@@ -391,7 +400,9 @@ const Header = (props) => {
             <ShoppingCartOutlinedIcon
               style={{ width: "20px", height: "20px" }}
             ></ShoppingCartOutlinedIcon>
-            <CartQuantity quantity={quantity}>{quantity}</CartQuantity>
+            {currentUser?._id && (
+              <CartQuantity quantity={quantity}>{quantity}</CartQuantity>
+            )}
           </CartRightBox>
         </CartRight>
       </Right>
