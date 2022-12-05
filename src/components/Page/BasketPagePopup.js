@@ -14,6 +14,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../Button";
 import { removeProduct } from "../../redux/cartSlice";
+import { deleteCart } from "../../redux/apiCalls";
 
 const Container = styled.div`
   padding-top: 50px;
@@ -62,11 +63,13 @@ const BasketPagePopup = ({
   className = "",
 }) => {
   const cart = useSelector((state) => state.cart);
+  const currentUser = useSelector((state) => state.user.currentUser);
+  console.log("🚀 ~ file: BasketPagePopup.js:66 ~ cart", cart);
   const dispatch = useDispatch();
   const handleRemoveProduct = (item) => {
-    dispatch(removeProduct(item));
-    // console.log(item);
+    deleteCart(dispatch, currentUser, item.cartId);
   };
+  // localStorage.clear();
   return (
     <Container className={className} isAppear={isAppear} onClick={onClick}>
       <Box sx={{ my: 3, mx: 2 }}>
@@ -98,88 +101,102 @@ const BasketPagePopup = ({
         sx={{ width: "100%", bgcolor: "background.paper" }}
         className="h-[250px] overflow-y-auto"
       >
-        {cart?.products?.map((item) => (
-          <ListItem className="!justify-between" alignItems="flex-start">
-            <div className="flex gap-2">
-              <Link href="" target="_blank">
-                <img
-                  src={item.img}
-                  style={{ width: "110px", height: "134px" }}
-                  alt=""
-                />
-              </Link>
-              <ListItemText
-                sx={{ display: "inline-block", margin: "10px" }}
-                className="font-bold max-w-[400px]"
-                primaryTypographyProps={{ fontWeight: "bold" }}
-                primary={item.title}
-                secondary={
-                  <Typography
-                    component="span"
-                    variant="body2"
-                    color="text.primary"
-                  >
-                    <BasketDesc>{item.desc}</BasketDesc>
-                    <p>
-                      <span className="font-semibold">Price: </span>
-                      {item.price}
-                    </p>
-                    <Color
-                      className={`border`}
-                      style={{ backgroundColor: `${item.color}` }}
-                    ></Color>
-                    <Size className="laptop:mt-2">
-                      <span className="font-semibold">Size: </span>
-                      {item?.size}
-                    </Size>
-                  </Typography>
-                }
-              />
-            </div>
-            <Grid item xs={4} className="!justify-center" container spacing={1}>
-              <Box
-                sx={{ "& > :not(style)": { m: 1 } }}
-                style={{ marginTop: "30px", display: "flex" }}
+        {/* Check the id of current user is equal to cart userId */}
+        {cart?.products?.map(
+          (item, idx) =>
+            currentUser?._id === item?.userId && (
+              <ListItem
+                key={idx}
+                className="!justify-between"
+                alignItems="flex-start"
               >
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    flexDirection: "row",
-                    cursor: "pointer",
-                    border: "1px solid black",
-                    padding: "10px 30px",
-                    borderRadius: "10% 10% 10%",
-                  }}
-                >
-                  <div class="quan-bar__btn">-</div>
-                  <span class="quan-bar__text">{item.quantity}</span>
-                  <div class="quan-bar__btn">+</div>
+                <div className="flex gap-2">
+                  <Link href="" target="_blank">
+                    <img
+                      src={item?.img}
+                      style={{ width: "110px", height: "134px" }}
+                      alt=""
+                    />
+                  </Link>
+                  <ListItemText
+                    sx={{ display: "inline-block", margin: "10px" }}
+                    className="font-bold max-w-[400px]"
+                    primaryTypographyProps={{ fontWeight: "bold" }}
+                    primary={item.title}
+                    secondary={
+                      <Typography
+                        component="span"
+                        variant="body2"
+                        color="text.primary"
+                      >
+                        <BasketDesc>{item.desc}</BasketDesc>
+                        <p>
+                          <span className="font-semibold">Price: </span>
+                          {item.price}
+                        </p>
+                        <Color
+                          className={`border`}
+                          style={{ backgroundColor: `${item.color}` }}
+                        ></Color>
+                        <Size className="laptop:mt-2">
+                          <span className="font-semibold">Size: </span>
+                          {item?.size}
+                        </Size>
+                      </Typography>
+                    }
+                  />
                 </div>
-                <IconButton
-                  onClick={() => handleRemoveProduct(item)}
-                  aria-label="delete"
-                  style={{ color: "#f44336" }}
+                <Grid
+                  item
+                  xs={4}
+                  className="!justify-center"
+                  container
+                  spacing={1}
                 >
-                  <DeleteIcon />
-                </IconButton>
-              </Box>
-            </Grid>
-            <Grid item xs={8} style={{ marginTop: "40px" }}>
-              <Typography
-                className="text-end w-[70px]"
-                color="text.primary"
-                variant="body1"
-              >
-                {item.price}
-              </Typography>
-            </Grid>
-          </ListItem>
-        ))}
+                  <Box
+                    sx={{ "& > :not(style)": { m: 1 } }}
+                    style={{ marginTop: "30px", display: "flex" }}
+                  >
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        flexDirection: "row",
+                        cursor: "pointer",
+                        border: "1px solid black",
+                        padding: "10px 30px",
+                        borderRadius: "10% 10% 10%",
+                      }}
+                    >
+                      <div className="quan-bar__btn">-</div>
+                      <span className="quan-bar__text">{item.quantity}</span>
+                      <div className="quan-bar__btn">+</div>
+                    </div>
+                    <IconButton
+                      onClick={() => handleRemoveProduct(item)}
+                      aria-label="delete"
+                      style={{ color: "#f44336" }}
+                    >
+                      <DeleteIcon />
+                    </IconButton>
+                  </Box>
+                </Grid>
+                <Grid item xs={8} style={{ marginTop: "40px" }}>
+                  <Typography
+                    className="text-end w-[70px]"
+                    color="text.primary"
+                    variant="body1"
+                  >
+                    {item.price}
+                  </Typography>
+                </Grid>
+              </ListItem>
+            )
+        )}
       </List>
       <Divider variant="middle" />
 
-      <div class="flex flex-row-reverse my-4">
+      <div className="flex flex-row-reverse my-4">
         <p
           style={{
             color: "black",
@@ -190,11 +207,11 @@ const BasketPagePopup = ({
         >
           Subtotal &nbsp;
           <span style={{ display: "inline-block", fontSize: "25px" }}>
-            {cart.total}
+            {currentUser?._id === cart?.userId ? cart.total : 0}
           </span>
         </p>
       </div>
-      <div class="flex flex-row-reverse">
+      <div className="flex flex-row-reverse">
         <p style={{ color: "black", fontSize: "20px", marginRight: "15px" }}>
           Taxes and shipping are calculated at checkout
         </p>
