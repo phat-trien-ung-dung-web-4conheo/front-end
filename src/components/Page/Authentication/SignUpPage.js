@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import Button from "../../Button";
+import { Button } from "@mui/material";
 import Input from "../../Input/Input";
 import AuthenticationLayout from "./AuthenticationLayout";
 import { useNavigate } from "react-router-dom";
+import { useDispatch} from "react-redux";
+import { register } from "../../../redux/apiCalls";
+
+
 const Title = styled.h1`
   font-size: 24px;
 `;
@@ -16,38 +20,84 @@ const Or = styled.div`
   width: 100%;
   text-align: center;
 `;
+const BoxInput = {
+  color: "black",
+  padding: "10px",
+  borderRadius: "5px",
+  marginBottom: "10px",
+  marginTop:"5px",
+  border: "1px solid rgb(202, 198, 218)",
+  width:"100%",
+};
 const SignUpPage = () => {
   const isSignUp = useNavigate();
+  const [email, setEmail] =  useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleRegister = (e)=>{
+    e.preventDefault();
+    const newUser = {
+      email: email,
+      password: password,
+      username: username
+    };
+    register(newUser, dispatch, navigate )
+  }
+  
   return (
     <AuthenticationLayout>
       <Title onClick={() => isSignUp("/")} className="cursor-pointer">
         Ovion
       </Title>
       <Container>
-        <Input
+        <span style={{marginBottom:"10px"}}>Enter your Username</span>
+        <input
+          style={BoxInput}
           label="Full name"
           name="fullname"
           id="fullname"
           placeholder="Enter your fullname"
-        ></Input>
-        <Input
+          onChange = {(e) => setUsername(e.target.value)}
+        ></input>
+        <span style={{marginBottom:"10px"}}>Enter your Gmail</span>
+        <input
+          style={BoxInput}
           label="Gmail"
           name="email"
           id="email"
           placeholder="Enter your gmail"
-        ></Input>
-        <Input
+          onChange = {(e) => setEmail(e.target.value)}
+        >
+
+        </input>
+        <span style={{marginBottom:"10px"}}>Enter your Password</span>
+        <input
+          style={BoxInput}
           label="Password"
           name="password"
           id="password"
           placeholder="Enter your password"
-        ></Input>
+          onChange = {(e) => setPassword(e.target.value)}
+        ></input>
       </Container>
       <Button
-        className="w-full p-3 rounded-lg "
-        content="Sign up"
-        backgroundColor="#ffdb00"
-      ></Button>
+            style={{
+              fontSize: 16,
+              backgroundColor: "#ffdb00",
+              textTransform: "capitalize",
+              fontWeight: "bold",
+              color: "black",
+              width: "100%"
+            }}
+            onClick={handleRegister}
+            variant="contained"
+            disableElevation
+          >
+            Sign up
+          </Button>
       <div class="flex items-center mt-6 justify-between w-full">
         <span className="border-b-[0.5px] border-black w-[45%]"></span>
         <span>or</span>
