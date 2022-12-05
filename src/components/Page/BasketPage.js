@@ -207,7 +207,7 @@ const BasketPage = () => {
         >
           Subtotal &nbsp;
           <span style={{ display: "inline-block", fontSize: "25px" }}>
-            {cart.total}
+            {currentUser?._id === cart?.userId ? cart.total : 0}
           </span>
         </p>
       </div>
