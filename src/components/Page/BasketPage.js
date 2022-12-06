@@ -79,7 +79,7 @@ const BasketPage = () => {
             </Grid>
             <Grid item>
               <Typography color="text.primary" variant="body1">
-                Total
+                Subtotal
               </Typography>
             </Grid>
           </Grid>
@@ -93,7 +93,7 @@ const BasketPage = () => {
           (item) =>
             currentUser?._id === item?.userId && (
               <ListItem
-                className="!justify-between !block tablet:!flex"
+                className="!justify-between  !block tablet:!flex"
                 alignItems="flex-start"
               >
                 <div className="flex gap-2">
@@ -180,7 +180,7 @@ const BasketPage = () => {
                 </Grid>
                 {tablet && (
                   <Grid item xs={8} className="mt-0 tablet:mt-[40px]">
-                    <Typography
+                    <Typography style={{marginTop: "40px" }}
                       className="text-end w-[70px]"
                       color="text.primary"
                       variant="body1"
@@ -205,7 +205,7 @@ const BasketPage = () => {
             marginRight: "15px",
           }}
         >
-          Subtotal &nbsp;
+          Total &nbsp;
           <span style={{ display: "inline-block", fontSize: "25px" }}>
             {currentUser?._id === cart?.userId ? cart.total : 0}
           </span>
@@ -216,19 +216,22 @@ const BasketPage = () => {
           Taxes and shipping are calculated at checkout
         </p>
       </div>
-      <div style={{ textAlign: "end", paddingTop: "20px" }}>
-        <Fab
-          variant="extended"
-          color="secondary"
-          style={{
-            color: "black",
-            backgroundColor: "yellow",
-            marginRight: "15px",
-            zIndex: 0,
-          }}
-        >
-          Go to checkout
-        </Fab>
+      <div 
+        class="w3-row-padding" 
+        style={{ textAlign: "end", paddingTop: "20px" }}>
+          <Fab className="p-2 !w-full tablet:!w-auto"
+            variant="extended"
+            color="secondary"
+            style={{
+              color: "black",
+              backgroundColor: "yellow",
+              marginRight: "15px",
+              zIndex: 0,
+            }}
+          >
+            Go to checkout
+          </Fab>
+       
       </div>
     </Container>
   );
