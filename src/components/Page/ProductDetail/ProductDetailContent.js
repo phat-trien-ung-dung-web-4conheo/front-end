@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 import { addProductToCart } from "../../../redux/apiCalls";
+import { addFavoriteProduct } from "../../../redux/wishListSlice";
 const ProductDetailContentStyles = styled.div`
   display: flex;
   flex-direction: column;
@@ -137,11 +138,26 @@ const ProductDetailContent = ({ data }) => {
       currentUser
     );
   };
+  //WISH LIST
+  const addToWishList = () => {
+    console.log("success");
+    const wishData = {
+      ...data,
+      userId: currentUser._id,
+    };
+    dispatch(addFavoriteProduct(wishData));
+  };
+  const wishList = useSelector((state) => state.wishList);
+
+  console.log(
+    "🚀 ~ file: ProductDetailContent.js:147 ~ ProductDetailContent ~ wishList",
+    wishList
+  );
   return (
     <ProductDetailContentStyles>
       <ProductName>
         <p>{data?.title}</p>
-        <ProductPrice>{data?.price}</ProductPrice>
+        <ProductPrice>{data?.price}$</ProductPrice>
       </ProductName>
 
       <ProductDescription>
@@ -216,6 +232,7 @@ const ProductDetailContent = ({ data }) => {
         <Button
           content="Save to favorite"
           className="w-full py-3 laptop:p-4 rounded-lg hover:bg-primary hover:bg-opacity-10 transition-all"
+          handleClick={addToWishList}
         ></Button>
       </ButtonBox>
     </ProductDetailContentStyles>

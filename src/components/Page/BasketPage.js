@@ -102,7 +102,6 @@ const BasketPage = () => {
                 <div className="flex gap-2">
                   <Link
                     href=""
-                    target="_blank"
                     className="!flex-1 tablet:!flex-none w-[110px] h-[164px] "
                   >
                     <img
@@ -113,6 +112,7 @@ const BasketPage = () => {
                         objectFit: "cover",
                       }}
                       alt=""
+                      onClick={() => navigate(`/product/${item._id}`)}
                     />
                   </Link>
                   <ListItemText
@@ -129,7 +129,7 @@ const BasketPage = () => {
                         <BasketDesc>{item.desc}</BasketDesc>
                         <p>
                           <span className="font-semibold">Price: </span>
-                          {item.price}
+                          {item.price}$
                         </p>
                         <Color
                           className={`border`}
@@ -166,11 +166,9 @@ const BasketPage = () => {
                         alignItems: "center",
                       }}
                     >
-                      <div className="quan-bar__btn p-3 px-4 ">-</div>
-                      <span className="quan-bar__text p-1">
+                      <span className="quan-bar__text px-4 py-2">
                         {item.quantity}
                       </span>
-                      <div className="quan-bar__btn p-3 px-4">+</div>
                     </div>
                     <IconButton
                       onClick={() => handleRemoveProduct(item)}
@@ -188,7 +186,7 @@ const BasketPage = () => {
                       color="text.primary"
                       variant="body1"
                     >
-                      {item.price}
+                      {item.price}$
                     </Typography>
                   </Grid>
                 )}
@@ -210,7 +208,7 @@ const BasketPage = () => {
         >
           Subtotal &nbsp;
           <span style={{ display: "inline-block", fontSize: "25px" }}>
-            {currentUser?._id === cart?.userId ? cart.total : 0}
+            {currentUser?._id === cart?.userId ? cart.total : 0}$
           </span>
         </p>
       </div>

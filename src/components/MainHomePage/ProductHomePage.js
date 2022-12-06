@@ -1,5 +1,6 @@
 import { Grid, useMediaQuery } from "@mui/material";
 import React, { useEffect, useRef } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { dataProduct, dataChoiceUs } from "../../data/data";
@@ -59,12 +60,14 @@ const ProductHomePage = () => {
   const navigate = useNavigate();
   const tablet = useMediaQuery("(min-width:768px)");
   const laptop = useMediaQuery("(min-width:1024px)");
+  const wishList = useSelector((state) => state.wishList);
   useEffect(() => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
   });
+  localStorage.clear();
   return (
     <div className="p-5 mt-20">
       <ChoiceUs>

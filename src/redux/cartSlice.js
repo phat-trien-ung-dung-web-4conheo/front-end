@@ -1,7 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import axios from "axios";
-import { publicRequest } from "../data/requestMethod";
 const cartSlice = createSlice({
   name: "cart",
   initialState: {

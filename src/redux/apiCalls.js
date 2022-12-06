@@ -112,3 +112,13 @@ export const deleteAllCart = async (dispatch, user) => {
     console.log("cart", err);
   }
 };
+
+export const searchItem = async (dispatch, search) => {
+  try {
+    const res = await publicRequest.get("/products/search/" + search);
+    console.log("search", res.data);
+    dispatch(getProduct(res.data));
+  } catch (err) {
+    console.log("cart", err);
+  }
+};

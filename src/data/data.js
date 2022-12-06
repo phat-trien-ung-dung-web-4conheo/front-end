@@ -7,16 +7,19 @@ export const dataNav = [
     id: 1,
     name: "Men",
     category: "",
+    navigate: "men",
   },
   {
     id: 2,
     name: "Woman",
     category: "",
+    navigate: "women",
   },
   {
     id: 3,
     name: "Kids",
     category: "",
+    navigate: "kid",
   },
 ];
 

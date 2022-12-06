@@ -134,7 +134,7 @@ const BasketPagePopup = ({
                         <BasketDesc>{item.desc}</BasketDesc>
                         <p>
                           <span className="font-semibold">Price: </span>
-                          {item.price}
+                          {item.price}$
                         </p>
                         <Color
                           className={`border`}
@@ -170,9 +170,7 @@ const BasketPagePopup = ({
                         borderRadius: "10% 10% 10%",
                       }}
                     >
-                      <div className="quan-bar__btn">-</div>
                       <span className="quan-bar__text">{item.quantity}</span>
-                      <div className="quan-bar__btn">+</div>
                     </div>
                     <IconButton
                       onClick={() => handleRemoveProduct(item)}
@@ -189,7 +187,7 @@ const BasketPagePopup = ({
                     color="text.primary"
                     variant="body1"
                   >
-                    {item.price}
+                    {item.price}$
                   </Typography>
                 </Grid>
               </ListItem>
@@ -209,7 +207,7 @@ const BasketPagePopup = ({
         >
           Subtotal &nbsp;
           <span style={{ display: "inline-block", fontSize: "25px" }}>
-            {currentUser?._id === cart?.userId ? cart.total : 0}
+            {currentUser?._id === cart?.userId ? cart.total : 0}$
           </span>
         </p>
       </div>
@@ -221,7 +219,7 @@ const BasketPagePopup = ({
       <Button
         content="Checkout"
         className="block rounded-lg px-5 py-4 bg-primary ml-auto"
-        onClick={() => navigate("/user/checkout")}
+        handleClick={() => navigate("/user/checkout")}
       ></Button>
     </Container>
   );

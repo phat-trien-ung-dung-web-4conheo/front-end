@@ -178,7 +178,7 @@ const CheckOutInformation = () => {
               </div>
             </div>
             <p className="text-h4 flex-1 font-[500] text-light_grey text-end">
-              {total}
+              {total}$
             </p>
           </div>
           <div className="w-full py-4 tablet:mb-3">

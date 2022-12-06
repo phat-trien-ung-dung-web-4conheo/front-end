@@ -30,7 +30,7 @@ const CheckOutProduct = () => {
         <div className="w-full flex flex-col gap-4">
           <div className="w-full flex justify-between text-light_grey">
             <p className="text-h4">Subtotal</p>
-            <p className="font-[500]">{subTotal}</p>
+            <p className="font-[500]">{subTotal}$</p>
           </div>
           <div className="w-full flex justify-between text-light_grey">
             <p className="text-h4">Ship</p>
@@ -39,7 +39,7 @@ const CheckOutProduct = () => {
           <hr className="w-full border-t border-t-light_grey/30" />
           <div className="w-full flex justify-between text-light_grey">
             <p className="text-h3 font-[600]">Total</p>
-            <p className="text-h3 font-[600]">{total}</p>
+            <p className="text-h3 font-[600]">{total}$</p>
           </div>
         </div>
       </div>

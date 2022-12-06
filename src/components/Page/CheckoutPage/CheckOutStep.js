@@ -23,9 +23,8 @@ const CheckOutStep = ({
   return (
     <>
       <div
-        className={`${
-          !payments ? "opacity-1" : "opacity-0 invisible h-0 "
-        } w-full flex flex-col gap-2 text-light_grey`}
+        className={` w-full flex flex-col gap-2 text-light_grey`}
+        data-aos={`${!payments ? "fade-up" : "fade-down"}`}
       >
         <p className="text-h4">Contact information</p>
         <input

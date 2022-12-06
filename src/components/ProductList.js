@@ -75,7 +75,7 @@ const Color = styled.div`
   border-radius: 50%;
 `;
 const Size = styled.div``;
-const ProductList = ({ catHome, cat, sort, filters }) => {
+const ProductList = ({ data, catHome, cat, sort, filters }) => {
   const infoProduct = useRef();
   const [products, setProducts] = useState([]);
   const [filterdProducts, setFilterdProducts] = useState([]);
@@ -215,7 +215,7 @@ const ProductList = ({ catHome, cat, sort, filters }) => {
                         </p>
                         <p className="self-center my-1">
                           <span className="font-bold">Price: </span>
-                          {item.price}
+                          {item.price}$
                         </p>
                         <div className="flex gap-3 laptop:mb-1">
                           {item?.color.map((colorItem, idx) => (
@@ -286,7 +286,7 @@ const ProductList = ({ catHome, cat, sort, filters }) => {
                         </p>
                         <p className="self-center my-1">
                           <span className="font-bold">Price: </span>
-                          {item.price}
+                          {item.price}$
                         </p>
                         <div className="flex gap-3 laptop:mb-1">
                           {item?.color.map((colorItem, idx) => (

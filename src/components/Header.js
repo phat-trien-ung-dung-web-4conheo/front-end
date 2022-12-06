@@ -13,6 +13,7 @@ import { device } from "../ResponsiveBreakpoint";
 import { useMediaQuery } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useSelector } from "react-redux";
+import SearchBar from "./SearchBar/SearchBar";
 const Container = styled.header`
   display: flex;
   justify-content: space-between;
@@ -119,7 +120,7 @@ const Nav = styled.ul`
   }
 `;
 
-const NavItem = styled.li`
+const NavItem = styled.a`
   font-weight: 600;
   padding: 2px 40px;
   position: relative;
@@ -328,6 +329,13 @@ const Header = (props) => {
   console.log("🚀 ~ file: Header.js:327 ~ Header ~ currentUser", currentUser);
   // console.log(quantity);
   const navigate = useNavigate();
+
+  const [appearSearchBar, setAppearSearchBar] = useState(false);
+  const handleAppearSearchBar = () => {
+    console.log("appearSearchBar");
+    setAppearSearchBar(!appearSearchBar);
+    setAppear(false);
+  };
   return (
     <Container>
       <Left>
@@ -343,14 +351,15 @@ const Header = (props) => {
         <HeaderContainer ref={headerScroll}>
           <HeaderMain>
             {laptop && (
-              <Search>
+              <Search onClick={handleAppearSearchBar}>
                 <SearchIcon></SearchIcon>
               </Search>
             )}
+
             <Logo onClick={() => navigate("/")}>Ovion</Logo>
             <RightHeader>
               {!laptop && (
-                <Search>
+                <Search onClick={handleAppearSearchBar}>
                   <SearchIcon></SearchIcon>
                 </Search>
               )}
@@ -376,7 +385,14 @@ const Header = (props) => {
           </HeaderMain>
           <Nav>
             {dataNav.map((item) => (
-              <NavItem className="nav__item" key={item.id}>
+              <NavItem
+                className="nav__item"
+                href={`/products/${item.navigate}`}
+                key={item.id}
+                // onClick={() => {
+                //   return navigate(`/products/${item.navigate}`);
+                // }}
+              >
                 {item.name}
               </NavItem>
             ))}
@@ -388,6 +404,7 @@ const Header = (props) => {
           ref={cartRight}
           onClick={() => {
             setAppear(!appear);
+            setAppearSearchBar(false);
           }}
         >
           <CartRightBox
@@ -408,12 +425,20 @@ const Header = (props) => {
       </Right>
       <div
         onClick={() => {
-          setAppear(!appear);
+          setAppear(false);
+          setAppearSearchBar(false);
         }}
         className={`${
-          appear ? "backdrop-blur  w-full h-[200vh] z-40" : ""
+          appear || appearSearchBar
+            ? "backdrop-blur cursor-pointer  w-full h-[200vh] z-40"
+            : ""
         } fixed`}
       ></div>
+
+      <SearchBar
+        isAppear={appearSearchBar}
+        className="fixed top-0 left-0 w-full h-full "
+      ></SearchBar>
       <BasketPagePopup
         isAppear={appear}
         className="fixed top-0 left-0 w-full h-full "
