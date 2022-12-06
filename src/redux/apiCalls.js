@@ -1,5 +1,11 @@
 import { publicRequest } from "../data/requestMethod";
-import { addProduct, getProduct, removeProduct } from "./cartSlice";
+import {
+  addProduct,
+  getProduct,
+  removeAllProduct,
+  removeProduct,
+} from "./cartSlice";
+import { addOrder } from "./orderSlice";
 import { loginFailure, loginStart, loginSucces } from "./userSlice";
 
 export const login = async (dispatch, user) => {
@@ -51,6 +57,57 @@ export const deleteCart = async (dispatch, user, cartId) => {
     });
     console.log("deleted", res.data);
     dispatch(removeProduct(cartId));
+  } catch (err) {
+    console.log("cart", err);
+  }
+};
+
+export const addOrderForUser = async (
+  dispatch,
+  user,
+  products,
+  total,
+  cardInformation,
+  userInformation
+) => {
+  console.log("user.accessToken", cardInformation);
+  try {
+    const res = await publicRequest.post(
+      "/orders/",
+
+      {
+        products: [...products],
+        userId: user._id,
+        totalPrice: total,
+        amount: products.length,
+        phone: userInformation.phone,
+        address: userInformation.address,
+        email: userInformation.email,
+        creditCard: cardInformation,
+      },
+      {
+        headers: {
+          token: "Bearer " + user.accessToken,
+        },
+      }
+    );
+    console.log("add order", res.data);
+    await dispatch(addOrder(res.data));
+    // await dispatch(deleteAllCart(res.data));
+  } catch (err) {
+    console.log("cart", err);
+  }
+};
+
+export const deleteAllCart = async (dispatch, user) => {
+  try {
+    const res = await publicRequest.delete("/carts/deleteAll/" + user._id, {
+      headers: {
+        token: "Bearer " + user.accessToken,
+      },
+    });
+    console.log("deleted 109", res.data);
+    dispatch(removeAllProduct(user._id));
   } catch (err) {
     console.log("cart", err);
   }

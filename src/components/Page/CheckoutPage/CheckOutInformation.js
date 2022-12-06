@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import Button from "../../Button";
 import { motion } from "framer-motion";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CheckOutProductItem from "./CheckOutProductItem";
+import CheckOutStep from "./CheckOutStep";
+import { Navigate, useNavigate } from "react-router-dom";
+import { addOrderForUser, deleteAllCart } from "../../../redux/apiCalls";
+import Swal from "sweetalert2/dist/sweetalert2.js";
+import "sweetalert2/src/sweetalert2.scss";
 
 const CheckOutInformation = () => {
   const [appear, setAppear] = useState(false);
@@ -21,6 +26,77 @@ const CheckOutInformation = () => {
   );
   //TOTAL PRICE
   const total = subTotal + ship;
+  //COUNTINUE TO PAYMENTS
+  const [payments, setPayments] = useState(false);
+  const [contactInformation, setContactInformation] = useState(true);
+  const navigate = useNavigate();
+  //Go to payment
+  const handleContinuePayment = () => {
+    setPayments(true);
+    setContactInformation(false);
+  };
+  //Back to contact
+  const handleBackToContact = () => {
+    setPayments(false);
+    setContactInformation(true);
+  };
+  //Payment
+  const dispatch = useDispatch();
+  //GET INFORMATION USER
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
+  console.log(phone);
+  const userInformation = {
+    email: email,
+    phone: phone,
+    address: address,
+  };
+  //GET CREDIT CARD
+  const [cardNumber, setCardNumber] = useState("");
+  const [cardName, setCardName] = useState("");
+  const [cardDate, setCardDate] = useState("");
+  const [cardCvv, setCardCvv] = useState("");
+  const cardInformation = {
+    number: cardNumber,
+    name: cardName,
+    date: cardDate,
+    cvv: cardCvv,
+  };
+  const handlePayment = () => {
+    addOrderForUser(
+      dispatch,
+      currentUser,
+      cartUser,
+      total,
+      cardInformation,
+      userInformation
+    );
+    deleteAllCart(dispatch, currentUser);
+    let timerInterval;
+    Swal.fire({
+      title: "Thanks for your purchase!",
+      html: "Directing to home page automatically in <b></b> milliseconds",
+      timer: 2000,
+      icon: "success",
+      didOpen: () => {
+        Swal.showLoading();
+        const b = Swal.getHtmlContainer().querySelector("b");
+        timerInterval = setInterval(() => {
+          b.textContent = Swal.getTimerLeft();
+        }, 100);
+      },
+      willClose: () => {
+        clearInterval(timerInterval);
+      },
+    }).then((result) => {
+      /* Read more about handling dismissals below */
+      navigate("/");
+      if (result.dismiss === Swal.DismissReason.timer) {
+        console.log("I was closed by the timer");
+      }
+    });
+  };
   return (
     <>
       <section className="flex-[1.3] w-full flex justify-center laptop:pr-8 border-r-border_dark/30 border-r laptop:justify-end">
@@ -102,45 +178,43 @@ const CheckOutInformation = () => {
               </div>
             </div>
             <p className="text-h4 flex-1 font-[500] text-light_grey text-end">
-              total
+              {total}
             </p>
           </div>
           <div className="w-full py-4 tablet:mb-3">
             <div className="w-full flex flex-col gap-7">
-              <div className="w-full flex flex-col gap-2 text-light_grey">
-                <p className="text-h4">Contact information</p>
-                <input
-                  name="email"
-                  className="w-full p-2 rounded-lg bg-border_dark/50"
-                  type="email"
-                  placeholder="your email"
-                  // value={}
-                />
-                <input
-                  name="phone"
-                  className="w-full p-2 rounded-lg bg-border_dark/50"
-                  type="phone"
-                  placeholder="your phone"
-                  // value={}
-                />
-                <input
-                  name="address"
-                  className="w-full p-2 rounded-lg bg-border_dark/50"
-                  type="address"
-                  placeholder="your address"
-                  // value={}
-                />
-              </div>
+              <CheckOutStep
+                setEmail={setEmail}
+                setPhone={setPhone}
+                setAddress={setAddress}
+                email={email}
+                phone={phone}
+                address={address}
+                setCardNumber={setCardNumber}
+                setCardName={setCardName}
+                setCardDate={setCardDate}
+                setCardCvv={setCardCvv}
+                cardNumber={cardNumber}
+                cardName={cardName}
+                cardDate={cardDate}
+                cardCvv={cardCvv}
+                payments={payments}
+                contactInformation={contactInformation}
+              ></CheckOutStep>
             </div>
           </div>
           <div className="flex gap-10">
             <Button
-              content="Back to cart"
+              content={`${payments ? "Back to contact" : "Back to cart "} `}
               className="py-4 px-5 rounded-lg"
+              handleClick={
+                payments ? handleBackToContact : () => navigate("/basket")
+              }
             ></Button>
             <Button
-              content="Continue shipping"
+              content={`${payments ? "Payment" : "Continue to payments"} `}
               className="py-4 px-5 rounded-lg !bg-primary"
+              handleClick={payments ? handlePayment : handleContinuePayment}
             ></Button>
           </div>
         </div>

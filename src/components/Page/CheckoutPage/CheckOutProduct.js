@@ -21,7 +21,7 @@ const CheckOutProduct = () => {
   return (
     <section className="flex-1 w-full hidden laptop:flex pl-10 ">
       <div className="max-w-[450px] w-full">
-        <div className="w-full flex flex-col gap-4">
+        <div className="w-full flex max-h-[400px] overflow-y-auto flex-col gap-4">
           {cartUser.map((item) => (
             <CheckOutProductItem data={item}></CheckOutProductItem>
           ))}

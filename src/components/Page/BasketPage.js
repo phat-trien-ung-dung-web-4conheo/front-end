@@ -219,16 +219,22 @@ const BasketPage = () => {
           Taxes and shipping are calculated at checkout
         </p>
       </div>
-      <div style={{ textAlign: "end", paddingTop: "20px" }}>
+      <div
+        style={{
+          textAlign: "end",
+          paddingTop: "20px",
+          padding: "20px 10px 10px",
+        }}
+      >
         <Fab
           variant="extended"
           color="secondary"
           style={{
             color: "black",
             backgroundColor: "yellow",
-            marginRight: "15px",
             zIndex: 0,
           }}
+          className="p-2 !w-full tablet:!w-auto"
           onClick={() => navigate("/user/checkout")}
         >
           Go to checkout

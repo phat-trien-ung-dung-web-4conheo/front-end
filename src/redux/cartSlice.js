@@ -84,8 +84,18 @@ const cartSlice = createSlice({
         .filter((item) => item.userId === state.userId)
         .reduce((total, item) => total + item.price, 0);
     },
+    removeAllProduct: (state, action) => {
+      const id = action.payload;
+      const existingItem = state.products.find((item) => item.userId === id);
+      if (existingItem) {
+        state.products = state.products.filter((item) => item.userId !== id);
+      }
+      state.quantity = 0;
+      state.total = 0;
+    },
   },
 });
 
-export const { addProduct, removeProduct, getProduct } = cartSlice.actions;
+export const { addProduct, removeAllProduct, removeProduct, getProduct } =
+  cartSlice.actions;
 export default cartSlice.reducer;
