@@ -45,7 +45,11 @@ const userSlice = createSlice({
       state.login.currentUser = null;
     },
     updateUser: (state, action) => {
-      state.login.currentUser = action.payload;
+      const userId = state.login.currentUser._id;
+      const userEmail = state.login.currentUser.email;
+      const accessToken = state.login.currentUser.accessToken;
+      state.login.currentUser = {...action.payload, _id: userId, email: userEmail, accessToken: accessToken};
+      console.log(action.payload);
     }
   },
 });

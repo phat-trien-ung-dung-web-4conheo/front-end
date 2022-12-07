@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { updateUser } from "../../../redux/apiCalls";
+import { updateUserMethod } from "../../../redux/apiCalls";
 import { logout } from '../../../redux/userSlice';
 const Heading = styled.h3`
     font-size:48px;
@@ -45,7 +45,7 @@ const UserInfo = () => {
     const [address, setAddress] = useState("");
     const [phonenumb, setPhonenumb] = useState("");
     const [username, setUsername] = useState("");
-    
+    const [render, setRender] = useState(false);
     
     const handleClick = (e)=> {
         e.preventDefault();
@@ -56,9 +56,9 @@ const UserInfo = () => {
             address: address,
         }
         console.log("sending");
-        updateUser(currentUser, dispatch, updateInf)
-        dispatch(logout());
-        navigate("/sign-in")
+        updateUserMethod(currentUser, dispatch, updateInf)
+        setRender(!render);
+        navigate("/")
     }
     // GET CURRENT USER
     const currentUser = useSelector((state) => state.user.login.currentUser);

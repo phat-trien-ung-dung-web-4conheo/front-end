@@ -13,7 +13,6 @@ import { addProduct } from "../../../redux/cartSlice";
 const Container = styled.div`
   margin: 0px;
   text-align: center;
-  margin-bottom:20px;
 `;
 const BoxInput = {
   color: "black",
@@ -61,7 +60,7 @@ const SignInPage = () => {
             ></input>
             <input
               style={BoxInput}
-              type="passworld"
+              type="password"
               placeholder="Enter your password"
               id="password"
               onChange={(e) => setPassword(e.target.value)}

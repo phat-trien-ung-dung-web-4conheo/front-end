@@ -57,7 +57,8 @@ const SignUpPage = () => {
       address: address,
     };
     console.log("send...");
-    register(newUser, dispatch, navigate )
+    register(newUser, dispatch, navigate)
+  
   }
   
 

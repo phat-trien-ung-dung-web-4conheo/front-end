@@ -1,6 +1,6 @@
 import axios from "axios";
 import { publicRequest } from "../data/requestMethod";
-import { loginFailure, loginStart, loginSucces, registerFailure, registerStart, registerSucces } from "./userSlice";
+import { loginFailure, loginStart, loginSucces, registerFailure, registerStart, registerSucces, updateUser } from "./userSlice";
 import { addProduct, getProduct, removeProduct } from "./cartSlice";
 
 
@@ -29,10 +29,10 @@ export const register = async (user, dispatch, navigate) => {
     navigate("/sign-up")
   }
 }
-export const updateUser = async(user, dispatch, updateUser)=>{
+export const updateUserMethod = async(user, dispatch, updateUserInfo, navigate)=>{
     try {
       const res = await publicRequest.put("/users/"+ user._id, 
-      updateUser,
+      updateUserInfo,
       {
         headers: {
           token: "Bearer " + user.accessToken,
@@ -41,6 +41,7 @@ export const updateUser = async(user, dispatch, updateUser)=>{
       );
       console.log(res.data);
       console.log(user._id);
+      dispatch(updateUser(updateUserInfo))
     } catch (err){
       console.log("updateUser fail", err);
 
