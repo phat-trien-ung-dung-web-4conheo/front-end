@@ -14,6 +14,7 @@ import { logout } from "../../../redux/userSlice";
 import { useNavigate } from "react-router-dom";
 import { addProduct } from "../../../redux/cartSlice";
 import { useSelector } from "react-redux";
+import WishList from "./WishList";
 const PageBanner = styled.div`
   background-image: url(https://img.freepik.com/free-photo/gray-painted-background_53876-94041.jpg?w=2000);
 `;
@@ -60,6 +61,10 @@ const UserProfilePage = () => {
     {
       component: <OrderStatus />,
       title: "order status",
+    },
+    {
+      component: <WishList />,
+      title: "wish list",
     },
     {
       component: <ChangePassword />,
