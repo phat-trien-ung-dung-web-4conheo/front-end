@@ -42,14 +42,17 @@ const userSlice = createSlice({
       state.register.loginSucces = false;
     },
     logout: (state) => {
-      state.currentUser = null;
+      state.login.currentUser = null;
     },
+    updateUser: (state, action) => {
+      state.login.currentUser = action.payload;
+    }
   },
 });
 
 export const { 
   loginStart, loginSucces, loginFailure, logout,
-  registerStart, registerSucces, registerFailure
+  registerStart, registerSucces, registerFailure, updateUser
 } =
   userSlice.actions;
 export default userSlice.reducer;

@@ -13,6 +13,7 @@ import { addProduct } from "../../../redux/cartSlice";
 const Container = styled.div`
   margin: 0px;
   text-align: center;
+  margin-bottom:20px;
 `;
 const BoxInput = {
   color: "black",
@@ -30,11 +31,13 @@ const SignInPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const currentUser = useSelector((state) => state.user.currentUser);
+  const navigate = useNavigate();
+  // GET CURRENT USER
+  const currentUser = useSelector((state) => state.user.login.currentUser);
   //CHANGE USERID FOR CART AFTER SIGN IN
   const handleClick = (e) => {
     e.preventDefault();
-    login(dispatch, { email, password });
+    login(dispatch, { email, password }, navigate);
   };
   const isSignUp = useNavigate();
   return (

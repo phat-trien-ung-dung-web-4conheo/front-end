@@ -284,7 +284,6 @@ const Header = (props) => {
   //responsive variables
   const laptop = useMediaQuery("(min-width: 1024px)");
   const mobile = useMediaQuery("(min-width: 320px)");
-  const user = useSelector((state) => state.user.currentUser);
   //
   const headerScroll = useRef();
   const cartRight = useRef();
@@ -323,7 +322,7 @@ const Header = (props) => {
   const cart = useSelector((state) => state.cart.cart);
   const quantity = useSelector((state) => state.cart?.quantity);
   //GET CURRENT USER
-  const currentUser = useSelector((state) => state.user.currentUser);
+  const currentUser = useSelector((state) => state.user.login.currentUser);
 
   console.log("🚀 ~ file: Header.js:327 ~ Header ~ currentUser", currentUser);
   // console.log(quantity);
@@ -367,7 +366,7 @@ const Header = (props) => {
               )}
               <User
                 onClick={() =>
-                  navigate(`${user ? "/user/profile" : "sign-in"}`)
+                  navigate(`${currentUser ? `/user/${currentUser._id}` : "sign-in"}`)
                 }
               >
                 <AccountCircleIcon></AccountCircleIcon>{" "}

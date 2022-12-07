@@ -13,6 +13,7 @@ import { useDispatch } from "react-redux";
 import { logout } from "../../../redux/userSlice";
 import { useNavigate } from "react-router-dom";
 import { addProduct } from "../../../redux/cartSlice";
+import { useSelector } from "react-redux";
 const PageBanner = styled.div`
   background-image: url(https://img.freepik.com/free-photo/gray-painted-background_53876-94041.jpg?w=2000);
 `;
@@ -39,6 +40,7 @@ const UserWrap = styled.div`
 `;
 
 const UserProfilePage = () => {
+  // LOGOUT
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleLogout = () => {
@@ -46,6 +48,10 @@ const UserProfilePage = () => {
     dispatch(logout());
     navigate("/");
   };
+
+  // GET CURRENT USER
+  const currentUser = useSelector((state) => state.user.login.currentUser);
+  // NEGATIVE SIDEBAR
   const tabsArr = [
     {
       component: <UserInfo />,
@@ -68,12 +74,13 @@ const UserProfilePage = () => {
   const handleChangeTab = (e, newValue) => {
     setTabValue(newValue);
   };
+  //
   return (
     <div>
       <Header></Header>
 
       <PageBanner>
-        <Heading>User</Heading>
+        <Heading>{currentUser?.username}</Heading>
       </PageBanner>
 
       <UserAccount>
