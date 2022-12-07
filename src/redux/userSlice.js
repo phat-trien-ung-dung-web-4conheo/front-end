@@ -9,10 +9,10 @@ const userSlice = createSlice({
       error: false,
     },
     register: {
-       isFetching: false,
-       error: false,
-       loginSucces: false,
-    }
+      isFetching: false,
+      error: false,
+      loginSucces: false,
+    },
   },
   reducers: {
     //login
@@ -48,15 +48,25 @@ const userSlice = createSlice({
       const userId = state.login.currentUser._id;
       const userEmail = state.login.currentUser.email;
       const accessToken = state.login.currentUser.accessToken;
-      state.login.currentUser = {...action.payload, _id: userId, email: userEmail, accessToken: accessToken};
+      state.login.currentUser = {
+        ...action.payload,
+        _id: userId,
+        email: userEmail,
+        accessToken: accessToken,
+      };
       console.log(action.payload);
-    }
+    },
   },
 });
 
-export const { 
-  loginStart, loginSucces, loginFailure, logout,
-  registerStart, registerSucces, registerFailure, updateUser
-} =
-  userSlice.actions;
+export const {
+  loginStart,
+  loginSucces,
+  loginFailure,
+  logout,
+  registerStart,
+  registerSucces,
+  registerFailure,
+  updateUser,
+} = userSlice.actions;
 export default userSlice.reducer;

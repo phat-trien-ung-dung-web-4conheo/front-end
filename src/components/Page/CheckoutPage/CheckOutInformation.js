@@ -13,7 +13,7 @@ const CheckOutInformation = () => {
   const [appear, setAppear] = useState(false);
   //GET CART PRODUCT
   const cart = useSelector((state) => state.cart);
-  const currentUser = useSelector((state) => state.user.currentUser);
+  const currentUser = useSelector((state) => state.user.login.currentUser);
   const cartUser = cart.products.filter(
     (item) => item.userId === currentUser._id
   );

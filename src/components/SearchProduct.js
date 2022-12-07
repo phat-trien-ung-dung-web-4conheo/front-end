@@ -79,7 +79,7 @@ const SearchProduct = ({ data, catHome, cat, sort, filters }) => {
   const infoProduct = useRef();
   const [products, setProducts] = useState([]);
   const [filterdProducts, setFilterdProducts] = useState([]);
-  const currentUser = useSelector((state) => state.user.currentUser);
+  const currentUser = useSelector((state) => state.user.login.currentUser);
   // console.log(currentUser);
   //GET PRODUCT
   useEffect(() => {
@@ -87,12 +87,12 @@ const SearchProduct = ({ data, catHome, cat, sort, filters }) => {
       try {
         const res = await axios.get(
           cat || catHome
-            ? `http://localhost:3000/api/products?category=${cat || catHome}`
-            : // `https://back-end-webdevis207.up.railway.app/api/products?category=${
-              //   cat || catHome
-              // }`
-              "http://localhost:3000/api/products"
-          // "https://back-end-webdevis207.up.railway.app/api/products"
+            ? //  `http://localhost:3000/api/products?category=${cat || catHome}`
+              `https://webdevis207.up.railway.app/api/products?category=${
+                cat || catHome
+              }`
+            : // "http://localhost:3000/api/products"
+              "https://webdevis207.up.railway.app/api/products"
         );
         setProducts(res.data);
       } catch (err) {

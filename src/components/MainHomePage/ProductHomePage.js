@@ -67,7 +67,7 @@ const ProductHomePage = () => {
       behavior: "smooth",
     });
   });
-  localStorage.clear();
+  // localStorage.clear();
   return (
     <div className="p-5 mt-20">
       <ChoiceUs>

@@ -13,8 +13,8 @@ import UserProfilePage from "./components/Page/UserProfile/UserProfilePage";
 import CheckOutPage from "./components/Page/CheckoutPage/CheckOutPage";
 
 function App() {
-  const user = useSelector((state) => state.user.currentUser);
-  localStorage.clear();
+  const user = useSelector((state) => state.user.login.currentUser);
+  // localStorage.clear();
   return (
     <Routes>
       <Route path="contactus" element={<ContactUs></ContactUs>} />
@@ -25,10 +25,7 @@ function App() {
       />
 
       <Route path="/sign-up" element={<SignUpPage></SignUpPage>} />
-      <Route
-        path="/user/:id"
-        element={<UserProfilePage></UserProfilePage>}
-      />
+      <Route path="/user/:id" element={<UserProfilePage></UserProfilePage>} />
       <Route path="/user/checkout" element={<CheckOutPage></CheckOutPage>} />
 
       <Route path="/" element={<FullPage />}>

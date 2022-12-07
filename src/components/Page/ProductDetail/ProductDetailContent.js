@@ -120,7 +120,7 @@ const ProductDetailContent = ({ data }) => {
   const [color, setColor] = useState("");
   //ADD TO CART FUNCTION
   //SWEAT ALERT
-  const currentUser = useSelector((state) => state.user.currentUser);
+  const currentUser = useSelector((state) => state.user.login.currentUser);
   const dispatch = useDispatch();
   const addToCart = (data) => {
     if (size === "" || color === "") {

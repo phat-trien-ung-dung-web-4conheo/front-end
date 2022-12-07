@@ -50,7 +50,7 @@ const BasketPage = () => {
   const tablet = useMediaQuery("(min-width:768px)");
   const laptop = useMediaQuery("(min-width:1024px)");
   const cart = useSelector((state) => state.cart);
-  const currentUser = useSelector((state) => state.user.currentUser);
+  const currentUser = useSelector((state) => state.user.login.currentUser);
   console.log("🚀 ~ file: BasketPagePopup.js:66 ~ cart", cart);
   const dispatch = useDispatch();
   const handleRemoveProduct = (item) => {
