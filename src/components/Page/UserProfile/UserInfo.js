@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { TextField } from '@mui/material';
 import Button from '@mui/material/Button';
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { updateUserMethod } from "../../../redux/apiCalls";
+import { logout } from '../../../redux/userSlice';
 const Heading = styled.h3`
     font-size:48px;
     color: black;
@@ -31,6 +36,32 @@ const UserAvatar = styled.div`
     height: 200px;
 `
 const UserInfo = () => {
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    // CHANGE USER INFO
+
+    const [age, setAge] = useState("");
+    const [address, setAddress] = useState("");
+    const [phonenumb, setPhonenumb] = useState("");
+    const [username, setUsername] = useState("");
+    const [render, setRender] = useState(false);
+    
+    const handleClick = (e)=> {
+        e.preventDefault();
+        const updateInf = {
+            age: age,
+            phoneNumb: phonenumb,
+            username: username,
+            address: address,
+        }
+        console.log("sending");
+        updateUserMethod(currentUser, dispatch, updateInf)
+        setRender(!render);
+        navigate("/")
+    }
+    // GET CURRENT USER
+    const currentUser = useSelector((state) => state.user.login.currentUser);
     return (
         <div>
             <Heading>My Account</Heading>
@@ -43,21 +74,25 @@ const UserInfo = () => {
                         <TextField
                         id="outlined-uncontrolled"
                         label="Full Name"
-                        defaultValue=""
+                        placeholder = {currentUser.username}
                         style={{width:"70%"}}
+                        onChange={(e) => setUsername(e.target.value)}
+                        on
                         />
                         <TextField
                         id="outlined-uncontrolled"
                         label="Age"
-                        defaultValue=""
+                        placeholder = {currentUser.age}
                         style={{width:"30%"}}
+                        onChange={(e) => setAge(e.target.value)}
                         />     
                     </UserField>
                     <UserField>
                         <TextField
                         id="outlined-uncontrolled"
                         label="Email"
-                        defaultValue=""
+                        disabled
+                        defaultValue= {currentUser.email}
                         style={{width:"100%"}}
                         />  
                     </UserField>
@@ -65,22 +100,24 @@ const UserInfo = () => {
                         <TextField
                         id="outlined-uncontrolled"
                         label="Address"
-                        defaultValue=""
+                        placeholder = {currentUser.address}
                         style={{width:"100%"}}
+                        onChange={(e) => setAddress(e.target.value)}
                         />           
                     </UserField>
                     <UserField>
                         <TextField
                         id="outlined-uncontrolled"
                         label="Phone Number"
-                        defaultValue=""
+                        placeholder = {currentUser.phonenumb}
                         style={{width:"100%"}}
+                        onChange={(e) => setPhonenumb(e.target.value)}
                         />           
                     </UserField>
                 </FieldCol>
             </UserWrap>
             <div style={{display:'flex',justifyContent:"flex-end",marginTop:"20px"}}>
-                <Button variant="contained">Save me</Button>
+                <Button variant="contained" onClick={handleClick} >Save me</Button>
             </div>
         </div>
 

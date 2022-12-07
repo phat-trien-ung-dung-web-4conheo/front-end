@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Container = styled.div`
   background-color: #f5f5f5;
-  min-height: 100vh;
+  min-height: 120vh;
   position: relative;
 `;
 
@@ -28,6 +28,7 @@ const AuthenticationLayout = ({ children }) => {
   return (
     <Container>
       <img
+        style={{background:"repeat"}}
         src="https://static.nike.com/a/images/f_auto/dpr_2.0,cs_srgb/w_1255,c_limit/30afe174-1232-4fa5-8bd2-c8d5c4140ea7/nike-just-do-it.jpg"
         className="absolute top-0 left-0 w-full h-full object-cover"
         alt=""

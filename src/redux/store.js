@@ -13,8 +13,10 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { combineReducers } from "redux";
+
 import orderSlice from "./orderSlice";
 import wishListSlice from "./wishListSlice";
+
 const persistConfig = {
   key: "root",
   version: 1,

@@ -21,7 +21,7 @@ const columns = [
   { id: 'name', label: 'Name', minWidth: 170 },
   { id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
   {
-    id: 'population',
+    id: 'population', 
     label: 'Population',
     minWidth: 170,
     align: 'right',

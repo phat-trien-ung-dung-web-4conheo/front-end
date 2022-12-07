@@ -30,11 +30,13 @@ const SignInPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const currentUser = useSelector((state) => state.user.currentUser);
+  const navigate = useNavigate();
+  // GET CURRENT USER
+  const currentUser = useSelector((state) => state.user.login.currentUser);
   //CHANGE USERID FOR CART AFTER SIGN IN
   const handleClick = (e) => {
     e.preventDefault();
-    login(dispatch, { email, password });
+    login(dispatch, { email, password }, navigate);
   };
   const isSignUp = useNavigate();
   return (
@@ -58,7 +60,7 @@ const SignInPage = () => {
             ></input>
             <input
               style={BoxInput}
-              type="passworld"
+              type="password"
               placeholder="Enter your password"
               id="password"
               onChange={(e) => setPassword(e.target.value)}
