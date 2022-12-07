@@ -123,6 +123,13 @@ const ProductDetailContent = ({ data }) => {
   const currentUser = useSelector((state) => state.user.login.currentUser);
   const dispatch = useDispatch();
   const addToCart = (data) => {
+    if (!currentUser) {
+      return Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `You must login to add product to cart!`,
+      });
+    }
     if (size === "" || color === "") {
       return Swal.fire({
         icon: "error",

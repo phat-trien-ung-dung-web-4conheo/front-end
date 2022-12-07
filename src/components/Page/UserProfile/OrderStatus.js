@@ -100,7 +100,7 @@ const OrderStatus = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows
+              {/* {rows
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row) => {
                   return (
@@ -123,7 +123,7 @@ const OrderStatus = () => {
                       })}
                     </TableRow>
                   );
-                })}
+                })} */}
             </TableBody>
           </Table>
         </TableContainer>
