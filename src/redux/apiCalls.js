@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 import { publicRequest } from "../data/requestMethod";
 import {
   addProduct,
@@ -26,6 +27,16 @@ export const login = async (dispatch, user, navigate) => {
     //Send userid after login to addproduct function for get product in cart with each userId similar in database
     navigate("/");
     await dispatch(addProduct(res.data));
+    toast.success("Welcome back!!!", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   } catch (err) {
     dispatch(loginFailure());
   }
@@ -36,6 +47,16 @@ export const register = async (user, dispatch, navigate) => {
   try {
     const res = await publicRequest.post("auth/register", user);
     dispatch(registerSucces(res.data));
+    toast.success("Welcome to website", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
     navigate("/sign-in");
   } catch (error) {
     console.log(error);
@@ -57,6 +78,16 @@ export const updateUserMethod = async (
     });
     console.log(res.data);
     console.log(user._id);
+    toast("Successfully updated your profile", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
     dispatch(updateUser(updateUserInfo));
   } catch (err) {
     console.log("updateUser fail", err);
@@ -85,6 +116,16 @@ export const addProductToCart = async (dispatch, product, user) => {
     );
     console.log("add product", res.data);
     await dispatch(addProduct(res.data));
+    toast.success("Add to cart successfully", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   } catch (err) {
     console.log("cart", err);
   }
@@ -135,6 +176,16 @@ export const addOrderForUser = async (
     );
     console.log("add order", res.data);
     await dispatch(addOrder(res.data));
+    toast.success("Welcome back!!!", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
     // await dispatch(deleteAllCart(res.data));
   } catch (err) {
     console.log("cart", err);

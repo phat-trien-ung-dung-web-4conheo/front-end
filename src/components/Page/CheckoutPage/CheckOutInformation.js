@@ -20,10 +20,7 @@ const CheckOutInformation = () => {
   //FEE SHIPPING
   const ship = 5;
   //SUBTOTAL PRICE
-  const subTotal = cartUser.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
-  );
+  const subTotal = cartUser.reduce((total, item) => total + item.price, 0);
   //TOTAL PRICE
   const total = subTotal + ship;
   //COUNTINUE TO PAYMENTS
@@ -63,6 +60,7 @@ const CheckOutInformation = () => {
     date: cardDate,
     cvv: cardCvv,
   };
+  //HANDLE PAYMENT
   const handlePayment = () => {
     addOrderForUser(
       dispatch,
@@ -72,6 +70,7 @@ const CheckOutInformation = () => {
       cardInformation,
       userInformation
     );
+    //DELETE ALL PRODUCTS IN CART AND REDIRECT TO HOME PAGE
     deleteAllCart(dispatch, currentUser);
     let timerInterval;
     Swal.fire({

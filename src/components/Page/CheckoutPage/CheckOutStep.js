@@ -27,30 +27,35 @@ const CheckOutStep = ({
         data-aos={`${!payments ? "fade-up" : "fade-down"}`}
       >
         <p className="text-h4">Contact information</p>
-        <input
-          name="email"
-          className="w-full p-2 rounded-lg bg-border_dark/50"
-          type="email"
-          placeholder="Your email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          name="phone"
-          className="w-full p-2 rounded-lg bg-border_dark/50"
-          type="phone"
-          placeholder="Your phone"
-          onChange={(e) => setPhone(e.target.value)}
-          value={phone}
-        />
-        <input
-          name="address"
-          className="w-full p-2 rounded-lg bg-border_dark/50"
-          type="address"
-          placeholder="Your address"
-          onChange={(e) => setAddress(e.target.value)}
-          value={address}
-        />
+        <form action="" className="flex flex-col gap-2">
+          <input
+            name="email"
+            className="w-full p-2 rounded-lg bg-border_dark/50"
+            type="email"
+            placeholder="Your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            name="phone"
+            className="w-full p-2 rounded-lg bg-border_dark/50"
+            type="phone"
+            placeholder="Your phone"
+            onChange={(e) => setPhone(e.target.value)}
+            value={phone}
+            required
+          />
+          <input
+            name="address"
+            className="w-full p-2 rounded-lg bg-border_dark/50"
+            type="address"
+            placeholder="Your address"
+            onChange={(e) => setAddress(e.target.value)}
+            value={address}
+            required
+          />
+        </form>
       </div>
       <div
         className={`${

@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 import { store, persistor } from "./redux/store";
 import { PersistGate } from "redux-persist/integration/react";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
@@ -25,9 +26,7 @@ root.render(
           pauseOnHover
           theme="light"
         />
-
         <App />
-        <ToastContainer />
       </BrowserRouter>
     </PersistGate>
   </Provider>

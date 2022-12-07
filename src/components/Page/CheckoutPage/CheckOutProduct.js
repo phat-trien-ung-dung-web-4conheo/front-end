@@ -12,10 +12,7 @@ const CheckOutProduct = () => {
   //FEE SHIPPING
   const ship = 5;
   //SUBTOTAL PRICE
-  const subTotal = cartUser.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
-  );
+  const subTotal = cartUser.reduce((total, item) => total + item.price, 0);
   //TOTAL PRICE
   const total = subTotal + ship;
   return (

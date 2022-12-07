@@ -10,6 +10,7 @@ import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 import { addProductToCart } from "../../../redux/apiCalls";
 import { addFavoriteProduct } from "../../../redux/wishListSlice";
+import { toast } from "react-toastify";
 const ProductDetailContentStyles = styled.div`
   display: flex;
   flex-direction: column;
@@ -144,6 +145,16 @@ const ProductDetailContent = ({ data }) => {
       { ...data, quantity: counter, size, color },
       currentUser
     );
+    toast.success("Add product to cart successfully", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   };
   //WISH LIST
   const addToWishList = () => {
@@ -153,6 +164,16 @@ const ProductDetailContent = ({ data }) => {
       userId: currentUser._id,
     };
     dispatch(addFavoriteProduct(wishData));
+    toast.success("Add your favorite product successfully", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   };
   const wishList = useSelector((state) => state.wishList);
 
