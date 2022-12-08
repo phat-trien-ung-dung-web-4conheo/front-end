@@ -8,8 +8,59 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { addOrderForUser, deleteAllCart } from "../../../redux/apiCalls";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+//VALIDATION FORM WITH YUP FOR PAYMENTS
+const schema = yup.object({
+  email: yup.string().required("Email is required"),
+  phone: yup.string().required("Phone number is required"),
+  address: yup.string().required("Address is required"),
+  payments: yup
+    .string()
+    .required("Please choose your payment method")
+    .nullable(),
+
+  //VALIDATION FOR CREDIT CARD
+  cardNumber: yup
+    .string()
+    .when("payments", {
+      is: "credit card",
+      then: yup.string().required("Card number is required"),
+    })
+    .nullable(),
+  cardName: yup
+    .string()
+    .when("payments", {
+      is: "credit card",
+      then: yup.string().required("Card name is required"),
+    })
+    .nullable(),
+  cardDate: yup
+    .string()
+    .when("payments", {
+      is: "credit card",
+      then: yup.string().required("Card date is required"),
+    })
+    .nullable(),
+  cvv: yup
+    .string()
+    .when("payments", {
+      is: "credit card",
+      then: yup.string().required("Card cvv is required"),
+    })
+    .nullable(),
+});
 
 const CheckOutInformation = () => {
+  //FORM
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema) });
+
   const [appear, setAppear] = useState(false);
   //GET CART PRODUCT
   const cart = useSelector((state) => state.cart);
@@ -25,43 +76,45 @@ const CheckOutInformation = () => {
   const total = subTotal + ship;
   //COUNTINUE TO PAYMENTS
   const [payments, setPayments] = useState(false);
-  const [contactInformation, setContactInformation] = useState(true);
   const navigate = useNavigate();
   //Go to payment
   const handleContinuePayment = () => {
     setPayments(true);
-    setContactInformation(false);
   };
   //Back to contact
   const handleBackToContact = () => {
     setPayments(false);
-    setContactInformation(true);
   };
   //Payment
   const dispatch = useDispatch();
-  //GET INFORMATION USER
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [address, setAddress] = useState("");
-  console.log(phone);
-  const userInformation = {
-    email: email,
-    phone: phone,
-    address: address,
-  };
-  //GET CREDIT CARD
-  const [cardNumber, setCardNumber] = useState("");
-  const [cardName, setCardName] = useState("");
-  const [cardDate, setCardDate] = useState("");
-  const [cardCvv, setCardCvv] = useState("");
-  const cardInformation = {
-    number: cardNumber,
-    name: cardName,
-    date: cardDate,
-    cvv: cardCvv,
-  };
+
   //HANDLE PAYMENT
-  const handlePayment = () => {
+  // console.log("errors", errors);
+  const handlePayment = (value) => {
+    const userInformation = {
+      email: value.email,
+      phone: value.phone,
+      address: value.address,
+      payments: value.payments,
+    };
+    let cardInformation;
+    //IF PAYMENTS IS CREDIT CARD THEN ADD CARD INFORMATION TO ORDER ELSE ADD EMPTY STRING
+    if (value.payments === "credit card") {
+      cardInformation = {
+        number: value.cardNumber,
+        name: value.cardName,
+        date: value.cardDate,
+        cvv: value.cardCvv,
+      };
+    } else {
+      cardInformation = {
+        number: "",
+        name: "",
+        date: "",
+        cvv: "",
+      };
+    }
+    //ADD ORDER FOR USER
     addOrderForUser(
       dispatch,
       currentUser,
@@ -96,6 +149,9 @@ const CheckOutInformation = () => {
       }
     });
   };
+  //Appear payments
+  const [appearPayments, setAppearPayments] = useState(false);
+
   return (
     <>
       <section className="flex-[1.3] w-full flex justify-center laptop:pr-8 border-r-border_dark/30 border-r laptop:justify-end">
@@ -180,42 +236,47 @@ const CheckOutInformation = () => {
               {total}$
             </p>
           </div>
-          <div className="w-full py-4 tablet:mb-3">
-            <div className="w-full flex flex-col gap-7">
-              <CheckOutStep
-                setEmail={setEmail}
-                setPhone={setPhone}
-                setAddress={setAddress}
-                email={email}
-                phone={phone}
-                address={address}
-                setCardNumber={setCardNumber}
-                setCardName={setCardName}
-                setCardDate={setCardDate}
-                setCardCvv={setCardCvv}
-                cardNumber={cardNumber}
-                cardName={cardName}
-                cardDate={cardDate}
-                cardCvv={cardCvv}
-                payments={payments}
-                contactInformation={contactInformation}
-              ></CheckOutStep>
+          <form
+            onSubmit={handleSubmit(handlePayment)}
+            className="flex flex-col gap-2"
+          >
+            <div className="w-full py-4 tablet:mb-3">
+              <div className="w-full flex flex-col gap-7">
+                <CheckOutStep
+                  register={register}
+                  errors={errors}
+                  payments={payments}
+                  setAppear={setAppearPayments}
+                  appear={appearPayments}
+                ></CheckOutStep>
+              </div>
             </div>
-          </div>
-          <div className="flex gap-10">
-            <Button
-              content={`${payments ? "Back to contact" : "Back to cart "} `}
-              className="py-4 px-5 rounded-lg"
-              handleClick={
-                payments ? handleBackToContact : () => navigate("/basket")
-              }
-            ></Button>
-            <Button
-              content={`${payments ? "Payment" : "Continue to payments"} `}
-              className="py-4 px-5 rounded-lg !bg-primary"
-              handleClick={payments ? handlePayment : handleContinuePayment}
-            ></Button>
-          </div>
+            <div className="flex gap-10">
+              <Button
+                content={`${payments ? "Back to contact" : "Back to cart "} `}
+                className="py-4 px-5 rounded-lg"
+                type="button"
+                handleClick={
+                  payments ? handleBackToContact : () => navigate("/basket")
+                }
+              ></Button>
+              {payments && (
+                <Button
+                  content="Payment"
+                  className="py-4 px-5 rounded-lg !bg-primary"
+                  type="submit"
+                ></Button>
+              )}
+              {!payments && (
+                <Button
+                  content={`Continue to payments`}
+                  className="py-4 px-5 rounded-lg !bg-primary"
+                  type="button"
+                  handleClick={handleContinuePayment}
+                ></Button>
+              )}
+            </div>
+          </form>
         </div>
       </section>
     </>
