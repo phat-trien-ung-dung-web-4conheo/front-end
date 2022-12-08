@@ -167,6 +167,7 @@ export const addOrderForUser = async (
         address: userInformation.address,
         email: userInformation.email,
         creditCard: cardInformation,
+        payments: userInformation.payments,
       },
       {
         headers: {
@@ -176,7 +177,7 @@ export const addOrderForUser = async (
     );
     console.log("add order", res.data);
     await dispatch(addOrder(res.data));
-    toast.success("Welcome back!!!", {
+    toast.success("Purchased successfully!!!", {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
