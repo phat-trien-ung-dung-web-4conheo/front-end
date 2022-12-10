@@ -61,13 +61,17 @@ const ProductHomePage = () => {
   const tablet = useMediaQuery("(min-width:768px)");
   const laptop = useMediaQuery("(min-width:1024px)");
   const wishList = useSelector((state) => state.wishList);
+
+  console.log(
+    "🚀 ~ file: ProductHomePage.js:65 ~ ProductHomePage ~ wishList",
+    wishList
+  );
   useEffect(() => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
   });
-  // localStorage.clear();
   return (
     <div className="p-5 mt-20">
       <ChoiceUs>

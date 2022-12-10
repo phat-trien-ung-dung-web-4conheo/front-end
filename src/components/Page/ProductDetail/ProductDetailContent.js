@@ -164,16 +164,6 @@ const ProductDetailContent = ({ data }) => {
       userId: currentUser._id,
     };
     dispatch(addFavoriteProduct(wishData));
-    toast.success("Add your favorite product successfully", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
   };
   const wishList = useSelector((state) => state.wishList);
 
@@ -181,6 +171,8 @@ const ProductDetailContent = ({ data }) => {
     "🚀 ~ file: ProductDetailContent.js:147 ~ ProductDetailContent ~ wishList",
     wishList
   );
+  // localStorage.clear();
+
   return (
     <ProductDetailContentStyles>
       <ProductName>

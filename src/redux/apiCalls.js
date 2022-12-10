@@ -18,6 +18,7 @@ import {
   registerSucces,
   updateUser,
 } from "./userSlice";
+import { addFavoriteProduct } from "./wishListSlice";
 
 export const login = async (dispatch, user, navigate) => {
   dispatch(loginStart());
@@ -27,6 +28,7 @@ export const login = async (dispatch, user, navigate) => {
     //Send userid after login to addproduct function for get product in cart with each userId similar in database
     navigate("/");
     await dispatch(addProduct(res.data));
+    await dispatch(addFavoriteProduct(res.data));
     toast.success("Welcome back!!!", {
       position: "top-right",
       autoClose: 5000,
@@ -42,7 +44,7 @@ export const login = async (dispatch, user, navigate) => {
   }
 };
 
-export const register = async (user, dispatch, navigate) => {
+export const registerUser = async (user, dispatch, navigate) => {
   dispatch(registerStart());
   try {
     const res = await publicRequest.post("auth/register", user);
