@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { registerUser } from "../../../redux/apiCalls";
 
 //YUP VALIDATION
 const schema = yup.object({
@@ -60,14 +61,14 @@ const SignUpPage = () => {
 
   const handleRegister = (value) => {
     const newUser = {
-      fullname: value.fullname,
+      username: value.fullname,
       email: value.email,
       password: value.password,
       age: value.age,
       phoneNumb: value.phonenumber,
       address: value.address,
     };
-    register(newUser, dispatch, navigate);
+    registerUser(newUser, dispatch, navigate);
   };
 
   return (
