@@ -44,22 +44,24 @@ const OrderStatus = () => {
     setPage(newPage);
   };
   const [orders, setOrders] = useState([]);
-  function createData(billID, date, total, status) {
-    return { billID, date, total, status };
+  function createData(billID, date, status, total) {
+    return { billID, date, status, total };
   }
   const rows = [
     orders?.map((item) => {
-      console.log(item.status);
-      return createData({
-        billID: item?._id,
-        date: item?.updatedAt,
-        total: item?.totalPrice,
-        status: item?.status,
-      });
+      // console.log(item.status);
+      return createData(
+        item?._id,
+        item?.updatedAt,
+        item?.status,
+        item?.totalPrice
+      );
     }),
   ];
-  console.log(rows);
+  console.log("orders: ", orders);
+  console.log("orders: ", rows[0]);
   const currentUser = useSelector((state) => state.user.login.currentUser);
+  const [render, setRender] = useState(false);
   const getOrder = async () => {
     try {
       const res = await publicRequest.get("/orders/find/" + currentUser._id, {
@@ -68,7 +70,8 @@ const OrderStatus = () => {
         },
       });
       console.log("res.data", res.data);
-      setOrders(res.data);
+      await setOrders(res.data);
+      setRender(!render);
     } catch (err) {
       console.log(err);
     }
@@ -100,18 +103,13 @@ const OrderStatus = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {/* {rows
+              {rows[0]
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row) => {
+                .map((row, idx) => {
                   return (
-                    <TableRow
-                      hover
-                      role="checkbox"
-                      tabIndex={-1}
-                      key={row?.code}
-                    >
+                    <TableRow hover role="checkbox" tabIndex={-1} key={idx}>
                       {columns?.map((column) => {
-                        const value = row[0][column?.id];
+                        const value = row[column?.id];
                         console.log(value);
                         return (
                           <TableCell key={column?.id} align={column.align}>
@@ -123,14 +121,14 @@ const OrderStatus = () => {
                       })}
                     </TableRow>
                   );
-                })} */}
+                })}
             </TableBody>
           </Table>
         </TableContainer>
         <TablePagination
           rowsPerPageOptions={[10, 25, 100]}
           component="div"
-          count={rows?.length}
+          count={rows[0]?.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}
