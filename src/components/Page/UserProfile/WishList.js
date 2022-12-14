@@ -17,22 +17,24 @@ const WishList = () => {
   };
   return (
     <Grid container spacing={4}>
-      {currentUser._id === wishList?.userId &&
-        wishList?.products?.map((item) => (
-          <Grid item xs={laptop ? 3 : 6} key={item._id} className="">
-            <div className="!relative">
-              <img className="" src={item.img} />
-              <IconButton
-                onClick={() => handleRemoveProduct(item)}
-                aria-label="delete"
-                style={{ color: "#f44336" }}
-                className="!absolute bottom-0 !left-1/2 !-translate-x-1/2 right-0"
-              >
-                <DeleteIcon />
-              </IconButton>
-            </div>
-          </Grid>
-        ))}
+      {wishList?.products?.map(
+        (item) =>
+          currentUser._id === item?.userId && (
+            <Grid item xs={laptop ? 3 : 6} key={item._id} className="">
+              <div className="!relative">
+                <img className="" src={item.img} />
+                <IconButton
+                  onClick={() => handleRemoveProduct(item)}
+                  aria-label="delete"
+                  style={{ color: "#f44336" }}
+                  className="!absolute bottom-0 !left-1/2 !-translate-x-1/2 right-0"
+                >
+                  <DeleteIcon />
+                </IconButton>
+              </div>
+            </Grid>
+          )
+      )}
     </Grid>
   );
 };
