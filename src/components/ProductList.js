@@ -87,12 +87,12 @@ const ProductList = ({ data, catHome, cat, sort, filters }) => {
       try {
         const res = await axios.get(
           cat || catHome
-            ? //  `http://localhost:3000/api/products?category=${cat || catHome}`
-              `https://webdevis207.up.railway.app/api/products?category=${
-                cat || catHome
-              }`
-            : // "http://localhost:3000/api/products"
-              "https://webdevis207.up.railway.app/api/products"
+            ? `http://localhost:3003/api/products?category=${cat || catHome}`
+            : // `https://webdevis207.up.railway.app/api/products?category=${
+              //   cat || catHome
+              // }`
+              "http://localhost:3003/api/products"
+          // "https://webdevis207.up.railway.app/api/products"
         );
         setProducts(res.data);
       } catch (err) {

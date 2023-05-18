@@ -45,7 +45,10 @@ export const login = async (dispatch, user, navigate) => {
 };
 
 export const registerUser = async (user, dispatch, navigate) => {
+  console.log("", registerStart());
   dispatch(registerStart());
+  console.log("", registerStart());
+
   try {
     const res = await publicRequest.post("auth/register", user);
     dispatch(registerSucces(res.data));

@@ -62,6 +62,10 @@ const BasketPage = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
+  console.log(
+    "🚀 ~ file: BasketPagePopup.js:66 ~ cart",
+    cart.products.length === 0
+  );
   return (
     <Container>
       <Box sx={{ my: 3, mx: 2 }}>
@@ -91,110 +95,116 @@ const BasketPage = () => {
 
       <Divider variant="middle" />
 
-      <List sx={{ width: "100%", bgcolor: "background.paper" }}>
-        {cart.products.map(
-          (item) =>
-            currentUser?._id === item?.userId && (
-              <ListItem
-                className="!justify-between !block tablet:!flex"
-                alignItems="flex-start"
-              >
-                <div className="flex gap-2">
-                  <Link
-                    href=""
-                    className="!flex-1 tablet:!flex-none w-[110px] h-[164px] "
-                  >
-                    <img
-                      src={item.img}
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                      }}
-                      alt=""
-                      onClick={() => navigate(`/product/${item._id}`)}
-                    />
-                  </Link>
-                  <ListItemText
-                    sx={{ display: "inline-block", margin: "10px" }}
-                    className="font-bold max-w-[400px] !flex-1 tablet:!flex-0"
-                    primaryTypographyProps={{ fontWeight: "bold" }}
-                    primary={item.title}
-                    secondary={
-                      <Typography
-                        component="span"
-                        variant="body2"
-                        color="text.primary"
-                      >
-                        <BasketDesc>{item.desc}</BasketDesc>
-                        <p>
-                          <span className="font-semibold">Price: </span>
-                          {item.price}$
-                        </p>
-                        <Color
-                          className={`border`}
-                          style={{ backgroundColor: `${item.color}` }}
-                        ></Color>
-                        <Size className="laptop:mt-2">
-                          <span className="font-semibold">Size: </span>
-                          {item?.size}
-                        </Size>
-                      </Typography>
-                    }
-                  />
-                </div>
-                <Grid
-                  item
-                  xs={4}
-                  className="!justify-center"
-                  container
-                  spacing={1}
+      <List
+        sx={{ width: "100%", bgcolor: "background.paper" }}
+        className={`${cart.products.length === 0 ? "flex" : ""}`}
+      >
+        {cart.products.length !== 0 ? (
+          cart.products.map(
+            (item) =>
+              currentUser?._id === item?.userId && (
+                <ListItem
+                  className="!justify-between !block tablet:!flex"
+                  alignItems="flex-start"
                 >
-                  <Box
-                    sx={{ "& > :not(style)": { m: 1 } }}
-                    style={{ display: "flex" }}
-                    className="tablet:!flex mt-1 tablet:mt-[30px]"
+                  <div className="flex gap-2">
+                    <Link
+                      href=""
+                      className="!flex-1 tablet:!flex-none w-[110px] h-[164px] "
+                    >
+                      <img
+                        src={item.img}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                        }}
+                        alt=""
+                        onClick={() => navigate(`/product/${item._id}`)}
+                      />
+                    </Link>
+                    <ListItemText
+                      sx={{ display: "inline-block", margin: "10px" }}
+                      className="font-bold max-w-[400px] !flex-1 tablet:!flex-0"
+                      primaryTypographyProps={{ fontWeight: "bold" }}
+                      primary={item.title}
+                      secondary={
+                        <Typography
+                          component="span"
+                          variant="body2"
+                          color="text.primary"
+                        >
+                          <BasketDesc>{item.desc}</BasketDesc>
+                          <p>
+                            <span className="font-semibold">Price: </span>
+                            {item.price}$
+                          </p>
+                          <Color
+                            className={`border`}
+                            style={{ backgroundColor: `${item.color}` }}
+                          ></Color>
+                          <Size className="laptop:mt-2">
+                            <span className="font-semibold">Size: </span>
+                            {item?.size}
+                          </Size>
+                        </Typography>
+                      }
+                    />
+                  </div>
+                  <Grid
+                    item
+                    xs={4}
+                    className="!justify-center"
+                    container
+                    spacing={1}
                   >
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        flexDirection: "row",
-                        cursor: "pointer",
-                        border: "1px solid black",
-                        borderRadius: "10% 10% 10%",
-                        alignItems: "center",
-                      }}
+                    <Box
+                      sx={{ "& > :not(style)": { m: 1 } }}
+                      style={{ display: "flex" }}
+                      className="tablet:!flex mt-1 tablet:mt-[30px]"
                     >
-                      <span className="quan-bar__text px-4 py-2">
-                        {item.quantity}
-                      </span>
-                    </div>
-                    <IconButton
-                      onClick={() => handleRemoveProduct(item)}
-                      aria-label="delete"
-                      style={{ color: "#f44336" }}
-                    >
-                      <DeleteIcon />
-                    </IconButton>
-                  </Box>
-                </Grid>
-                {tablet && (
-                  <Grid item xs={8} className="mt-0 tablet:mt-[40px]">
-                    <Typography
-                      className="text-end w-[70px]"
-                      color="text.primary"
-                      variant="body1"
-                    >
-                      {item.price}$
-                    </Typography>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          flexDirection: "row",
+                          cursor: "pointer",
+                          border: "1px solid black",
+                          borderRadius: "10% 10% 10%",
+                          alignItems: "center",
+                        }}
+                      >
+                        <span className="quan-bar__text px-4 py-2">
+                          {item.quantity}
+                        </span>
+                      </div>
+                      <IconButton
+                        onClick={() => handleRemoveProduct(item)}
+                        aria-label="delete"
+                        style={{ color: "#f44336" }}
+                      >
+                        <DeleteIcon />
+                      </IconButton>
+                    </Box>
                   </Grid>
-                )}
-              </ListItem>
-            )
+                  {tablet && (
+                    <Grid item xs={8} className="mt-0 tablet:mt-[40px]">
+                      <Typography
+                        className="text-end w-[70px]"
+                        color="text.primary"
+                        variant="body1"
+                      >
+                        {item.price}$
+                      </Typography>
+                    </Grid>
+                  )}
+                </ListItem>
+              )
+          )
+        ) : (
+          <div className="p-5 m-auto">Your cart is empty</div>
         )}
       </List>
-
       <Divider variant="middle" />
 
       <div className="flex flex-row-reverse my-4">

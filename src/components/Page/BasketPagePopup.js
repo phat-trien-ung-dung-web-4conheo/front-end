@@ -101,97 +101,103 @@ const BasketPagePopup = ({
 
       <List
         sx={{ width: "100%", bgcolor: "background.paper" }}
-        className="h-[250px] overflow-y-auto"
+        className={`h-[250px] overflow-y-auto ${
+          cart.products.length === 0 ? "flex" : ""
+        }`}
       >
         {/* Check the id of current user is equal to cart userId */}
-        {cart?.products?.map(
-          (item, idx) =>
-            currentUser?._id === item?.userId && (
-              <ListItem
-                key={idx}
-                className="!justify-between"
-                alignItems="flex-start"
-              >
-                <div className="flex gap-2">
-                  <Link href="" target="_blank">
-                    <img
-                      src={item?.img}
-                      style={{ width: "110px", height: "134px" }}
-                      alt=""
-                    />
-                  </Link>
-                  <ListItemText
-                    sx={{ display: "inline-block", margin: "10px" }}
-                    className="font-bold max-w-[400px]"
-                    primaryTypographyProps={{ fontWeight: "bold" }}
-                    primary={item.title}
-                    secondary={
-                      <Typography
-                        component="span"
-                        variant="body2"
-                        color="text.primary"
-                      >
-                        <BasketDesc>{item.desc}</BasketDesc>
-                        <p>
-                          <span className="font-semibold">Price: </span>
-                          {item.price}$
-                        </p>
-                        <Color
-                          className={`border`}
-                          style={{ backgroundColor: `${item.color}` }}
-                        ></Color>
-                        <Size className="laptop:mt-2">
-                          <span className="font-semibold">Size: </span>
-                          {item?.size}
-                        </Size>
-                      </Typography>
-                    }
-                  />
-                </div>
-                <Grid
-                  item
-                  xs={4}
-                  className="!justify-center"
-                  container
-                  spacing={1}
+        {cart?.products?.length ? (
+          cart?.products?.map(
+            (item, idx) =>
+              currentUser?._id === item?.userId && (
+                <ListItem
+                  key={idx}
+                  className="!justify-between"
+                  alignItems="flex-start"
                 >
-                  <Box
-                    sx={{ "& > :not(style)": { m: 1 } }}
-                    style={{ marginTop: "30px", display: "flex" }}
+                  <div className="flex gap-2">
+                    <Link href="" target="_blank">
+                      <img
+                        src={item?.img}
+                        style={{ width: "110px", height: "134px" }}
+                        alt=""
+                      />
+                    </Link>
+                    <ListItemText
+                      sx={{ display: "inline-block", margin: "10px" }}
+                      className="font-bold max-w-[400px]"
+                      primaryTypographyProps={{ fontWeight: "bold" }}
+                      primary={item.title}
+                      secondary={
+                        <Typography
+                          component="span"
+                          variant="body2"
+                          color="text.primary"
+                        >
+                          <BasketDesc>{item.desc}</BasketDesc>
+                          <p>
+                            <span className="font-semibold">Price: </span>
+                            {item.price}$
+                          </p>
+                          <Color
+                            className={`border`}
+                            style={{ backgroundColor: `${item.color}` }}
+                          ></Color>
+                          <Size className="laptop:mt-2">
+                            <span className="font-semibold">Size: </span>
+                            {item?.size}
+                          </Size>
+                        </Typography>
+                      }
+                    />
+                  </div>
+                  <Grid
+                    item
+                    xs={4}
+                    className="!justify-center"
+                    container
+                    spacing={1}
                   >
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        flexDirection: "row",
-                        cursor: "pointer",
-                        border: "1px solid black",
-                        padding: "10px 30px",
-                        borderRadius: "10% 10% 10%",
-                      }}
+                    <Box
+                      sx={{ "& > :not(style)": { m: 1 } }}
+                      style={{ marginTop: "30px", display: "flex" }}
                     >
-                      <span className="quan-bar__text">{item.quantity}</span>
-                    </div>
-                    <IconButton
-                      onClick={() => handleRemoveProduct(item)}
-                      aria-label="delete"
-                      style={{ color: "#f44336" }}
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          flexDirection: "row",
+                          cursor: "pointer",
+                          border: "1px solid black",
+                          padding: "10px 30px",
+                          borderRadius: "10% 10% 10%",
+                        }}
+                      >
+                        <span className="quan-bar__text">{item.quantity}</span>
+                      </div>
+                      <IconButton
+                        onClick={() => handleRemoveProduct(item)}
+                        aria-label="delete"
+                        style={{ color: "#f44336" }}
+                      >
+                        <DeleteIcon />
+                      </IconButton>
+                    </Box>
+                  </Grid>
+                  <Grid item xs={8} style={{ marginTop: "40px" }}>
+                    <Typography
+                      className="text-end w-[70px]"
+                      color="text.primary"
+                      variant="body1"
                     >
-                      <DeleteIcon />
-                    </IconButton>
-                  </Box>
-                </Grid>
-                <Grid item xs={8} style={{ marginTop: "40px" }}>
-                  <Typography
-                    className="text-end w-[70px]"
-                    color="text.primary"
-                    variant="body1"
-                  >
-                    {item.price}$
-                  </Typography>
-                </Grid>
-              </ListItem>
-            )
+                      {item.price}$
+                    </Typography>
+                  </Grid>
+                </ListItem>
+              )
+          )
+        ) : (
+          <div className="p-5 m-auto">Your cart is empty</div>
         )}
       </List>
       <Divider variant="middle" />

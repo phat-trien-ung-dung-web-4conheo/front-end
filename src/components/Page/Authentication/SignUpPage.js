@@ -58,7 +58,6 @@ const SignUpPage = () => {
   const isSignUp = useNavigate();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const handleRegister = (value) => {
     const newUser = {
       username: value.fullname,
