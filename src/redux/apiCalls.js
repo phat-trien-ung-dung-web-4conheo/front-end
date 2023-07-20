@@ -99,6 +99,7 @@ export const updateUserMethod = async (
   }
 };
 export const addProductToCart = async (dispatch, product, user) => {
+  console.log("product", product, product._id, user._id);
   try {
     const res = await publicRequest.post(
       "/carts/",

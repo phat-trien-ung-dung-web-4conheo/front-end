@@ -88,11 +88,11 @@ const ProductList = ({ data, catHome, cat, sort, filters }) => {
         const res = await axios.get(
           cat || catHome
             ? // `http://localhost:3003/api/products?category=${cat || catHome}`
-              `https://back-end-webdevis207.up.railway.app/api/products?category=${
+              `https://backend4conheo.onrender.com/api/products?category=${
                 cat || catHome
               }`
             : // "http://localhost:3003/api/products"
-              "https://back-end-webdevis207.up.railway.app/api/products"
+              "https://backend4conheo.onrender.com/api/products"
         );
         setProducts(res.data);
       } catch (err) {
