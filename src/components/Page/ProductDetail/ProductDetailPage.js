@@ -39,6 +39,8 @@ const Right = styled.div`
 const ProductImg = styled.img`
   box-shadow: rgba(99, 99, 99, 0.6) 0px 2px 10px 0px;
   border-radius: 10px;
+  aspect-ratio: 888/814;
+  height: 100%;
 `;
 const SliderImg = styled.div``;
 const ProductDetailPage = () => {
@@ -131,7 +133,7 @@ const ProductDetailPage = () => {
               {product?.img?.map((item) => (
                 <div
                   ref={leftDiv}
-                  className="w-full h-[calc(100vh-144px)] laptop:h-[calc(100vh-80px)] rounded-xl overflow-hidden shadow-lg shadow-gray-800/40"
+                  className="w-full h-[calc(100vh-144px)] laptop:h-[calc(100vh)] rounded-xl overflow-hidden shadow-lg shadow-gray-800/40"
                 >
                   <ProductImg
                     className="w-full m-h-full object-cover"

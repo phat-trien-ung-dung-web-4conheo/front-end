@@ -290,15 +290,17 @@ const Header = (props) => {
   const cartRight = useRef();
   //GET SCROLL
   const [scrollY, setScrollY] = useState(0);
+  let prevScrollY = window.scrollY;
   const handleScroll = () => {
-    const position = window.pageYOffset;
-    if (position > 1) {
+    const position = window.scrollY;
+    if (position > prevScrollY && position > 1) {
       headerScroll.current.style.transform = "translateY(-62px)";
       cartRight.current.style.transform = "translateY(2px)";
     } else {
       headerScroll.current.style.transform = "translateY(0)";
       cartRight.current.style.transform = "translateY(-50px)";
     }
+    prevScrollY = position;
     // setScrollY(position);
   };
   useEffect(() => {
@@ -375,7 +377,9 @@ const Header = (props) => {
               )}
               <User
                 onClick={() =>
-                  navigate(`${currentUser ? `/user/${currentUser._id}` : "sign-in"}`)
+                  navigate(
+                    `${currentUser ? `/user/${currentUser._id}` : "sign-in"}`
+                  )
                 }
               >
                 <AccountCircleIcon></AccountCircleIcon>{" "}
