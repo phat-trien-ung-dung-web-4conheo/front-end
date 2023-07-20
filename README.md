@@ -1,23 +1,30 @@
-# Dự án Website thương mại điện tử bán giày 
+E-commerce Shoe Selling Website Project
+Build a shoe selling website to help customers easily access products and simplify order management.
 
-Xây dựng website bán giày giúp khách hàng dễ dàng tiếp cận với các sản phẩm hơn đồng thời việc quản lý các đơn hàng cũng dễ dàng hơn. 
+The team uses programming languages like HTML, JavaScript, CSS, React library, Mui library, Tailwind CSS framework, React Router Dom, and styled-components to build a complete website.
 
-Nhóm sử dụng các ngôn ngữ lập trình như HTML, JavaScript, CSS, thư viện React, thư viện Mui, framework Tailwind CSS, React Router Dom, styled-component để xây dựng được một website hoàn chỉnh
+The project includes basic functionalities for users such as login, registration, searching for product information (not yet completed), and a shopping cart feature.
 
-Dự án gồm một số chức năng cơ bản về cho người sử dụng (user) như: đăng nhập, đăng ký, tìm kiếm các thông tin về sản phẩm (chưa hoàn thiện), chức năng giỏ hàng 
+The UI design is responsive and adapts to different screen resolutions of devices like laptops, tablets, and mobile phones.
 
-Giao diện UI thích ứng được độ phân giải của các thiết bị như laptop, tablet và mobile.
+How to build the project on localhost:3000
+Open the terminal in the project directory.
 
-## Cách build project trên localhost:3000
+Run npm install to install the necessary dependencies for the website.
 
-## Mở Terminal tại thư mục lưu trữ dự án 
+Run npm start to build the project on localhost:3000.
 
-### `npm install` - install lại các dependency để hỗ trợ website
+Website Deployment
+The website is deployed at: https://ovion.netlify.app/
 
-### `npm start` - build project trên localhost:3000
+Homepage Screen
+![image](https://github.com/phat-trien-ung-dung-web-4conheo/front-end/assets/77733880/6fcbbdad-6636-42c8-b311-f30d4ad88077)
 
-## Website Deployment
-
-### https://ovion.netlify.app/
-
-
+Product Detail Screen
+![image](https://github.com/phat-trien-ung-dung-web-4conheo/front-end/assets/77733880/7a47d735-38f7-43d6-82c9-b93ede809786)
+Cart Screen
+![image](https://github.com/phat-trien-ung-dung-web-4conheo/front-end/assets/77733880/8f5db238-db07-4df6-942f-08003ced5fa0)
+User Profile Screen
+![image](https://github.com/phat-trien-ung-dung-web-4conheo/front-end/assets/77733880/2473e185-7ecb-4739-bfdb-f7ba6e96750b)
+Checkout Screen
+![image](https://github.com/phat-trien-ung-dung-web-4conheo/front-end/assets/77733880/37fd1920-f9be-4a27-85a2-64226d41dbcd)
