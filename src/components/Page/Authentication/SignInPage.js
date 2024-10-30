@@ -138,31 +138,32 @@ const SignInPage = () => {
               />
             </div>
 
-            <Button
-              style={{ backgroundColor: "white" }}
-              variant="contained"
-              disableElevation
-            >
-              <div
-                style={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                  display: "flex",
-                  gap: "10px",
-                }}
-              >
-                <GoogleIcon style={{ color: "black" }} />
-                <h2
-                  style={{
-                    fontSize: 16,
-                    color: "#2a254b",
-                    textTransform: "capitalize",
-                  }}
-                >
-                  Sign in with Google
-                </h2>
-              </div>
-            </Button>
+            {/* todo: remove if this feature is completed */}
+            {/*<Button*/}
+            {/*  style={{ backgroundColor: "white" }}*/}
+            {/*  variant="contained"*/}
+            {/*  disableElevation*/}
+            {/*>*/}
+            {/*  <div*/}
+            {/*    style={{*/}
+            {/*      flexDirection: "row",*/}
+            {/*      alignItems: "center",*/}
+            {/*      display: "flex",*/}
+            {/*      gap: "10px",*/}
+            {/*    }}*/}
+            {/*  >*/}
+            {/*    <GoogleIcon style={{ color: "black" }} />*/}
+            {/*    <h2*/}
+            {/*      style={{*/}
+            {/*        fontSize: 16,*/}
+            {/*        color: "#2a254b",*/}
+            {/*        textTransform: "capitalize",*/}
+            {/*      }}*/}
+            {/*    >*/}
+            {/*      Sign in with Google*/}
+            {/*    </h2>*/}
+            {/*  </div>*/}
+            {/*</Button>*/}
 
             <h2>
               Don't have an account?
